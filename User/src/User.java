@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class User {
 
@@ -15,7 +16,25 @@ public class User {
     public String calculateBMI() {
         DecimalFormat df = new DecimalFormat("##.#");
         double result = 100 * (healthInformation.getWeight() / Math.pow(healthInformation.getHeight() * 0.1, 2));
+        System.out.println("Your BMI is: " + result);
         return df.format(result);
+    }
+
+    // Method to calculate user BMR
+    public double calculateBMR() {
+        Scanner scan = new Scanner(System.in);
+        double bmr;
+        System.out.println("What is your gender? Enter M/F");
+        String gender = scan.nextLine();
+        if (gender.equals("M")) {
+            bmr = 66.47 + (13.75 * healthInformation.getWeight()) + (5.003 * healthInformation.getHeight())
+                    - (6.755 * age);
+        } else {
+            bmr = 655.1 + (9.563 * healthInformation.getWeight()) + (1.85 * healthInformation.getHeight())
+                    - (4.676 * age);
+        }
+        System.out.println("Your BMR is " + bmr);
+        return bmr;
     }
 
     // Method to provide health feedback
