@@ -42,6 +42,8 @@ public class User {
 //
 //    }
 
+    // Method for remaining calories?
+
     // User details
     private String userName;
     private String realName;

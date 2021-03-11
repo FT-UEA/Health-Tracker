@@ -11,7 +11,37 @@ public class DietInformation {
         caloriesInit("food_calories.csv", foodCalories);
         this.drinkCalories = new HashMap<>();
         caloriesInit("drink_calories.csv", drinkCalories);
+        this.meals = new HashMap<>();
+        meals.put("Breakfast", 0);
+        meals.put("Lunch", 0);
+        meals.put("Dinner", 0);
+        meals.put("Snack", 0);
     }
+
+    // Method to choose meal
+    public void chooseMeal(String meal) {
+        Scanner scan = new Scanner(System.in);
+        if (!meals.containsKey(meal)) {
+            System.out.println("Meal not present, add custom meal? Enter Y/N");
+            String response = scan.nextLine();
+            if (response.equals("Y")) {
+                addCustomMeal();
+            }
+        } else {
+            this.meal = meal;
+        }
+    }
+
+    // Add custom meal
+    public void addCustomMeal() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter meal name");
+        String mealName = scan.nextLine();
+        meals.put(mealName, 0);
+        System.out.println(mealName + " addeed.");
+    }
+
+    // Method to provide calorific information for each meal
 
     // Method to receive calorific information about a food
     public void foodQuery(String food) {
@@ -44,6 +74,11 @@ public class DietInformation {
                 String foodCalories = scan.nextLine();
                 addCustomFood(foodName, Integer.parseInt(foodCalories));
             }
+            consumedCalories += foodCalories.get(food);
+            int prevMealCal = meals.get(meal);
+            meals.replace(meal, (prevMealCal + foodCalories.get(food)));
+            System.out.println("Added " + food + " at " + foodCalories.get(food) + " calories.");
+            System.out.println("Total calories consumed so far: " + consumedCalories);
         } else {
             consumedCalories += foodCalories.get(food);
             System.out.println("Added " + food + " at " + foodCalories.get(food) + " calories.");
@@ -64,6 +99,11 @@ public class DietInformation {
                 String drinkCalories = scan.nextLine();
                 addCustomFood(foodName, Integer.parseInt(drinkCalories));
             }
+            consumedCalories += drinkCalories.get(drink);
+            int prevMealCal = meals.get(meal);
+            meals.replace(meal, (prevMealCal + foodCalories.get(drink)));
+            System.out.println("Added " + drink + " at " + drinkCalories.get(drink) + " calories.");
+            System.out.println("Total calories consumed so far: " + consumedCalories);
         } else {
             consumedCalories += drinkCalories.get(drink);
             System.out.println("Added " + drink + " at " + drinkCalories.get(drink) + " calories.");
@@ -92,17 +132,24 @@ public class DietInformation {
         sc.close();
     }
 
-    // Method to reset the consumed calories to 0
+    // Method to reset the consumed calories to 0 as well as all meals
     public void resetCalories() {
         consumedCalories = 0;
+        meals.replace("Breakfast", 0);
+        meals.replace("Lunch", 0);
+        meals.replace("Dinner", 0);
+        meals.replace("Snack", 0);
     }
 
     // Calories consumed
     private double consumedCalories;
     // HashMap of food and calories
-    HashMap<String, Integer> foodCalories;
+    private final HashMap<String, Integer> foodCalories;
     // HashMap of drink and calories
-    HashMap<String, Integer> drinkCalories;
+    private final HashMap<String, Integer> drinkCalories;
+    // HashMap of meals and calories
+    private HashMap<String, Integer> meals;
+    private String meal;
 
     public static void main(String[] args) throws FileNotFoundException {
         DietInformation dietInformation = new DietInformation();
