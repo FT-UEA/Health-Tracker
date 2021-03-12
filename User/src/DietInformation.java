@@ -23,8 +23,7 @@ public class DietInformation {
         Scanner scan = new Scanner(System.in);
         if (!meals.containsKey(meal)) {
             System.out.println("Meal not present, add custom meal? Enter Y/N");
-            String response = scan.nextLine();
-            if (response.equals("Y")) {
+            if (scan.nextLine().equals("Y")) {
                 addCustomMeal();
             }
         } else {
@@ -66,8 +65,7 @@ public class DietInformation {
         Scanner scan = new Scanner(System.in);
         if (!foodCalories.containsKey(food)) {
             System.out.println("Food not in list, add custom? Enter Y/N");
-            String response = scan.nextLine();
-            if (response.equals("Y")) {
+            if (scan.nextLine().equals("Y")) {
                 System.out.println("Please enter food name.");
                 String foodName = scan.nextLine();
                 System.out.println("Please enter food calories");
@@ -91,8 +89,7 @@ public class DietInformation {
         Scanner scan = new Scanner(System.in);
         if (!drinkCalories.containsKey(drink)) {
             System.out.println("Drink not in list, add custom? Enter Y/N");
-            String response = scan.nextLine();
-            if (response.equals("Y")) {
+            if (scan.nextLine().equals("Y")) {
                 System.out.println("Please enter drink name.");
                 String foodName = scan.nextLine();
                 System.out.println("Please enter drink calories");

@@ -1,15 +1,19 @@
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class User {
 
     // Constructor to initialise User variables and HealthInformation variables
-    public User(String userName, String realName, String email, int age, double height, double weight) {
+    public User(String userName, String realName, String email, int age, double height, double weight) throws FileNotFoundException {
         this.userName = userName;
         this.realName = realName;
         this.email = email;
         this.age = age;
         healthInformation = new HealthInformation(height, weight);
+        dietInformation = new DietInformation();
+        exerciseInformation = new ExerciseInformation();
+
     }
 
     // Method to calculate user BMI
@@ -44,6 +48,10 @@ public class User {
 
     // Method for remaining calories?
 
+    // Display group info
+
+    // Display goal info
+
     // User details
     private String userName;
     private String realName;
@@ -60,8 +68,9 @@ public class User {
     // Array of goals the user has set
 //    private Goal[] goals;
 
-    public static void main(String[] args) {
-        User user = new User("JT93", "Josh Thomson", "JoshT626@hotmail.co.uk", 28, 184, 77.6);
+    public static void main(String[] args) throws FileNotFoundException {
+        User user = new User("JT93", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
+                184, 77.6);
         System.out.println("Username: " + user.userName);
         System.out.println("Full name: " + user.realName);
         System.out.println("Email address: " + user.email);
