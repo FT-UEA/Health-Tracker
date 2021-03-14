@@ -40,15 +40,18 @@ public class ExerciseInformation {
         Scanner scan = new Scanner(System.in);
         int duration;
         double distance;
+        int calories;
         System.out.println("Select exercise time or duration? Enter duration/distance");
         if (scan.nextLine().equals("duration")) {
             duration = setTime();
-            System.out.println("Calories burnt from " + exercise + ": " + duration * exerciseTypes.get(exercise));
+            calories = (int)(duration * exerciseTypes.get(exercise));
+            System.out.println("Calories burnt from " + exercise + ": " + calories);
         } else if (scan.nextLine().equals("distance")) {
             distance = setDistance();
             // Use 1.4m/s as a rough speed for all exercises, temporary?
+            calories = (int)((distance / 1.4) * exerciseTypes.get(exercise));
             System.out.println("Calories burnt from " + exercise + ": "
-                    + (distance / 1.4) * exerciseTypes.get(exercise));
+                    + calories);
         } else {
             caloriesBurnt(exercise);
         }
@@ -80,8 +83,6 @@ public class ExerciseInformation {
     }
 
     // Choose distance/time or both
-
-    // Calculate calories burnt
 
     // Array of exercise types
     private HashMap<String, Double> exerciseTypes;
