@@ -1,6 +1,4 @@
 import java.io.FileNotFoundException;
-import java.text.DecimalFormat;
-import java.util.Scanner;
 
 public class User {
 
@@ -27,11 +25,11 @@ public class User {
     // Display goal info
 
     // User details
-    private String userName;
-    private String realName;
-    private String email;
+    private final String userName;
+    private final String realName;
+    private final String email;
     // HealthInformation object
-    private HealthInformation healthInformation;
+    private final HealthInformation healthInformation;
     // DietInformation object
     private DietInformation dietInformation;
     // ExerciseInformation object

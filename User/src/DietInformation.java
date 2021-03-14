@@ -19,10 +19,13 @@ public class DietInformation {
     }
 
     // Method to choose meal
-    public void chooseMeal(String meal) {
+    public void chooseMeal() {
         Scanner scan = new Scanner(System.in);
-        if (!meals.containsKey(meal)) {
-            System.out.println("Meal not present, add custom meal? Enter Y/N");
+        System.out.println("Please select meal. Choose from Breakfast/Lunch/Dinner/Snack or type 'Custom' to " +
+                "enter a new custom meal");
+        String meal = scan.nextLine();
+        if (!meals.containsKey(meal) || meal.equals("Custom")) {
+            System.out.println("Add custom meal? Enter Y/N");
             if (scan.nextLine().equals("Y")) {
                 addCustomMeal();
             }
@@ -37,13 +40,17 @@ public class DietInformation {
         System.out.println("Please enter meal name");
         String mealName = scan.nextLine();
         meals.put(mealName, 0);
-        System.out.println(mealName + " addeed.");
+        System.out.println(mealName + " added.");
+        this.meal = mealName;
     }
 
     // Method to provide calorific information for each meal
 
     // Method to receive calorific information about a food
-    public void foodQuery(String food) {
+    public void foodQuery() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter food item");
+        String food = scan.nextLine();
         if (!foodCalories.containsKey(food)) {
             addFood(food);
         } else {
@@ -52,7 +59,10 @@ public class DietInformation {
     }
 
     // Method to receive calorific information about a drink
-    public void drinkQuery(String drink) {
+    public void drinkQuery() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter drink item");
+        String drink = scan.nextLine();
         if (!foodCalories.containsKey(drink)) {
             addFood(drink);
         } else {
@@ -66,11 +76,11 @@ public class DietInformation {
         if (!foodCalories.containsKey(food)) {
             System.out.println("Food not in list, add custom? Enter Y/N");
             if (scan.nextLine().equals("Y")) {
-                System.out.println("Please enter food name.");
-                String foodName = scan.nextLine();
                 System.out.println("Please enter food calories");
                 String foodCalories = scan.nextLine();
-                addCustomFood(foodName, Integer.parseInt(foodCalories));
+                addCustomFood(food, Integer.parseInt(foodCalories));
+            } else {
+                return;
             }
             consumedCalories += foodCalories.get(food);
             int prevMealCal = meals.get(meal);
@@ -87,14 +97,13 @@ public class DietInformation {
     // Method to add add consumed drink calories
     public void addDrink(String drink) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Current meal :" + meal);
         if (!drinkCalories.containsKey(drink)) {
             System.out.println("Drink not in list, add custom? Enter Y/N");
             if (scan.nextLine().equals("Y")) {
-                System.out.println("Please enter drink name.");
-                String foodName = scan.nextLine();
                 System.out.println("Please enter drink calories");
                 String drinkCalories = scan.nextLine();
-                addCustomFood(foodName, Integer.parseInt(drinkCalories));
+                addCustomFood(drink, Integer.parseInt(drinkCalories));
             }
             consumedCalories += drinkCalories.get(drink);
             int prevMealCal = meals.get(meal);
@@ -129,6 +138,10 @@ public class DietInformation {
         sc.close();
     }
 
+    // Method to display calories consumed
+    public void caloriesConsumed() {
+        System.out.println("Consumed calories: " + consumedCalories);
+    }
     // Method to reset the consumed calories to 0 as well as all meals
     public void resetCalories() {
         consumedCalories = 0;
@@ -150,11 +163,16 @@ public class DietInformation {
 
     public static void main(String[] args) throws FileNotFoundException {
         DietInformation dietInformation = new DietInformation();
-        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.foodCalories.entrySet()) {
-            System.out.println(stringDoubleEntry);
-        }
-        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.drinkCalories.entrySet()) {
-            System.out.println(stringDoubleEntry);
-        }
+        // List food and drink
+//        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.foodCalories.entrySet()) {
+//            System.out.println(stringDoubleEntry);
+//        }
+//        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.drinkCalories.entrySet()) {
+//            System.out.println(stringDoubleEntry);
+//        }
+        dietInformation.chooseMeal();
+        dietInformation.foodQuery();
+        dietInformation.drinkQuery();
+        dietInformation.caloriesConsumed();
     }
 }

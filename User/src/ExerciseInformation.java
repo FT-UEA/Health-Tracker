@@ -17,21 +17,16 @@ public class ExerciseInformation {
         Scanner scan = new Scanner(System.in);
         String exercise = scan.nextLine();
         switch (exercise) {
-            case "Walking":
-                caloriesBurnt("Walking");
-                break;
-            case "Running":
-                break;
-            case "Cycling":
-                break;
-            case "Swimming":
-                break;
-            default:
+            case "Walking" -> caloriesBurnt("Walking");
+            case "Running" -> caloriesBurnt("Running");
+            case "Cycling" -> caloriesBurnt("Cycling");
+            case "Swimming" -> caloriesBurnt("Swimming");
+            default -> {
                 System.out.println("Exercise not found, add custom exercise? Enter Y/N");
                 if (scan.nextLine().equals("Y")) {
-                    customExerciseType();
+                    customExerciseType(exercise);
                 }
-                break;
+            }
         }
     }
 
@@ -42,13 +37,14 @@ public class ExerciseInformation {
         double distance;
         int calories;
         System.out.println("Select exercise time or duration? Enter duration/distance");
-        if (scan.nextLine().equals("duration")) {
+        String response = scan.nextLine();
+        if (response.equals("duration")) {
             duration = setTime();
             calories = (int)(duration * exerciseTypes.get(exercise));
             System.out.println("Calories burnt from " + exercise + ": " + calories);
-        } else if (scan.nextLine().equals("distance")) {
+        } else if (response.equals("distance")) {
             distance = setDistance();
-            // Use 1.4m/s as a rough speed for all exercises, temporary?
+            // Use 1.4m/s as a rough speed for all exercises, temporary
             calories = (int)((distance / 1.4) * exerciseTypes.get(exercise));
             System.out.println("Calories burnt from " + exercise + ": "
                     + calories);
@@ -72,18 +68,20 @@ public class ExerciseInformation {
     }
 
     // Add custom exercise type and MET doing it
-    public void customExerciseType() {
+    public void customExerciseType(String exercise) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter exercise name");
-        String exercise = scan.nextLine();
         System.out.println("Please enter exercise Metabolic Equivalent of a Task (MET)");
         Double met = scan.nextDouble();
         exerciseTypes.put(exercise, met);
         System.out.println("Added " + exercise + " with a MET of " + met);
+        caloriesBurnt(exercise);
     }
-
-    // Choose distance/time or both
 
     // Array of exercise types
     private HashMap<String, Double> exerciseTypes;
+
+    public static void main(String[] args) {
+        ExerciseInformation exerciseInformation = new ExerciseInformation();
+        exerciseInformation.chooseExercise();
+    }
 }
