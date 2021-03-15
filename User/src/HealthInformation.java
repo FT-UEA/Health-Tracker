@@ -21,10 +21,6 @@ public class HealthInformation {
         return age;
     }
 
-    public void resetCalories() {
-        remainingCalories = 0;
-    }
-
     // Method to calculate user BMI
     public String calculateBMI() {
         DecimalFormat df = new DecimalFormat("##.#");
@@ -52,6 +48,4 @@ public class HealthInformation {
     private final double height;
     private final double weight;
     private final int age;
-    private double remainingCalories;
-
 }

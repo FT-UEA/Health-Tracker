@@ -46,6 +46,7 @@ public class DietInformation {
 
     // Method to provide calorific information for each meal
 
+
     // Method to receive calorific information about a food
     public void foodQuery() {
         Scanner scan = new Scanner(System.in);
