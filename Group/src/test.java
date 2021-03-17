@@ -7,6 +7,7 @@ public class test {
         Group group2 = new Group("Hunter Association", new User("Chairman Netero") );
         groupArrayList.add(group1);
         groupArrayList.add(group2);
+        
 
     }
 }
