@@ -17,12 +17,6 @@ public class Goal {
         setDate();
         runningGoal();
         goalCheck();
-        setNewGoal();
-        float weightGoal = getWeight();
-        LocalDate dateGoal = getDate();
-        double distanceGoal = getDistance();
-        LocalTime timeGoal = getTime();
-        boolean goalStatus = getStatus();
     }
 
     public void setWeight() {
@@ -167,6 +161,7 @@ public class Goal {
 
     public static void main(String[] args){
         Goal goal = new Goal();
+        goal.setNewGoal();
     }
 }
 
