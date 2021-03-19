@@ -31,9 +31,9 @@ public class User {
     // HealthInformation object
     private final HealthInformation healthInformation;
     // DietInformation object
-    private DietInformation dietInformation;
+    public DietInformation dietInformation;
     // ExerciseInformation object
-    private ExerciseInformation exerciseInformation;
+    public ExerciseInformation exerciseInformation;
     // Array of groups the user is in
 //    private Group[] groups;
     // Array of goals the user has set
