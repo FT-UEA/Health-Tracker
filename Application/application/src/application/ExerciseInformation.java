@@ -42,12 +42,12 @@ public class ExerciseInformation {
         String response = scan.nextLine();
         if (response.equals("duration")) {
             duration = setTime();
-            calories = (int)(duration * exerciseTypes.get(exercise));
+            calories = (int) (duration * exerciseTypes.get(exercise));
             System.out.println("Calories burnt from " + exercise + ": " + calories);
         } else if (response.equals("distance")) {
             distance = setDistance();
             // Use 1.4m/s as a rough speed for all exercises, temporary
-            calories = (int)((distance / 1.4) * exerciseTypes.get(exercise));
+            calories = (int) ((distance / 1.4) * exerciseTypes.get(exercise));
             System.out.println("Calories burnt from " + exercise + ": "
                     + calories);
         } else {

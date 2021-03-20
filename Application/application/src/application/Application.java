@@ -8,10 +8,12 @@ public class Application {
 
     private HashMap<String, User> users;
     private HashMap<String, Group> groups;
+    private User currentUser;
+    private String userName;
 
     public Application() {
-        users = new HashMap<String, User>();
-//        groups = new HashMap<String, Group>();
+        users = new HashMap<>();
+        groups = new HashMap<>();
     }
 
     // Creates and adds user
@@ -19,9 +21,9 @@ public class Application {
         Scanner scan = new Scanner(System.in);
         System.out.println("New user registration");
         System.out.println("Username:");
-        String userName = scan.nextLine();
+        userName = scan.nextLine();
         System.out.println("Full name:");
-        String fullname = scan.nextLine();
+        String fullName = scan.nextLine();
         System.out.println("Email address:");
         String emailAddress = scan.nextLine();
         System.out.println("Age:");
@@ -30,18 +32,37 @@ public class Application {
         double height = scan.nextDouble();
         System.out.println("Weight");
         double weight = scan.nextDouble();
-        users.put(userName, new User(userName, fullname, emailAddress, age, height, weight));
+        users.put(userName, new User(userName, fullName, emailAddress, age, height, weight));
+        currentUser = users.get(userName);
         System.out.println("User created");
+    }
+
+    public void userLogin() throws FileNotFoundException {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter username");
+        String user = scan.nextLine();
+        if (users.containsKey(user)) {
+            currentUser = users.get(user);
+        } else {
+            System.out.println("User not registered");
+            System.out.println("Register user? (Y/N)");
+            if (scan.nextLine().equals("Y")) {
+                createUser();
+            } else {
+                System.exit(0);
+            }
+        }
     }
 
     // Adds a user, interacts with diet and health info
     public static void main(String[] args) throws FileNotFoundException {
         Application application = new Application();
-        application.createUser();
-        application.users.get("JoshT").dietInformation.chooseMeal();
-        application.users.get("JoshT").dietInformation.foodQuery();
-        application.users.get("JoshT").dietInformation.drinkQuery();
-        application.users.get("JoshT").dietInformation.caloriesConsumed();
-        application.users.get("JoshT").exerciseInformation.chooseExercise();
+        application.userLogin();
+        application.users.get(application.userName).dietInformation.chooseMeal();
+        application.users.get(application.userName).dietInformation.foodQuery();
+        application.users.get(application.userName).dietInformation.drinkQuery();
+        application.users.get(application.userName).dietInformation.caloriesConsumed();
+        application.users.get(application.userName).exerciseInformation.chooseExercise();
+        application.users.get(application.userName).createGoal();
     }
 }
