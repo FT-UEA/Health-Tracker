@@ -1,20 +1,21 @@
 package application;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Application {
 
-    HashMap<String, User> users;
-    HashMap<String, Group> groups;
+    private HashMap<String, User> users;
+    private HashMap<String, Group> groups;
 
     public Application() {
-        users = new HashMap<User, String>();
-        groups = new HashMap<Group, String>();
+        users = new HashMap<String, User>();
+//        groups = new HashMap<String, Group>();
     }
 
     // Creates and adds user
-    public void createUser() {
+    public void createUser() throws FileNotFoundException {
         Scanner scan = new Scanner(System.in);
         System.out.println("New user registration");
         System.out.println("Username:");
@@ -34,14 +35,13 @@ public class Application {
     }
 
     // Adds a user, interacts with diet and health info
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Application application = new Application();
         application.createUser();
-        users.get("JoshT").dietInformation.chooseMeal();
-        users.get("JoshT").dietInformation.foodQuery();
-        users.get("JoshT").dietInformation.drinkQuery();
-        users.get("JoshT").dietInformation.caloriesConsumed();
-        users.get("JoshT").exerciseInformation.chooseExercise();
-        users.get("JoshT").exerciseInformation.caloriesBurnt();
+        application.users.get("JoshT").dietInformation.chooseMeal();
+        application.users.get("JoshT").dietInformation.foodQuery();
+        application.users.get("JoshT").dietInformation.drinkQuery();
+        application.users.get("JoshT").dietInformation.caloriesConsumed();
+        application.users.get("JoshT").exerciseInformation.chooseExercise();
     }
 }
