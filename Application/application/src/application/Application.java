@@ -56,13 +56,23 @@ public class Application {
 
     // Adds a user, interacts with diet and health info
     public static void main(String[] args) throws FileNotFoundException {
+        // Create application object
         Application application = new Application();
         application.userLogin();
+        // Calculate BMI/BMR from healthInformation
+        application.users.get(application.userName).healthInformation.calculateBMI();
+        application.users.get(application.userName).healthInformation.calculateBMR();
+        // Interact with dietInformation
         application.users.get(application.userName).dietInformation.chooseMeal();
         application.users.get(application.userName).dietInformation.foodQuery();
         application.users.get(application.userName).dietInformation.drinkQuery();
         application.users.get(application.userName).dietInformation.caloriesConsumed();
         application.users.get(application.userName).exerciseInformation.chooseExercise();
+        // Interact with goals
         application.users.get(application.userName).createGoal();
+        application.users.get(application.userName).active_goals.get("goal").checkWeightGoal(75);
+        application.users.get(application.userName).createGoal();
+        application.users.get(application.userName).activegoals.get("goal")
+
     }
 }
