@@ -1,5 +1,5 @@
 public class Goal {
     Goal(){
-
+        
     }
 }
