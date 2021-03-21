@@ -27,12 +27,13 @@ public class HealthInformation {
     public String calculateBMI() {
         DecimalFormat df = new DecimalFormat("##.#");
         double result = 100 * (height / Math.pow(height * 0.1, 2));
-        System.out.println("Your BMI is: " + result);
+        System.out.println("Your BMI is: " + df.format(result));
         return df.format(result);
     }
 
     // Method to calculate user BMR
-    public double calculateBMR() {
+    public void calculateBMR() {
+        DecimalFormat df = new DecimalFormat("##.#");
         Scanner scan = new Scanner(System.in);
         double bmr;
         System.out.println("What is your gender? Enter M/F");
@@ -43,8 +44,7 @@ public class HealthInformation {
             bmr = 655.1 + (9.563 * weight) + (1.85 * height)
                     - (4.676 * age);
         }
-        System.out.println("Your BMR is " + bmr);
-        return bmr;
+        System.out.println("Your BMR is " + df.format(bmr));
     }
 
     private final double height;

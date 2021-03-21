@@ -68,11 +68,12 @@ public class Application {
         application.users.get(application.userName).dietInformation.drinkQuery();
         application.users.get(application.userName).dietInformation.caloriesConsumed();
         application.users.get(application.userName).exerciseInformation.chooseExercise();
-        // Interact with goals
+        // Distance goal
         application.users.get(application.userName).createGoal();
-        application.users.get(application.userName).active_goals.get("goal").checkWeightGoal(75);
+        application.users.get(application.userName).checkGoal();
+        // Weight goal
         application.users.get(application.userName).createGoal();
-        application.users.get(application.userName).activegoals.get("goal")
+        application.users.get(application.userName).checkGoal();
 
     }
 }

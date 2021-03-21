@@ -26,6 +26,7 @@ public class User {
     // Create goal
     public void createGoal() {
         Scanner scan = new Scanner(System.in);
+        System.out.println("New goal");
         System.out.println("Please enter goal name");
         String goalName = scan.nextLine();
         active_goals.put(goalName, new Goal(goalName, healthInformation.getWeight()));
@@ -67,8 +68,6 @@ public class User {
             }
         }
     }
-
-    // Display goal info
 
     // Display group info
 

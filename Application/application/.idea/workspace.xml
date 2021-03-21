@@ -4,7 +4,7 @@
     <list default="true" id="4e710754-db3e-47a6-9980-931fee260d19" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Goal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Goal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/HealthInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/HealthInformation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +97,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Goal">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.Application" />
       <module name="application" />
@@ -147,8 +147,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Goal" />
         <item itemvalue="Application.Application" />
+        <item itemvalue="Application.Goal" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +163,7 @@
       <workItem from="1616163186996" duration="2302000" />
       <workItem from="1616234274915" duration="5788000" />
       <workItem from="1616317389027" duration="242000" />
-      <workItem from="1616317745217" duration="1731000" />
+      <workItem from="1616317745217" duration="4330000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented application for implementation testing">
       <created>1616165151432</created>
@@ -186,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616240600337</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added method to check goal through User, adjusted Goal class">
+      <created>1616319675570</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616319675570</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +215,7 @@
     <MESSAGE value="Implemented application for implementation testing" />
     <MESSAGE value="Combined User, added methods to Application" />
     <MESSAGE value="Adjusted Goal methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted Goal methods" />
+    <MESSAGE value="Added method to check goal through User, adjusted Goal class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added method to check goal through User, adjusted Goal class" />
   </component>
 </project>
