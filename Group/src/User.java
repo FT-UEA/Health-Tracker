@@ -4,4 +4,8 @@ public class User {
     User(String name){
         this.name = name;
     }
+
+    public String getUserName(){
+        return name;
+    }
 }
