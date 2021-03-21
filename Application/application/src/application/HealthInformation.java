@@ -26,7 +26,7 @@ public class HealthInformation {
     // Method to calculate user BMI
     public String calculateBMI() {
         DecimalFormat df = new DecimalFormat("##.#");
-        double result = 100 * (height / Math.pow(height * 0.1, 2));
+        double result = 100 * (weight / Math.pow(height * 0.1, 2));
         System.out.println("Your BMI is: " + df.format(result));
         return df.format(result);
     }
@@ -50,4 +50,10 @@ public class HealthInformation {
     private final double height;
     private final double weight;
     private final int age;
+
+    public static void main(String[] args) {
+        HealthInformation hi = new HealthInformation(184, 77, 28);
+        hi.calculateBMI();
+        hi.calculateBMR();
+    }
 }
