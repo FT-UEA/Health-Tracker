@@ -19,7 +19,13 @@ public class Goal {
     LocalTime currentTime = LocalTime.now();
     LocalTime timeSet;
 
-    //constructor
+    // Constructor for groups
+    public Goal(String goalName) {
+        this.goalName = goalName;
+        chooseGoal();
+    }
+
+    // Constructor for user
     public Goal(String goalName, double weight) {
         this.goalName = goalName;
         this.weight = weight;

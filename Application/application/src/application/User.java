@@ -18,6 +18,10 @@ public class User {
         active_goals = new HashMap<>();
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     // Method to provide health feedback
 //    public String provideFeedback() {
 //
