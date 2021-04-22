@@ -1,4 +1,4 @@
-package application;
+package scene;
 
 import java.io.File;
 import java.io.FileNotFoundException;

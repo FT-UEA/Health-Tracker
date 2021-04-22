@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e710754-db3e-47a6-9980-931fee260d19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/activation_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_mail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/application/activation-1.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/application/javax.mail.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/application.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Goal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Goal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/DietInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/DietInformation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,17 +150,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
@@ -189,7 +172,9 @@
       <workItem from="1616317745217" duration="4346000" />
       <workItem from="1616322469280" duration="223000" />
       <workItem from="1616327164935" duration="280000" />
-      <workItem from="1616410926421" duration="1193000" />
+      <workItem from="1616410926421" duration="1460000" />
+      <workItem from="1616432713998" duration="3391000" />
+      <workItem from="1619083791516" duration="894000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented application for implementation testing">
       <created>1616165151432</created>
@@ -233,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616322683203</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Included Group, added getter to User">
+      <created>1616412160713</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1616412160713</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +249,7 @@
     <MESSAGE value="Adjusted Goal methods" />
     <MESSAGE value="Added method to check goal through User, adjusted Goal class" />
     <MESSAGE value="Fixed BMI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed BMI" />
+    <MESSAGE value="Included Group, added getter to User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Included Group, added getter to User" />
   </component>
 </project>

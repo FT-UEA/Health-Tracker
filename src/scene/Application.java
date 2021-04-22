@@ -1,5 +1,8 @@
-package application;
+package scene;
 
+import javafx.fxml.FXML;
+
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,32 +12,29 @@ public class Application {
     private HashMap<String, User> users;
     private HashMap<String, Group> groups;
     private User currentUser;
+    @FXML
     private String userName;
+    @FXML
+    private String fullName;
+    @FXML
+    private String emailAddress;
+    @FXML
+    private String age;
+    @FXML
+    private String height;
+    @FXML
+    private String weight;
 
     public Application() {
         users = new HashMap<>();
         groups = new HashMap<>();
     }
 
+    @FXML
     // Creates and adds user
     public void createUser() throws FileNotFoundException {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("New user registration");
-        System.out.println("Username:");
-        userName = scan.nextLine();
-        System.out.println("Full name:");
-        String fullName = scan.nextLine();
-        System.out.println("Email address:");
-        String emailAddress = scan.nextLine();
-        System.out.println("Age:");
-        int age = scan.nextInt();
-        System.out.println("Height:");
-        double height = scan.nextDouble();
-        System.out.println("Weight");
-        double weight = scan.nextDouble();
-        users.put(userName, new User(userName, fullName, emailAddress, age, height, weight));
+        users.put(userName, new User(userName, fullName, emailAddress, Integer.parseInt(age), Double.parseDouble(height), Double.parseDouble(weight)));
         currentUser = users.get(userName);
-        System.out.println("User created");
     }
 
     public void userLogin() throws FileNotFoundException {
