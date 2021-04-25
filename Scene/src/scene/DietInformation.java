@@ -1,5 +1,16 @@
 package scene;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -165,6 +176,37 @@ public class DietInformation {
     // HashMap of meals and calories
     private HashMap<String, Integer> meals;
     private String meal;
+    @FXML
+    private TextArea foodCaloriesText;
+    @FXML
+    private TextArea foodAddedText;
+    @FXML
+    private TextField foodField;
+    @FXML TextField drinkField;
+    @FXML
+    private TextArea drinkCaloriesText;
+    @FXML
+    private TextArea drinkAddedText;
+
+    public void changeScreenLoggedOut(ActionEvent event) throws Exception{
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenDashboardNoCreate(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         DietInformation dietInformation = new DietInformation();

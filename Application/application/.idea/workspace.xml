@@ -2,9 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e710754-db3e-47a6-9980-931fee260d19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/Scene.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/drink_calories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/food_calories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/drink_calories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/food_calories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/scene/Join Group.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/scene/application.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/scene/drink_calories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Scene/src/scene/food_calories.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/DietInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/DietInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Health-Tracker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/Health-Tracker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Diet Information.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Diet Information.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/DietInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/DietInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/ExerciseInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/ExerciseInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Goal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Goal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Health Information.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Health Information.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/HealthInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/HealthInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Logged Out.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Logged Out.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Personal Dashboard Extended.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Personal Dashboard Extended.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Personal Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Personal Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Personal Group Dashboard Extended.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Personal Group Dashboard Extended.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Personal Group Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Personal Group Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/Settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/activation-1.1.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/activation-1.1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/scene/javax.mail.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../Scene/src/scene/javax.mail.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +207,8 @@
       <workItem from="1616410926421" duration="1460000" />
       <workItem from="1616432713998" duration="3391000" />
       <workItem from="1619083791516" duration="894000" />
+      <workItem from="1619276240030" duration="245000" />
+      <workItem from="1619278950475" duration="1512000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented application for implementation testing">
       <created>1616165151432</created>
