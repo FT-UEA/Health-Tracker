@@ -82,11 +82,13 @@ public class Application {
     @FXML
     private TextArea drinkCaloriesText;
     @FXML
-    private TextArea drinkAddedText;
+    private Text drinkAddedText;
     @FXML
     private TextField customDrinkField;
     @FXML
     private TextField customDrinkCaloriesField;
+    @FXML
+    private Text customDrinkAddedText;
 
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
@@ -151,7 +153,7 @@ public class Application {
 
     public void addFood() {
         String food = foodField.getText();
-        if (currentUser.dietInformation.addFood(foodField)) {
+        if (!currentUser.dietInformation.addFood(foodField)) {
             foodAddedText.setText("Food not in list, please add custom food item");
         } else {
             foodAddedText.setText("Added " + food + " at " + currentUser.dietInformation.getFoodCalories(food) +
@@ -164,13 +166,20 @@ public class Application {
         currentUser.dietInformation.addCustomFood(customFoodField.getText(), customFoodCaloriesField.getText(), customFoodAddedText);
     }
 
-//    public void addDrink() {
-//        currentUser.dietInformation.addDrink();
-//    }
-//
-//    public void addCustomDrink() {
-//        currentUser.dietInformation.addCustomDrink();
-//    }
+    public void addDrink() {
+        String drink = drinkField.getText();
+        if (!currentUser.dietInformation.addFood(drinkField)) {
+            drinkAddedText.setText("Food not in list, please add custom food item");
+        } else {
+            drinkAddedText.setText("Added " + drink + " at " + currentUser.dietInformation.getFoodCalories(drink) +
+                    " calories." +
+                    "Total calories consumed so far: \" + consumedCalories");
+        }
+    }
+
+    public void addCustomDrink() {
+        currentUser.dietInformation.addCustomFood(customDrinkField.getText(), customDrinkCaloriesField.getText(), customDrinkAddedText);
+    }
 
     public void caloriesConsumed() {
         caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));

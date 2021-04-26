@@ -56,14 +56,14 @@
                                        <children>
                                           <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#addCustomFood" prefHeight="70.0" prefWidth="200.0" text="Add Custom Drink Item">
+                                                <Button mnemonicParsing="false" onAction="#addCustomDrink" prefHeight="70.0" prefWidth="200.0" text="Add Custom Drink Item">
                                                    <TilePane.margin>
                                                       <Insets bottom="14.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <TextField fx:id="customFoodField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom drink item" />
-                                                <TextField fx:id="customFoodCaloriesField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom drink calories" />
-                                                <Text fx:id="customFoodAddedText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <TextField fx:id="customDrinkField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom drink item" />
+                                                <TextField fx:id="customDrinkCaloriesField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom drink calories" />
+                                                <Text fx:id="customDrinkAddedText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="JUSTIFY" wrappingWidth="353.0" />
                                              </children>
                                           </TilePane>
                                        </children>
@@ -72,13 +72,13 @@
                                        <children>
                                           <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#addFood" prefHeight="70.0" prefWidth="200.0" text="Add Drink">
+                                                <Button mnemonicParsing="false" onAction="#addDrink" prefHeight="70.0" prefWidth="200.0" text="Add Drink">
                                                    <TilePane.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <TextField fx:id="foodField" prefHeight="24.0" prefWidth="262.0" promptText="Enter drink" />
-                                                <Text fx:id="foodAddedText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <TextField fx:id="drinkField" prefHeight="24.0" prefWidth="262.0" promptText="Enter drink" />
+                                                <Text fx:id="drinkAddedText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="JUSTIFY" wrappingWidth="353.0" />
                                                 <Button mnemonicParsing="false" onAction="#changeScreenDietInfo" text="Back" />
                                              </children>
                                           </TilePane>
