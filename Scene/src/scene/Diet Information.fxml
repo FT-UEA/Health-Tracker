@@ -56,16 +56,12 @@
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <Text layoutX="56.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Calories Consumed">
-                                                         <font>
-                                                            <Font size="29.0" />
-                                                         </font>
-                                                      </Text>
+                                                      <Button layoutX="65.0" layoutY="62.0" mnemonicParsing="false" onAction="#caloriesConsumed" prefHeight="100.0" prefWidth="262.0" text="Calories Consumed" />
                                                    </children>
                                                 </AnchorPane>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <Text fx:id="caloriesText" layoutX="56.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                      <Text fx:id="caloriesText" layoutX="135.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.0">
                                                          <font>
                                                             <Font size="29.0" />
                                                          </font>

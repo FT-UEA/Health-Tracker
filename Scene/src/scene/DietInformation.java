@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -33,6 +34,14 @@ public class DietInformation {
 
     public double getConsumedCalories() {
         return consumedCalories;
+    }
+
+    public double getFoodCalories(String food) {
+        return foodCalories.get(food);
+    }
+
+    public double getDrinkCalories(String drink) {
+        return drinkCalories.get(drink);
     }
 
     // Method to choose meal
@@ -62,55 +71,37 @@ public class DietInformation {
     }
 
     // Method to add add consumed food calories
-    public void addFood() {
-        Scanner scan = new Scanner(System.in);
+    public boolean addFood(TextField foodField) {
         if (!foodCalories.containsKey(foodField.getText())) {
-            System.out.println("Food not in list, add custom? Enter Y/N");
-            foodAddedText.setText("Food not in list, please add custom food item");
+            System.out.println("Food not in list");
+            return false;
         } else {
             consumedCalories += foodCalories.get(foodField.getText());
-            foodAddedText.setText("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
-                    " calories." +
-                    "Total calories consumed so far: \" + consumedCalories");
             System.out.println("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
                     " calories.");
             System.out.println("Total calories consumed so far: " + consumedCalories);
+            return true;
         }
     }
 
-    public void addCustomFood() {
-        String foodName = customFoodField.getText();
-        foodCalories.put(foodName, Integer.parseInt(customFoodCaloriesField.getText()));
-        consumedCalories += foodCalories.get(foodName);
+    public void addCustomFood(String customFoodField, String customFoodCaloriesField, Text customFoodAddedText) {
+        String food = customFoodField;
+        foodCalories.put(food, Integer.valueOf(customFoodCaloriesField));
+        consumedCalories += foodCalories.get(food);
 //        int prevMealCal = meals.get(meal);
 //        meals.replace(meal, (prevMealCal + foodCalories.get(foodField.getText())));
-        customFoodAddedText.setText("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
+        customFoodAddedText.setText("Added " + customFoodField + " at " + foodCalories.get(customFoodField) +
                 " calories. Total calories consumed so far: " + consumedCalories);
-        System.out.println("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
-                " calories.");
-        System.out.println("Total calories consumed so far: " + consumedCalories);
     }
 
     // Method to add add consumed drink calories
-    public void addDrink(String drink) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Current meal :" + meal);
-        if (!drinkCalories.containsKey(drink)) {
-            System.out.println("Drink not in list, add custom? Enter Y/N");
-            if (scan.nextLine().equals("Y")) {
-                System.out.println("Please enter drink calories");
-                String drinkCalories = scan.nextLine();
-                addCustomFood(drink, Integer.parseInt(drinkCalories));
-            }
-            consumedCalories += drinkCalories.get(drink);
-            int prevMealCal = meals.get(meal);
-            meals.replace(meal, (prevMealCal + foodCalories.get(drink)));
-            System.out.println("Added " + drink + " at " + drinkCalories.get(drink) + " calories.");
-            System.out.println("Total calories consumed so far: " + consumedCalories);
+    public boolean addDrink(TextField drinkField) {
+        if (!foodCalories.containsKey(drinkField.getText())) {
+            System.out.println("Food not in list");
+            return false;
         } else {
-            consumedCalories += drinkCalories.get(drink);
-            System.out.println("Added " + drink + " at " + drinkCalories.get(drink) + " calories.");
-            System.out.println("Total calories consumed so far: " + consumedCalories);
+            consumedCalories += foodCalories.get(drinkField.getText());
+            return true;
         }
     }
 
@@ -158,30 +149,7 @@ public class DietInformation {
     // HashMap of meals and calories
     private HashMap<String, Integer> meals;
     private String meal;
-    @FXML
-    private TextArea foodCaloriesText;
-    @FXML
-    private TextArea foodAddedText;
-    @FXML
-    private TextArea customFoodAddedText;
-    @FXML
-    private TextField foodField;
-    @FXML
-    private TextField customFoodField;
-    @FXML
-    private TextField customFoodCaloriesField;
 
-
-    @FXML
-    private TextField drinkField;
-    @FXML
-    private TextArea drinkCaloriesText;
-    @FXML
-    private TextArea drinkAddedText;
-    @FXML
-    private TextField customDrinkField;
-    @FXML
-    private TextField customDrinkCaloriesField;
 
     public void changeScreenLoggedOut(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));

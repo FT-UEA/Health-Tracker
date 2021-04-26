@@ -63,6 +63,31 @@ public class Application {
     @FXML
     private Text caloriesText;
 
+    @FXML
+    private TextArea foodCaloriesText;
+    @FXML
+    private Text foodAddedText;
+    @FXML
+    private Text customFoodAddedText;
+    @FXML
+    private TextField foodField;
+    @FXML
+    private TextField customFoodField;
+    @FXML
+    private TextField customFoodCaloriesField;
+
+
+    @FXML
+    private TextField drinkField;
+    @FXML
+    private TextArea drinkCaloriesText;
+    @FXML
+    private TextArea drinkAddedText;
+    @FXML
+    private TextField customDrinkField;
+    @FXML
+    private TextField customDrinkCaloriesField;
+
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
         groups = new HashMap<>();
@@ -72,6 +97,8 @@ public class Application {
 
     // Creates and adds user
     public void createUser() throws FileNotFoundException {
+        male = new CheckBox();
+        female = new CheckBox();
         String gender;
         if (male.isSelected()) {
             gender = "M";
@@ -105,6 +132,14 @@ public class Application {
     }
 
     public void setDashText() {
+        dashUser = new Text();
+        dashName = new Text();
+        dashEmail = new Text();
+        dashAge = new Text();
+        dashWeight = new Text();
+        dashHeight = new Text();
+        dashGender = new Text();
+
         dashUser.setText(currentUser.getUserName());
         dashName.setText(currentUser.getRealName());
         dashEmail.setText(currentUser.getEmail());
@@ -115,11 +150,18 @@ public class Application {
     }
 
     public void addFood() {
-        currentUser.dietInformation.addFood();
+        String food = foodField.getText();
+        if (currentUser.dietInformation.addFood(foodField)) {
+            foodAddedText.setText("Food not in list, please add custom food item");
+        } else {
+            foodAddedText.setText("Added " + food + " at " + currentUser.dietInformation.getFoodCalories(food) +
+                    " calories." +
+                    "Total calories consumed so far: \" + consumedCalories");
+        }
     }
 
     public void addCustomFood() {
-        currentUser.dietInformation.addCustomFood();
+        currentUser.dietInformation.addCustomFood(customFoodField.getText(), customFoodCaloriesField.getText(), customFoodAddedText);
     }
 
 //    public void addDrink() {
@@ -130,8 +172,15 @@ public class Application {
 //        currentUser.dietInformation.addCustomDrink();
 //    }
 
+    public void caloriesConsumed() {
+        caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
+    }
+
+
+
     public void changeScreenDashboard(ActionEvent event) throws Exception {
         createUser();
+        setDashText();
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
@@ -152,6 +201,7 @@ public class Application {
     }
 
     public void changeScreenDashboardNoCreate(ActionEvent event) throws Exception {
+        setDashText();
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
@@ -193,7 +243,6 @@ public class Application {
     }
 
     public void changeScreenDietInfo(ActionEvent event) throws Exception {
-        caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Diet Information.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
