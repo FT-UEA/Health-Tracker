@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
@@ -43,6 +44,24 @@ public class Application {
     private CheckBox male;
     @FXML
     private CheckBox female;
+
+    @FXML
+    private Text dashUser;
+    @FXML
+    private Text dashName;
+    @FXML
+    private Text dashEmail;
+    @FXML
+    private Text dashAge;
+    @FXML
+    private Text dashWeight;
+    @FXML
+    private Text dashHeight;
+    @FXML
+    private Text dashGender;
+
+    @FXML
+    private Text caloriesText;
 
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
@@ -85,6 +104,32 @@ public class Application {
         }
     }
 
+    public void setDashText() {
+        dashUser.setText(currentUser.getUserName());
+        dashName.setText(currentUser.getRealName());
+        dashEmail.setText(currentUser.getEmail());
+        dashAge.setText(Integer.toString(currentUser.healthInformation.getAge()));
+        dashWeight.setText(Double.toString(currentUser.healthInformation.getWeight()));
+        dashHeight.setText(Double.toString(currentUser.healthInformation.getHeight()));
+        dashGender.setText(currentUser.healthInformation.getGender());
+    }
+
+    public void addFood() {
+        currentUser.dietInformation.addFood();
+    }
+
+    public void addCustomFood() {
+        currentUser.dietInformation.addCustomFood();
+    }
+
+//    public void addDrink() {
+//        currentUser.dietInformation.addDrink();
+//    }
+//
+//    public void addCustomDrink() {
+//        currentUser.dietInformation.addCustomDrink();
+//    }
+
     public void changeScreenDashboard(ActionEvent event) throws Exception {
         createUser();
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
@@ -117,51 +162,52 @@ public class Application {
         window.show();
     }
 
-    public void changeScreenLogin(ActionEvent event) throws Exception{
+    public void changeScreenLogin(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
     }
 
-    public void changeScreenRegister(ActionEvent event) throws Exception{
+    public void changeScreenRegister(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Register.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
     }
 
-    public void changeScreenHealthInfo(ActionEvent event) throws Exception{
+    public void changeScreenHealthInfo(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Health Information.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
     }
 
-    public void changeScreenDietInfo(ActionEvent event) throws Exception{
+    public void changeScreenDietInfo(ActionEvent event) throws Exception {
+        caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Diet Information.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
     }
 
-    public void changeScreenSettings(ActionEvent event) throws Exception{
+    public void changeScreenSettings(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
@@ -187,11 +233,31 @@ public class Application {
         window.show();
     }
 
+    public void changeScreenAddFood(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Food.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddDrink(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Drink.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
     // Method to calculate user BMI
     public void calculateBMI() {
         currentUser.healthInformation.setBmi(100 * (currentUser.healthInformation.getWeight() /
                 Math.pow(currentUser.healthInformation.getHeight() * 0.1, 2)));
-        this.bmi.setText(Integer.toString((int)currentUser.healthInformation.getBmi()));
+        this.bmi.setText(Integer.toString((int) currentUser.healthInformation.getBmi()));
     }
 
     // Method to calculate user BMR
@@ -205,7 +271,7 @@ public class Application {
                     (1.85 * currentUser.healthInformation.getHeight())
                     - (4.676 * currentUser.healthInformation.getAge()));
         }
-        this.bmr.setText(Integer.toString((int)currentUser.healthInformation.getBmr()));
+        this.bmr.setText(Integer.toString((int) currentUser.healthInformation.getBmr()));
     }
 
     // Adds a user, interacts with diet and health info

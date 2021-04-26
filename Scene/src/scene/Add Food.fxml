@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.DietInformation">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Application">
    <children>
       <SplitPane dividerPositions="0.12" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="386.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -54,23 +54,40 @@
                                  <items>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TextField fx:id="foodField" layoutX="66.0" layoutY="215.0" prefHeight="24.0" prefWidth="262.0" />
+                                          <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#addCustomFood" prefHeight="70.0" prefWidth="200.0" text="Add Custom Food Item">
+                                                   <TilePane.margin>
+                                                      <Insets bottom="14.0" />
+                                                   </TilePane.margin>
+                                                </Button>
+                                                <TextArea fx:id="customFoodAddedText" editable="false" prefHeight="50.0" prefWidth="170.0">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </TextArea>
+                                                <TextField fx:id="customFoodField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom food item" />
+                                                <TextField fx:id="customFoodCaloriesField" prefHeight="24.0" prefWidth="262.0" promptText="Enter custom food calories" />
+                                             </children>
+                                          </TilePane>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
                                           <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#foodQuery" prefHeight="100.0" prefWidth="262.0" text="Add Food Item">
+                                                <Button mnemonicParsing="false" onAction="#addFood" prefHeight="70.0" prefWidth="200.0" text="Add Food Item">
                                                    <TilePane.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <TextArea fx:id="foodAddedText" editable="false" prefHeight="84.0" prefWidth="170.0">
+                                                <TextArea fx:id="foodAddedText" editable="false" prefHeight="50.0" prefWidth="170.0">
                                                    <font>
-                                                      <Font size="39.0" />
+                                                      <Font size="22.0" />
                                                    </font>
                                                 </TextArea>
+                                                <TextField fx:id="foodField" prefHeight="24.0" prefWidth="262.0" promptText="Enter food item" />
+                                                <Button mnemonicParsing="false" onAction="#changeScreenDietInfo" text="Back" />
                                              </children>
                                           </TilePane>
                                        </children>

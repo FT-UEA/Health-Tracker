@@ -23,10 +23,13 @@ public class User {
         return userName;
     }
 
-    // Method to provide health feedback
-//    public String provideFeedback() {
-//
-//    }
+    public String getRealName() {
+        return realName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     // Create goal
     public void createGoal() {

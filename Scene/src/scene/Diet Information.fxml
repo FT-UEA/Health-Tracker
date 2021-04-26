@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.DietInformation">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Application">
    <children>
       <SplitPane dividerPositions="0.12" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="386.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -65,7 +65,11 @@
                                                 </AnchorPane>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <TextArea fx:id="caloriesText" layoutX="49.0" layoutY="11.0" prefHeight="222.0" prefWidth="392.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <Text fx:id="caloriesText" layoutX="56.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
                                                    </children>
                                                 </AnchorPane>
                                             </items>
@@ -76,12 +80,12 @@
                                        <children>
                                           <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Add Food">
+                                                <Button mnemonicParsing="false" onAction="#changeScreenAddFood" prefHeight="100.0" prefWidth="262.0" text="Add Food">
                                                    <TilePane.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Add Drink" />
+                                                <Button mnemonicParsing="false" onAction="#changeScreenAddDrink" prefHeight="100.0" prefWidth="262.0" text="Add Drink" />
                                              </children>
                                           </TilePane>
                                        </children>

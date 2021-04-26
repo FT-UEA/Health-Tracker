@@ -31,6 +31,10 @@ public class DietInformation {
         meals.put("Snack", 0);
     }
 
+    public double getConsumedCalories() {
+        return consumedCalories;
+    }
+
     // Method to choose meal
     public void chooseMeal() {
         Scanner scan = new Scanner(System.in);
@@ -57,57 +61,34 @@ public class DietInformation {
         this.meal = mealName;
     }
 
-    // Method to provide calorific information for each meal
-
-
-    // Method to receive calorific information about a food
-    public void foodQuery() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter food item");
-        String food = scan.nextLine();
-        if (!foodCalories.containsKey(food)) {
-            addFood(food);
-        } else {
-            consumedCalories += foodCalories.get(food);
-            System.out.println(food + " contains " + foodCalories.get(food) + " calories");
-        }
-    }
-
-    // Method to receive calorific information about a drink
-    public void drinkQuery() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter drink item");
-        String drink = scan.nextLine();
-        if (!foodCalories.containsKey(drink)) {
-            addDrink(drink);
-        } else {
-            consumedCalories += drinkCalories.get(drink);
-            System.out.println(drink + " contains " + foodCalories.get(drink) + " calories");
-        }
-    }
-
     // Method to add add consumed food calories
-    public void addFood(String food) {
+    public void addFood() {
         Scanner scan = new Scanner(System.in);
-        if (!foodCalories.containsKey(food)) {
+        if (!foodCalories.containsKey(foodField.getText())) {
             System.out.println("Food not in list, add custom? Enter Y/N");
-            if (scan.nextLine().equals("Y")) {
-                System.out.println("Please enter food calories");
-                String foodCalories = scan.nextLine();
-                addCustomFood(food, Integer.parseInt(foodCalories));
-            } else {
-                return;
-            }
-            consumedCalories += foodCalories.get(food);
-            int prevMealCal = meals.get(meal);
-            meals.replace(meal, (prevMealCal + foodCalories.get(food)));
-            System.out.println("Added " + food + " at " + foodCalories.get(food) + " calories.");
-            System.out.println("Total calories consumed so far: " + consumedCalories);
+            foodAddedText.setText("Food not in list, please add custom food item");
         } else {
-            consumedCalories += foodCalories.get(food);
-            System.out.println("Added " + food + " at " + foodCalories.get(food) + " calories.");
+            consumedCalories += foodCalories.get(foodField.getText());
+            foodAddedText.setText("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
+                    " calories." +
+                    "Total calories consumed so far: \" + consumedCalories");
+            System.out.println("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
+                    " calories.");
             System.out.println("Total calories consumed so far: " + consumedCalories);
         }
+    }
+
+    public void addCustomFood() {
+        String foodName = customFoodField.getText();
+        foodCalories.put(foodName, Integer.parseInt(customFoodCaloriesField.getText()));
+        consumedCalories += foodCalories.get(foodName);
+//        int prevMealCal = meals.get(meal);
+//        meals.replace(meal, (prevMealCal + foodCalories.get(foodField.getText())));
+        customFoodAddedText.setText("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
+                " calories. Total calories consumed so far: " + consumedCalories);
+        System.out.println("Added " + foodField.getText() + " at " + foodCalories.get(foodField.getText()) +
+                " calories.");
+        System.out.println("Total calories consumed so far: " + consumedCalories);
     }
 
     // Method to add add consumed drink calories
@@ -158,6 +139,7 @@ public class DietInformation {
     public void caloriesConsumed() {
         System.out.println("Consumed calories: " + consumedCalories);
     }
+
     // Method to reset the consumed calories to 0 as well as all meals
     public void resetCalories() {
         consumedCalories = 0;
@@ -181,18 +163,31 @@ public class DietInformation {
     @FXML
     private TextArea foodAddedText;
     @FXML
+    private TextArea customFoodAddedText;
+    @FXML
     private TextField foodField;
-    @FXML TextField drinkField;
+    @FXML
+    private TextField customFoodField;
+    @FXML
+    private TextField customFoodCaloriesField;
+
+
+    @FXML
+    private TextField drinkField;
     @FXML
     private TextArea drinkCaloriesText;
     @FXML
     private TextArea drinkAddedText;
+    @FXML
+    private TextField customDrinkField;
+    @FXML
+    private TextField customDrinkCaloriesField;
 
-    public void changeScreenLoggedOut(ActionEvent event) throws Exception{
+    public void changeScreenLoggedOut(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
@@ -209,17 +204,17 @@ public class DietInformation {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        DietInformation dietInformation = new DietInformation();
-        // List food and drink
-//        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.foodCalories.entrySet()) {
-//            System.out.println(stringDoubleEntry);
-//        }
-//        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.drinkCalories.entrySet()) {
-//            System.out.println(stringDoubleEntry);
-//        }
-        dietInformation.chooseMeal();
-        dietInformation.foodQuery();
-        dietInformation.drinkQuery();
-        dietInformation.caloriesConsumed();
+//        DietInformation dietInformation = new DietInformation();
+//        // List food and drink
+////        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.foodCalories.entrySet()) {
+////            System.out.println(stringDoubleEntry);
+////        }
+////        for (java.util.Map.Entry<String, Integer> stringDoubleEntry : dietInformation.drinkCalories.entrySet()) {
+////            System.out.println(stringDoubleEntry);
+////        }
+//        dietInformation.chooseMeal();
+//        dietInformation.foodQuery();
+//        dietInformation.drinkQuery();
+//        dietInformation.caloriesConsumed();
     }
 }
