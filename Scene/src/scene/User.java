@@ -31,15 +31,6 @@ public class User {
         return email;
     }
 
-    // Create goal
-    public void createGoal() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("New goal");
-        System.out.println("Please enter goal name");
-        String goalName = scan.nextLine();
-        active_goals.put(goalName, new Goal(goalName, healthInformation.getWeight()));
-    }
-
     public void checkGoal() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the name of the goal you would like to check");
@@ -59,20 +50,6 @@ public class User {
             if (active_goals.get(goalName).isComplete) {
                 completed_goals.put(goalName, active_goals.get(goalName));
                 active_goals.remove(goalName);
-            }
-        } else {
-            if (completed_goals.containsKey(goalName)) {
-                System.out.println("Goal has been completed");
-                System.out.println("Create new goal? (Y/N)");
-                if (scan.nextLine().equals("Y")) {
-                    createGoal();
-                }
-            } else {
-                System.out.println("Goal does not exist");
-                System.out.println("Create new goal? (Y/N)");
-                if (scan.nextLine().equals("Y")) {
-                    createGoal();
-                }
             }
         }
     }

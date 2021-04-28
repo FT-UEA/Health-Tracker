@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -40,13 +39,11 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <SplitPane layoutX="54.0" layoutY="-9.0" prefHeight="233.33333333333334" prefWidth="794.6666666666666" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <items>
-                                    <TextArea fx:id="loginMessage" editable="false" prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
-                                       <font>
-                                          <Font name="System Bold" size="48.0" />
-                                       </font></TextArea>
-                                 </items></SplitPane>
+                              <Text fx:id="loginMessage" layoutX="47.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health Tracker Login" textAlignment="CENTER" wrappingWidth="703.0">
+                                 <font>
+                                    <Font size="49.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                     </items>

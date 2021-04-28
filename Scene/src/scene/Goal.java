@@ -21,6 +21,7 @@ public class Goal {
     public boolean isComplete;
     public String goalName;
     public String type;
+    public double goalWeight;
 
     LocalDate date2 = LocalDate.now();
     LocalTime currentTime = LocalTime.now();
@@ -29,54 +30,24 @@ public class Goal {
     // Constructor for groups
     public Goal(String goalName) {
         this.goalName = goalName;
-        chooseGoal();
     }
 
     // Constructor for user
-    public Goal(String goalName, double weight) {
+    public Goal(String goalName, double userWeight, double goalWeight, String dateIn) {
         this.goalName = goalName;
-        this.weight = weight;
-        chooseGoal();
+        this.weight = userWeight;
+        this.goalWeight = goalWeight;
+        System.out.println(dateIn);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.goalDate = LocalDate.parse(dateIn, formatter);
     }
 
-    public void chooseGoal() {
-        System.out.println("Weight");
-        System.out.println("Exercise");
-        System.out.println("Choose which goal you would like to set: ");
-        Scanner scanner = new Scanner(System.in);
-        String choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("Weight")) {
-            type = "weight";
-            setWeightGoal();
-        }
-        if (choice.equalsIgnoreCase("Exercise")) {
-            type = "exercise";
-            setExerciseGoal();
-        }
-
-    }
-
-    public void setWeightGoal() {
-        System.out.print("Enter a weight goal in kg: ");
-        Scanner scanner = new Scanner(System.in);
-        this.weight = scanner.nextFloat();
-        System.out.println("Enter date to complete this goal (dd-mm-yyyy): ");
-        Scanner scan = new Scanner(System.in);
-        String dateIn = scan.next();
-        //checks if the date is valid and stores or outputs error
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate date = LocalDate.parse(dateIn, formatter);
-            if (date.isBefore(date2)) {
-                System.out.println("Unfortunately this date is before the current date, cannot set");
-                System.out.println("try again\n");
-                setWeightGoal();
-            } else {
-                this.goalDate = date;
-            }
-        } catch (DateTimeException e) {
-            System.err.println("Invalid date, Make sure you enter the correct date format\n");
-        }
+    public Goal(String goalName, double distance, String dateIn) {
+        this.goalName = goalName;
+        this.distance = distance;
+        System.out.println(dateIn);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.goalDate = LocalDate.parse(dateIn, formatter);
     }
 
     public void checkWeightGoal(double currentWeight) {

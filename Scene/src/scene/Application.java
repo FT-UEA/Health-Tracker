@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,7 +36,7 @@ public class Application {
     @FXML
     private TextField weight;
     @FXML
-    private TextArea loginMessage;
+    private Text loginMessage;
     @FXML
     private TextArea bmi;
     @FXML
@@ -89,6 +90,26 @@ public class Application {
     private TextField customDrinkCaloriesField;
     @FXML
     private Text customDrinkAddedText;
+
+    @FXML
+    private TextField weightGoalName;
+    @FXML
+    private TextField goalWeight;
+    @FXML
+    private TextField weightDate;
+    @FXML
+    private Text weightText;
+
+    @FXML
+    private TextField exerciseGoalName;
+    @FXML
+    private TextField goalDuration;
+    @FXML
+    private TextField goalDistance;
+    @FXML
+    private TextField exerciseDate;
+    @FXML
+    private Text exerciseText;
 
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
@@ -185,6 +206,24 @@ public class Application {
         caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
     }
 
+    public void createWeightGoal() {
+        currentUser.active_goals.put(weightGoalName.getText(), new Goal(weightGoalName.getText(),
+                currentUser.healthInformation.getWeight(), Double.parseDouble(goalWeight.getText()),
+                weightDate.getText()));
+        weightText.setText("Weight goal added");
+        System.out.println("Weight goal added");
+    }
+
+    public void createExerciseGoal() {
+        currentUser.active_goals.put(exerciseGoalName.getText(), new Goal(exerciseGoalName.getText(),
+                Double.parseDouble(goalDistance.getText()), exerciseDate.getText()));
+        exerciseText.setText("Exercise goal added");
+        System.out.println("Exercise goal added");
+    }
+
+    public void checkGoal() {
+        currentUser.checkGoal();
+    }
 
 
     public void changeScreenDashboard(ActionEvent event) throws Exception {
@@ -303,6 +342,26 @@ public class Application {
 
     public void changeScreenAddDrink(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Drink.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenWeightGoal(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Weight Goal.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenExerciseGoal(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Exercise Goal.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
