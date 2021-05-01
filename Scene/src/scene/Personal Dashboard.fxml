@@ -61,11 +61,11 @@
                                        <children>
                                           <Accordion layoutX="142.0" layoutY="121.0" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <panes>
-                                                <TitledPane animated="false" text="User Name">
+                                                <TitledPane animated="false" onMouseClicked="#setDashText" text="User Name">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashUser" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashUser" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -74,11 +74,11 @@
                                                       </AnchorPane>
                                                   </content>
                                                 </TitledPane>
-                                              <TitledPane animated="false" text="Full Name">
+                                              <TitledPane animated="false" onMouseClicked="#setDashText" text="Full Name">
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashName" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashName" layoutX="7.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER" wrappingWidth="377.05517578125">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -87,11 +87,11 @@
                                                       </AnchorPane>
                                                 </content>
                                               </TitledPane>
-                                              <TitledPane animated="false" text="Email Address">
+                                              <TitledPane animated="false" onMouseClicked="#setDashText" text="Email Address">
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashEmail" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashEmail" layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER" wrappingWidth="377.0">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -100,11 +100,11 @@
                                                       </AnchorPane>
                                                 </content>
                                               </TitledPane>
-                                              <TitledPane animated="false" text="Age">
+                                              <TitledPane animated="false" onMouseClicked="#setDashText" text="Age">
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashAge" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashAge" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -113,11 +113,11 @@
                                                       </AnchorPane>
                                                 </content>
                                               </TitledPane>
-                                                <TitledPane animated="false" text="Weight">
+                                                <TitledPane animated="false" onMouseClicked="#setDashText" text="Weight">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashWeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashWeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -126,11 +126,11 @@
                                                       </AnchorPane>
                                                   </content>
                                                 </TitledPane>
-                                                <TitledPane animated="false" text="Height">
+                                                <TitledPane animated="false" onMouseClicked="#setDashText" text="Height">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashHeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashHeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>
@@ -139,11 +139,11 @@
                                                       </AnchorPane>
                                                   </content>
                                                 </TitledPane>
-                                                <TitledPane animated="false" text="Gender">
+                                                <TitledPane animated="false" onMouseClicked="#setDashText" text="Gender">
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <Text fx:id="dashGender" layoutX="160.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+                                                            <Text fx:id="dashGender" layoutX="160.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
                                                                <font>
                                                                   <Font size="37.0" />
                                                                </font>

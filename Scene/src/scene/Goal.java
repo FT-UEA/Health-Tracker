@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.DateTimeException;
@@ -40,6 +41,7 @@ public class Goal {
         System.out.println(dateIn);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.goalDate = LocalDate.parse(dateIn, formatter);
+        this.type = "weight";
     }
 
     public Goal(String goalName, double distance, String dateIn) {
@@ -48,44 +50,51 @@ public class Goal {
         System.out.println(dateIn);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.goalDate = LocalDate.parse(dateIn, formatter);
+        this.type = "exercise";
     }
 
-    public void checkWeightGoal(double currentWeight) {
+    public String getType() {
+        return type;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void checkWeightGoal(Text text, double currentWeight) {
+        text.setText("aisufdhasifujhaf");
         if (goalDate.isAfter(date2)) {
             if (currentWeight == weight) {
-                System.out.println("\nCongratulations you've hit your weight goal!");
-                System.out.println("With time left to spare");
+                text.setText("Congratulations you've hit your weight goal!");
                 isComplete = true;
             } else {
-                System.out.println("\nYou have not hit your weight but keep going there's still time!");
+                text.setText("You have not hit your weight but keep going there's still time!");
             }
         }
         if (goalDate.isEqual(date2)) {
             if (currentWeight == weight) {
-                System.out.println("\nCongratulations you've hit your weight goal!");
-                System.out.println("Just in time");
+                text.setText("Congratulations you've hit your weight goal!");
                 isComplete = true;
             } else {
-                System.out.println("\nYour goal us due today");
-                System.out.println("Unfortunately, you have not met your goal\n");
-                System.out.println("Would you like to mark this goal as complete ");
-                Scanner scanner = new Scanner(System.in);
-                String response = scanner.nextLine();
-                if (response.equalsIgnoreCase("Yes")) {
-                    isComplete = true;
-                } else {
-                    System.out.println("\nOk we'll keep that goal");
-                }
+                text.setText("Unfortunately, you have not met your goal.");
+//                System.out.println("Would you like to mark this goal as complete ");
+//                Scanner scanner = new Scanner(System.in);
+//                String response = scanner.nextLine();
+//                if (response.equalsIgnoreCase("Yes")) {
+//                    isComplete = true;
+//                } else {
+//                    System.out.println("\nOk we'll keep that goal");
+//                }
             }
         }
         if (goalDate.isBefore(date2)) {
-            System.out.println("\nYou have exceeded your goal date, deleting this goal");
+            text.setText("You have exceeded your goal date, deleting this goal");
             isComplete = true;
         }
         if (isComplete) {
-            System.out.println("\nThis goal is complete");
+            text.setText("This goal is complete");
         } else {
-            System.out.println("\nGoal is not complete");
+            text.setText("This goal is not complete");
         }
     }
 
@@ -111,7 +120,7 @@ public class Goal {
         this.timeSet = LocalTime.now();
     }
 
-    public void checkExerciseGoal(double currentDistance) {
+    public void checkExerciseGoal(Text text, double currentDistance) {
         //calculating time passed since goal set
         long hourToAdd = goalTime.getHour();
         long minToAdd = goalTime.getMinute();

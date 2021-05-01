@@ -4,10 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Application">
    <children>
@@ -48,9 +46,7 @@
                                        <children>
                                           <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#changeScreenWeightGoal" prefHeight="100.0" prefWidth="262.0" text="Check Goal" />
-                                                <TextField promptText="Goal name" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Check goal" textAlignment="CENTER" wrappingWidth="290.7294921875" />
+                                                <Button mnemonicParsing="false" onAction="#changeScreenCheckGoal" prefHeight="100.0" prefWidth="262.0" text="Check Goal" />
                                              </children></TilePane>
                                        </children>
                                     </AnchorPane>

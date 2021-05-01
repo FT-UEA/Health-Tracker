@@ -6,21 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Application {
 
-    private HashMap<String, User> users;
-    private HashMap<String, Group> groups;
+    private static HashMap<String, User> users;
+    private static HashMap<String, Group> groups;
     private static User currentUser;
     private String currentUserName;
     @FXML
@@ -38,9 +36,9 @@ public class Application {
     @FXML
     private Text loginMessage;
     @FXML
-    private TextArea bmi;
+    private Text bmi;
     @FXML
-    private TextArea bmr;
+    private Text bmr;
     @FXML
     private CheckBox male;
     @FXML
@@ -111,6 +109,48 @@ public class Application {
     @FXML
     private Text exerciseText;
 
+    @FXML
+    private TitledPane exercisePane1;
+    @FXML
+    private Text exerciseText1;
+    @FXML
+    private TextField exerciseField1;
+    @FXML
+    private TitledPane exercisePane2;
+    @FXML
+    private Text exerciseText2;
+    @FXML
+    private TextField exerciseField2;
+    @FXML
+    private TitledPane exercisePane3;
+    @FXML
+    private Text exerciseText3;
+    @FXML
+    private TextField exerciseField3;
+
+    @FXML
+    private TitledPane weightPane1;
+    @FXML
+    private Text weightText1;
+    @FXML
+    private TextField weightField1;
+    @FXML
+    private TitledPane weightPane2;
+    @FXML
+    private Text weightText2;
+    @FXML
+    private TextField weightField2;
+    @FXML
+    private TitledPane weightPane3;
+    @FXML
+    private Text weightText3;
+    @FXML
+    private TextField weightField3;
+
+    @FXML
+    private Text feedbackText;
+
+
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
         groups = new HashMap<>();
@@ -155,14 +195,6 @@ public class Application {
     }
 
     public void setDashText() {
-        dashUser = new Text();
-        dashName = new Text();
-        dashEmail = new Text();
-        dashAge = new Text();
-        dashWeight = new Text();
-        dashHeight = new Text();
-        dashGender = new Text();
-
         dashUser.setText(currentUser.getUserName());
         dashName.setText(currentUser.getRealName());
         dashEmail.setText(currentUser.getEmail());
@@ -221,14 +253,94 @@ public class Application {
         System.out.println("Exercise goal added");
     }
 
-    public void checkGoal() {
-        currentUser.checkGoal();
+    public void loadGoals() {
+        ArrayList<Goal> goalList = new ArrayList<>(currentUser.active_goals.values());
+        ArrayList<Goal> weightGoals = new ArrayList<>();
+        ArrayList<Goal> exerciseGoals = new ArrayList<>();
+        for (Goal g : goalList) {
+            if (g.getType().equals("weight")) {
+                weightGoals.add(g);
+            } else {
+                exerciseGoals.add(g);
+            }
+        }
+        weightPane1.setVisible(false);
+        weightPane2.setVisible(false);
+        weightPane3.setVisible(false);
+        exercisePane1.setVisible(true);
+        exercisePane2.setVisible(true);
+        exercisePane3.setVisible(true);
+        if (weightGoals.size() >= 1) {
+            weightPane1.setText(weightGoals.get(0).goalName);
+            weightText1.setText(weightGoals.get(0).goalName);
+            weightPane1.setVisible(true);
+        }
+        if (weightGoals.size() >= 2) {
+            weightPane2.setText(weightGoals.get(1).goalName);
+            weightText2.setText(weightGoals.get(1).goalName);
+            weightPane2.setVisible(true);
+        }
+        if (weightGoals.size() >= 3) {
+            weightPane3.setText(weightGoals.get(2).goalName);
+            weightText3.setText(weightGoals.get(2).goalName);
+            weightPane3.setVisible(true);
+        }
+
+        if (exerciseGoals.size() >= 1) {
+            exercisePane1.setText(weightGoals.get(0).goalName);
+            exerciseText1.setText(weightGoals.get(0).goalName);
+            exercisePane1.setVisible(true);
+        }
+        if (exerciseGoals.size() >= 2) {
+            exercisePane2.setText(weightGoals.get(1).goalName);
+            exerciseText2.setText(weightGoals.get(1).goalName);
+            exercisePane2.setVisible(true);
+        }
+        if (exerciseGoals.size() >= 3) {
+            exercisePane3.setText(weightGoals.get(2).goalName);
+            exerciseText3.setText(weightGoals.get(2).goalName);
+            exercisePane3.setVisible(true);
+        }
     }
 
+//    public void checkWeightGoal() {
+//        if (!currentUser.active_goals.containsKey(weightCheckName.getText())) {
+//            weightCheckText.setText("Goal does not exist");
+//        } else if (currentUser.completed_goals.containsKey(weightCheckName.getText())) {
+//            weightCheckText.setText("Goal has been completed");
+//        } else {
+//            currentUser.active_goals.get(weightCheckName.getText()).checkWeightGoal(weightCheckText,
+//                    Double.parseDouble(weightCheck.getText()));
+//            if (currentUser.active_goals.get(weightCheckName.getText()).isComplete) {
+//                // Remove from active and add to completed
+//                currentUser.completed_goals.put(weightCheckName.getText(),
+//                        currentUser.active_goals.get(weightCheckName.getText()));
+//                System.out.println("asdasd");
+//                currentUser.active_goals.remove(weightCheckName.getText());
+//            }
+//        }
+//    }
+
+//    public void checkExerciseGoal() {
+//        if (!currentUser.active_goals.containsKey(exerciseCheckName.getText())) {
+//            exerciseCheckText.setText("Goal does not exist");
+//        } else if (currentUser.completed_goals.containsKey(exerciseCheckName.getText())) {
+//            exerciseCheckText.setText("Goal has been completed");
+//        }
+//    }
+
+    public void changeScreenCheckGoal(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Check Goal.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
 
     public void changeScreenDashboard(ActionEvent event) throws Exception {
         createUser();
-        setDashText();
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
@@ -249,7 +361,6 @@ public class Application {
     }
 
     public void changeScreenDashboardNoCreate(ActionEvent event) throws Exception {
-        setDashText();
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
@@ -375,6 +486,13 @@ public class Application {
         currentUser.healthInformation.setBmi(100 * (currentUser.healthInformation.getWeight() /
                 Math.pow(currentUser.healthInformation.getHeight() * 0.1, 2)));
         this.bmi.setText(Integer.toString((int) currentUser.healthInformation.getBmi()));
+        if (currentUser.healthInformation.getBmi() < 18) {
+            feedbackText.setText("Underweight");
+        } else if (currentUser.healthInformation.getBmi() > 24) {
+            feedbackText.setText("Overweight");
+        } else {
+            feedbackText.setText("Healthy");
+        }
     }
 
     // Method to calculate user BMR

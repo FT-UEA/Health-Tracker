@@ -68,10 +68,28 @@
                                                             </AnchorPane>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                <children>
-                                                                  <TextArea fx:id="bmi" editable="false" layoutX="-8.0" layoutY="11.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <font>
-                                                                        <Font size="39.0" />
-                                                                     </font></TextArea>
+                                                                  <SplitPane dividerPositions="0.5" layoutX="32.0" layoutY="32.0" orientation="VERTICAL" prefHeight="221.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <items>
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="122.0" prefWidth="190.0">
+                                                                           <children>
+                                                                              <Text fx:id="bmi" layoutX="67.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                                                 <font>
+                                                                                    <Font size="25.0" />
+                                                                                 </font>
+                                                                              </Text>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                                           <children>
+                                                                              <Text fx:id="feedbackText" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="190.0">
+                                                                                 <font>
+                                                                                    <Font size="25.0" />
+                                                                                 </font>
+                                                                              </Text>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                    </items>
+                                                                  </SplitPane>
                                                                </children>
                                                             </AnchorPane>
                                                         </items>
@@ -92,10 +110,19 @@
                                                       </AnchorPane>
                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                          <children>
-                                                            <TextArea fx:id="bmr" editable="false" layoutX="22.0" layoutY="-8.0" prefHeight="216.0" prefWidth="193.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                               <font>
-                                                                  <Font size="39.0" />
-                                                               </font></TextArea>
+                                                            <SplitPane orientation="VERTICAL" prefHeight="221.0" prefWidth="192.0">
+                                                               <items>
+                                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="122.0" prefWidth="190.0">
+                                                                     <children>
+                                                                        <Text fx:id="bmr" layoutX="-1.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="193.0">
+                                                                           <font>
+                                                                              <Font size="25.0" />
+                                                                           </font>
+                                                                        </Text>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </items>
+                                                            </SplitPane>
                                                          </children>
                                                       </AnchorPane>
                                                    </items>
