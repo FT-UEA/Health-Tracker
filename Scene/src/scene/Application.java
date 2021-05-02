@@ -150,12 +150,28 @@ public class Application {
     @FXML
     private Text feedbackText;
 
+    @FXML
+    private Text currentMealText;
+    @FXML
+    private Text mealCalories;
+    private static String currentMeal;
+    private static HashMap<String, Double> currentMealCalories;
+
+    private ArrayList<Goal> goalList;
+    private ArrayList<Goal> weightGoals;
+    private ArrayList<Goal> exerciseGoals;
+
 
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
         groups = new HashMap<>();
         users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
                 184, 77, "M"));
+        currentMealCalories = new HashMap<>();
+        currentMealCalories.put("Breakfast", 0.0);
+        currentMealCalories.put("Lunch", 0.0);
+        currentMealCalories.put("Dinner", 0.0);
+        currentMeal = "Breakfast";
     }
 
     // Creates and adds user
@@ -209,6 +225,8 @@ public class Application {
         if (!currentUser.dietInformation.addFood(foodField)) {
             foodAddedText.setText("Food not in list, please add custom food item");
         } else {
+            double mealCal = currentMealCalories.get(currentMeal) + currentUser.dietInformation.getFoodCalories(food);
+            currentMealCalories.put(currentMeal, mealCal);
             foodAddedText.setText("Added " + food + " at " + currentUser.dietInformation.getFoodCalories(food) +
                     " calories." +
                     "Total calories consumed so far: \" + consumedCalories");
@@ -216,7 +234,13 @@ public class Application {
     }
 
     public void addCustomFood() {
-        currentUser.dietInformation.addCustomFood(customFoodField.getText(), customFoodCaloriesField.getText(), customFoodAddedText);
+        currentUser.dietInformation.addCustomFood(customFoodField.getText(), customFoodCaloriesField.getText(),
+                customFoodAddedText);
+        double mealCal = currentMealCalories.get(currentMeal) +
+                currentUser.dietInformation.getFoodCalories(customFoodField.getText());
+        System.out.println(mealCal);
+        currentMealCalories.put(currentMeal, mealCal);
+        System.out.println("Hashmap calories: " + currentMealCalories.get(currentMeal));
     }
 
     public void addDrink() {
@@ -224,6 +248,9 @@ public class Application {
         if (!currentUser.dietInformation.addFood(drinkField)) {
             drinkAddedText.setText("Food not in list, please add custom food item");
         } else {
+            double mealCal = currentMealCalories.get(currentMeal) + currentUser.dietInformation.getFoodCalories(drink);
+            System.out.println(mealCal);
+            currentMealCalories.put(currentMeal, mealCal);
             drinkAddedText.setText("Added " + drink + " at " + currentUser.dietInformation.getFoodCalories(drink) +
                     " calories." +
                     "Total calories consumed so far: \" + consumedCalories");
@@ -231,11 +258,19 @@ public class Application {
     }
 
     public void addCustomDrink() {
-        currentUser.dietInformation.addCustomFood(customDrinkField.getText(), customDrinkCaloriesField.getText(), customDrinkAddedText);
+        currentUser.dietInformation.addCustomFood(customDrinkField.getText(), customDrinkCaloriesField.getText(),
+                customDrinkAddedText);
+        double mealCal = currentMealCalories.get(currentMeal) +
+                currentUser.dietInformation.getFoodCalories(customDrinkField.getText());
+        currentMealCalories.put(currentMeal, mealCal);
     }
 
     public void caloriesConsumed() {
+        System.out.println(currentMeal);
         caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
+        currentMealText.setText("Breakfast");
+        mealCalories.setText(String.valueOf(currentMealCalories.get(currentMeal)));
+        System.out.println(currentMealCalories.get(currentMeal));
     }
 
     public void createWeightGoal() {
@@ -254,9 +289,9 @@ public class Application {
     }
 
     public void loadGoals() {
-        ArrayList<Goal> goalList = new ArrayList<>(currentUser.active_goals.values());
-        ArrayList<Goal> weightGoals = new ArrayList<>();
-        ArrayList<Goal> exerciseGoals = new ArrayList<>();
+        goalList = new ArrayList<>(currentUser.active_goals.values());
+        weightGoals = new ArrayList<>();
+        exerciseGoals = new ArrayList<>();
         for (Goal g : goalList) {
             if (g.getType().equals("weight")) {
                 weightGoals.add(g);
@@ -267,9 +302,9 @@ public class Application {
         weightPane1.setVisible(false);
         weightPane2.setVisible(false);
         weightPane3.setVisible(false);
-        exercisePane1.setVisible(true);
-        exercisePane2.setVisible(true);
-        exercisePane3.setVisible(true);
+        exercisePane1.setVisible(false);
+        exercisePane2.setVisible(false);
+        exercisePane3.setVisible(false);
         if (weightGoals.size() >= 1) {
             weightPane1.setText(weightGoals.get(0).goalName);
             weightText1.setText(weightGoals.get(0).goalName);
@@ -287,47 +322,124 @@ public class Application {
         }
 
         if (exerciseGoals.size() >= 1) {
-            exercisePane1.setText(weightGoals.get(0).goalName);
-            exerciseText1.setText(weightGoals.get(0).goalName);
+            exercisePane1.setText(exerciseGoals.get(0).goalName);
+            exerciseText1.setText(exerciseGoals.get(0).goalName);
             exercisePane1.setVisible(true);
         }
         if (exerciseGoals.size() >= 2) {
-            exercisePane2.setText(weightGoals.get(1).goalName);
-            exerciseText2.setText(weightGoals.get(1).goalName);
+            exercisePane2.setText(exerciseGoals.get(1).goalName);
+            exerciseText2.setText(exerciseGoals.get(1).goalName);
             exercisePane2.setVisible(true);
         }
         if (exerciseGoals.size() >= 3) {
-            exercisePane3.setText(weightGoals.get(2).goalName);
-            exerciseText3.setText(weightGoals.get(2).goalName);
+            exercisePane3.setText(exerciseGoals.get(2).goalName);
+            exerciseText3.setText(exerciseGoals.get(2).goalName);
             exercisePane3.setVisible(true);
         }
     }
 
-//    public void checkWeightGoal() {
-//        if (!currentUser.active_goals.containsKey(weightCheckName.getText())) {
-//            weightCheckText.setText("Goal does not exist");
-//        } else if (currentUser.completed_goals.containsKey(weightCheckName.getText())) {
-//            weightCheckText.setText("Goal has been completed");
-//        } else {
-//            currentUser.active_goals.get(weightCheckName.getText()).checkWeightGoal(weightCheckText,
-//                    Double.parseDouble(weightCheck.getText()));
-//            if (currentUser.active_goals.get(weightCheckName.getText()).isComplete) {
-//                // Remove from active and add to completed
-//                currentUser.completed_goals.put(weightCheckName.getText(),
-//                        currentUser.active_goals.get(weightCheckName.getText()));
-//                System.out.println("asdasd");
-//                currentUser.active_goals.remove(weightCheckName.getText());
-//            }
-//        }
-//    }
+    public void setMealBreakfast() {
+        currentMealText.setText("Breakfast");
+        currentMeal = "Breakfast";
+        if (currentMealCalories.isEmpty()) {
+            mealCalories.setText("0.0");
+        } else {
+            mealCalories.setText(String.valueOf(currentMealCalories.get("Breakfast")));
+        }
 
-//    public void checkExerciseGoal() {
-//        if (!currentUser.active_goals.containsKey(exerciseCheckName.getText())) {
-//            exerciseCheckText.setText("Goal does not exist");
-//        } else if (currentUser.completed_goals.containsKey(exerciseCheckName.getText())) {
-//            exerciseCheckText.setText("Goal has been completed");
-//        }
-//    }
+    }
+
+    public void setMealLunch() {
+        currentMealText.setText("Lunch");
+        currentMeal = "Lunch";
+        if (currentMealCalories.isEmpty()) {
+            mealCalories.setText("0.0");
+        } else {
+            mealCalories.setText(String.valueOf(currentMealCalories.get("Lunch")));
+        }
+    }
+
+    public void setMealDinner() {
+        currentMealText.setText("Dinner");
+        currentMeal = "Dinner";
+        if (currentMealCalories.isEmpty()) {
+            mealCalories.setText("0.0");
+        } else {
+            mealCalories.setText(String.valueOf(currentMealCalories.get("Dinner")));
+        }
+    }
+
+    public void checkWeightGoal() {
+        currentUser.active_goals.get(weightGoals.get(0).goalName).checkWeightGoal(weightText1,
+                Double.parseDouble(weightField1.getText()));
+        if (currentUser.active_goals.get(weightGoals.get(0).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(weightGoals.get(0).goalName,
+                    currentUser.active_goals.get(weightGoals.get(0).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(weightGoals.get(0).goalName);
+        }
+    }
+
+    public void checkWeightGoal1() {
+        currentUser.active_goals.get(weightGoals.get(1).goalName).checkWeightGoal(weightText2,
+                Double.parseDouble(weightField2.getText()));
+        if (currentUser.active_goals.get(weightGoals.get(1).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(weightGoals.get(1).goalName,
+                    currentUser.active_goals.get(weightGoals.get(1).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(weightGoals.get(1).goalName);
+        }
+    }
+
+    public void checkWeightGoal2() {
+        currentUser.active_goals.get(weightGoals.get(2).goalName).checkWeightGoal(weightText2,
+                Double.parseDouble(weightField2.getText()));
+        if (currentUser.active_goals.get(weightGoals.get(2).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(weightGoals.get(2).goalName,
+                    currentUser.active_goals.get(weightGoals.get(2).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(weightGoals.get(2).goalName);
+        }
+    }
+
+    public void checkExerciseGoal() {
+        currentUser.active_goals.get(exerciseGoals.get(0).goalName).checkExerciseGoal(exerciseText1,
+                Double.parseDouble(exerciseField1.getText()));
+        if (currentUser.active_goals.get(exerciseGoals.get(0).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(exerciseGoals.get(0).goalName,
+                    currentUser.active_goals.get(exerciseGoals.get(0).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(exerciseGoals.get(0).goalName);
+        }
+    }
+
+    public void checkExerciseGoal1() {
+        currentUser.active_goals.get(exerciseGoals.get(1).goalName).checkExerciseGoal(exerciseText2,
+                Double.parseDouble(exerciseField2.getText()));
+        if (currentUser.active_goals.get(exerciseGoals.get(1).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(exerciseGoals.get(1).goalName,
+                    currentUser.active_goals.get(exerciseGoals.get(1).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(exerciseGoals.get(1).goalName);
+        }
+    }
+
+    public void checkExerciseGoal2() {
+        currentUser.active_goals.get(exerciseGoals.get(2).goalName).checkExerciseGoal(exerciseText3,
+                Double.parseDouble(exerciseField3.getText()));
+        if (currentUser.active_goals.get(exerciseGoals.get(2).goalName).isComplete) {
+            // Remove from active and add to completed
+            currentUser.completed_goals.put(exerciseGoals.get(2).goalName,
+                    currentUser.active_goals.get(exerciseGoals.get(2).goalName));
+            System.out.println("Goal moved to completed");
+            currentUser.active_goals.remove(exerciseGoals.get(2).goalName);
+        }
+    }
 
     public void changeScreenCheckGoal(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Check Goal.fxml"));

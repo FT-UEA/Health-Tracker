@@ -61,7 +61,32 @@
                                                 </AnchorPane>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <Text fx:id="caloriesText" layoutX="135.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.0">
+                                                      <Text fx:id="caloriesText1" layoutX="8.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Calories:" textAlignment="CENTER" wrappingWidth="208.0">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="caloriesText11" layoutX="8.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Meal:" textAlignment="CENTER" wrappingWidth="208.0">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="caloriesText111" layoutX="8.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal Calories:" textAlignment="CENTER" wrappingWidth="208.0">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="caloriesText" layoutX="264.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="currentMealText" layoutX="216.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="163.0">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="mealCalories" layoutX="264.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                                                          <font>
                                                             <Font size="29.0" />
                                                          </font>
@@ -74,16 +99,47 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#changeScreenAddFood" prefHeight="100.0" prefWidth="262.0" text="Add Food">
-                                                   <TilePane.margin>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </TilePane.margin>
-                                                </Button>
-                                                <Button mnemonicParsing="false" onAction="#changeScreenAddDrink" prefHeight="100.0" prefWidth="262.0" text="Add Drink" />
-                                             </children>
-                                          </TilePane>
+                                          <SplitPane dividerPositions="0.7250554323725056" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TilePane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#changeScreenAddFood" prefHeight="100.0" prefWidth="200.0" text="Add Food">
+                                                               <TilePane.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </TilePane.margin>
+                                                            </Button>
+                                                            <Button mnemonicParsing="false" onAction="#changeScreenAddDrink" prefHeight="100.0" prefWidth="200.0" text="Add Drink" />
+                                                         </children>
+                                                      </TilePane>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TilePane layoutX="114.0" layoutY="-14.0" prefHeight="222.0" prefWidth="392.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#setMealBreakfast" prefHeight="80.0" prefWidth="90.0" text="Breakfast" textAlignment="CENTER">
+                                                               <TilePane.margin>
+                                                                  <Insets bottom="20.0" left="30.0" right="10.0" top="20.0" />
+                                                               </TilePane.margin>
+                                                            </Button>
+                                                            <Button mnemonicParsing="false" onAction="#setMealLunch" prefHeight="80.0" prefWidth="90.0" text="Lunch">
+                                                               <TilePane.margin>
+                                                                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                               </TilePane.margin>
+                                                            </Button>
+                                                            <Button mnemonicParsing="false" onAction="#setMealDinner" prefHeight="80.0" prefWidth="90.0" text="Dinner">
+                                                               <TilePane.margin>
+                                                                  <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
+                                                               </TilePane.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </TilePane>
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
                                        </children>
                                     </AnchorPane>
                                 </items>
@@ -93,12 +149,6 @@
                     </items>
                   </SplitPane>
                </children></AnchorPane>
-        </items>
-      </SplitPane>
-      <SplitPane dividerPositions="0.5" layoutX="-220.0" layoutY="100.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
         </items>
       </SplitPane>
    </children>
