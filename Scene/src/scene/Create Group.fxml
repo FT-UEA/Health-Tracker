@@ -57,9 +57,9 @@
                                        <children>
                                           <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Group text" />
-                                                <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Create Group" />
-                                                <TextField prefHeight="24.0" prefWidth="387.0" promptText="Group Name">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="scene.Group text" />
+                                                <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Create scene.Group" />
+                                                <TextField prefHeight="24.0" prefWidth="387.0" promptText="scene.Group Name">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

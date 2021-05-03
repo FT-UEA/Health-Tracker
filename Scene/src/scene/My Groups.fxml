@@ -59,21 +59,21 @@
                                              <children>
                                                 <Accordion prefHeight="453.0" prefWidth="980.0">
                                                    <panes>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 1">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 1">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
-                                                                  <Text fx:id="dashUser" layoutX="281.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group name" textAlignment="CENTER">
+                                                                  <Text fx:id="dashUser" layoutX="281.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="scene.Group name" textAlignment="CENTER">
                                                                      <font>
                                                                         <Font size="37.0" />
                                                                      </font>
                                                                   </Text>
-                                                                  <Button layoutX="265.0" layoutY="142.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                  <Button layoutX="265.0" layoutY="142.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="scene.Group goals" />
                                                                </children>
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 2">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 2">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -86,7 +86,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 3">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 3">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -99,7 +99,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 4">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 4">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -112,7 +112,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 5">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 5">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -125,7 +125,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 6">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 6">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -138,7 +138,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="Group 7">
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 7">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>

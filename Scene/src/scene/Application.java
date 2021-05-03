@@ -11,10 +11,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Application {
 
@@ -175,6 +173,13 @@ public class Application {
     private ArrayList<Goal> goalList;
     private ArrayList<Goal> weightGoals;
     private ArrayList<Goal> exerciseGoals;
+
+    @FXML
+    private String joinGroupText;
+    @FXML
+    private Button registerButton;
+    @FXML
+    private Text registerText;
 
 
     public Application() throws FileNotFoundException {
@@ -616,6 +621,36 @@ public class Application {
 
     public void changeScreenExerciseGoal(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Exercise Goal.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenCreateGroup(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Create Group.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenJoinGroup(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Join Group.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenMyGroups(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("My Groups.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
