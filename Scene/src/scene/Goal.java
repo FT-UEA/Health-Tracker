@@ -12,6 +12,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Scanner;
 
 public class Goal {
@@ -24,9 +25,9 @@ public class Goal {
     public String type;
     public double goalWeight;
 
-    LocalDate date2 = LocalDate.now();
-    LocalTime currentTime = LocalTime.now();
-    LocalTime timeSet;
+    private LocalDate date2 = LocalDate.now();
+    private LocalTime currentTime = LocalTime.now();
+    private static LocalTime timeSet;
 
     // Constructor for groups
     public Goal(String goalName) {
@@ -45,13 +46,15 @@ public class Goal {
     }
 
     // Constructor for exercise goal
-    public Goal(String goalName, double distance, String dateIn) {
+    public Goal(String goalName, double distance, String dateIn, String goalTime) {
         this.goalName = goalName;
         this.distance = distance;
         System.out.println(dateIn);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.goalDate = LocalDate.parse(dateIn, formatter);
         this.type = "exercise";
+        timeSet = LocalTime.parse(goalTime);
+        System.out.println(timeSet);
     }
 
     public String getType() {
@@ -62,21 +65,21 @@ public class Goal {
         return isComplete;
     }
 
-    public void checkWeightGoal(Text text, double currentWeight) {
+    public void checkWeightGoal(Text statusText, Text completeText, double currentWeight) {
         if (goalDate.isAfter(date2)) {
             if (currentWeight == goalWeight) {
-                text.setText("Congratulations you've hit your weight goal!");
+                statusText.setText("Congratulations you've hit your weight goal!");
                 isComplete = true;
             } else {
-                text.setText("You have not hit your weight but keep going there's still time!");
+                statusText.setText("You have not hit your weight but keep going there's still time!");
             }
         }
         if (goalDate.isEqual(date2)) {
             if (currentWeight == goalWeight) {
-                text.setText("Congratulations you've hit your weight goal!");
+                statusText.setText("Congratulations you've hit your weight goal!");
                 isComplete = true;
             } else {
-                text.setText("Unfortunately, you have not met your goal.");
+                statusText.setText("Unfortunately, you have not met your goal.");
 //                System.out.println("Would you like to mark this goal as complete ");
 //                Scanner scanner = new Scanner(System.in);
 //                String response = scanner.nextLine();
@@ -88,13 +91,13 @@ public class Goal {
             }
         }
         if (goalDate.isBefore(date2)) {
-            text.setText("You have exceeded your goal date, deleting this goal");
+            completeText.setText("You have exceeded your goal date, deleting this goal");
             isComplete = true;
         }
         if (isComplete) {
-            text.setText("This goal is complete");
+            completeText.setText("This goal is complete");
         } else {
-            text.setText("This goal is not complete");
+            completeText.setText("This goal is not complete");
         }
     }
 
@@ -120,60 +123,60 @@ public class Goal {
         this.timeSet = LocalTime.now();
     }
 
-    public void checkExerciseGoal(Text text, double currentDistance) {
+    public void checkExerciseGoal(Text statusText, Text completeText, double currentDistance) {
         //calculating time passed since goal set
-        long hourToAdd = goalTime.getHour();
-        long minToAdd = goalTime.getMinute();
-        long secondsToAdd = goalTime.getSecond();
+        long hourToAdd = timeSet.getHour();
+        long minToAdd = timeSet.getMinute();
+        long secondsToAdd = timeSet.getSecond();
         LocalTime timePassed = timeSet.plusHours(hourToAdd).plusMinutes(minToAdd).plusSeconds(secondsToAdd).withNano(0);
         //check status of goal
         if (timePassed.isAfter(currentTime)) {
             if (currentDistance == distance) {
                 System.out.println("You ran your distance but did not hit your time");
-                text.setText("You achieved your distance target but did not hit your time");
+                statusText.setText("You achieved your distance target but did not hit your time");
                 isComplete = true;
             }
             if (currentDistance > distance) {
                 System.out.println("You went further than your distance but didn't hit your time");
-                text.setText("You exceeded your distance target but did not hit your time");
+                statusText.setText("You exceeded your distance target but did not hit your time");
             } else {
                 System.out.println("Unfortunately you have failed this goal, time not met, distance not met");
-                text.setText("Unfortunately you have failed this goal, time not met, distance not met");
+                statusText.setText("Unfortunately you have failed this goal, time not met, distance not met");
             }
             isComplete = true;
         }
         if (timePassed.isBefore(currentTime)) {
             if (currentDistance == distance) {
                 System.out.println("Well done you've hit your distance and beaten your time");
-                text.setText("Well done you've hit your distance and beaten your time");
+                statusText.setText("Well done you've hit your distance and beaten your time");
                 isComplete = true;
             }
             if (currentDistance > distance) {
                 System.out.println("Well done you went further than your distance and beat your time");
-                text.setText("Well done you went further than your distance and beat your time");
+                statusText.setText("Well done you went further than your distance and beat your time");
                 isComplete = true;
             } else {
                 System.out.println("Your times not up keep going you haven't met your distance");
-                text.setText("Your time is not up keep going you haven't met your distance");
+                statusText.setText("Your time is not up keep going you haven't met your distance");
             }
         } else {//is equal time
             if (currentDistance == distance) {
                 System.out.println("Well done you've hit your time and distance");
-                text.setText("Well done you've hit your time and distance");
+                statusText.setText("Well done you've hit your time and distance");
                 isComplete = true;
             }
             if (currentDistance > distance) {
                 System.out.println("Well done you went further than your distance and hit your time");
-                text.setText("Well done you went further than your distance and hit your time");
+                statusText.setText("Well done you went further than your distance and hit your time");
                 isComplete = true;
             }
         }
         if (isComplete) {
             System.out.println("\nThis goal is complete");
-            text.setText("This goal is complete");
+            completeText.setText("This goal is complete");
         } else {
             System.out.println("\nGoal is not complete");
-            text.setText("This goal is not complete");
+            completeText.setText("This goal is not complete");
         }
     }
 

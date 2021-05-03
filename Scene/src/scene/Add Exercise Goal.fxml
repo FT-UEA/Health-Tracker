@@ -54,7 +54,7 @@
                                                       <Insets bottom="25.0" />
                                                    </TilePane.margin>
                                                 </TextField>
-                                                <TextField fx:id="goalDuration" promptText="Enter exercise duration ">
+                                                <TextField fx:id="goalDuration" prefHeight="24.0" prefWidth="253.0" promptText="Enter exercise duration (HH:MM:SS)">
                                                    <TilePane.margin>
                                                       <Insets bottom="25.0" />
                                                    </TilePane.margin>

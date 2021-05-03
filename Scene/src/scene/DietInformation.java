@@ -141,13 +141,13 @@ public class DietInformation {
     }
 
     // Calories consumed
-    private double consumedCalories;
+    private static double consumedCalories;
     // HashMap of food and calories
     private final HashMap<String, Integer> foodCalories;
     // HashMap of drink and calories
     private final HashMap<String, Integer> drinkCalories;
     // HashMap of meals and calories
-    private HashMap<String, Integer> meals;
+    private static HashMap<String, Integer> meals;
     private String meal;
 
 

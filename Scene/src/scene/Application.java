@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -114,17 +115,23 @@ public class Application {
     @FXML
     private Text exerciseText1;
     @FXML
+    private Text exerciseStatusText1;
+    @FXML
     private TextField exerciseField1;
     @FXML
     private TitledPane exercisePane2;
     @FXML
     private Text exerciseText2;
     @FXML
+    private Text exerciseStatusText2;
+    @FXML
     private TextField exerciseField2;
     @FXML
     private TitledPane exercisePane3;
     @FXML
     private Text exerciseText3;
+    @FXML
+    private Text exerciseStatusText3;
     @FXML
     private TextField exerciseField3;
 
@@ -133,17 +140,23 @@ public class Application {
     @FXML
     private Text weightText1;
     @FXML
+    private Text weightStatusText1;
+    @FXML
     private TextField weightField1;
     @FXML
     private TitledPane weightPane2;
     @FXML
     private Text weightText2;
     @FXML
+    private Text weightStatusText2;
+    @FXML
     private TextField weightField2;
     @FXML
     private TitledPane weightPane3;
     @FXML
     private Text weightText3;
+    @FXML
+    private Text weightStatusText3;
     @FXML
     private TextField weightField3;
 
@@ -154,8 +167,10 @@ public class Application {
     private Text currentMealText;
     @FXML
     private Text mealCalories;
-    private static String currentMeal;
-    private static HashMap<String, Double> currentMealCalories;
+    private static String currentMeal = "Breakfast";
+    private static double breakfastCalories;
+    private static double lunchCalories;
+    private static double dinnerCalories;
 
     private ArrayList<Goal> goalList;
     private ArrayList<Goal> weightGoals;
@@ -167,11 +182,6 @@ public class Application {
         groups = new HashMap<>();
         users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
                 184, 77, "M"));
-        currentMealCalories = new HashMap<>();
-        currentMealCalories.put("Breakfast", 0.0);
-        currentMealCalories.put("Lunch", 0.0);
-        currentMealCalories.put("Dinner", 0.0);
-        currentMeal = "Breakfast";
     }
 
     // Creates and adds user
@@ -225,8 +235,14 @@ public class Application {
         if (!currentUser.dietInformation.addFood(foodField)) {
             foodAddedText.setText("Food not in list, please add custom food item");
         } else {
-            double mealCal = currentMealCalories.get(currentMeal) + currentUser.dietInformation.getFoodCalories(food);
-            currentMealCalories.put(currentMeal, mealCal);
+            if (currentMeal.equals("Breakfast")) {
+                breakfastCalories += currentUser.dietInformation.getFoodCalories(food);
+                System.out.println(breakfastCalories);
+            } else if (currentMeal.equals("Lunch")) {
+                lunchCalories += currentUser.dietInformation.getFoodCalories(food);
+            } else {
+                dinnerCalories += currentUser.dietInformation.getFoodCalories(food);
+            }
             foodAddedText.setText("Added " + food + " at " + currentUser.dietInformation.getFoodCalories(food) +
                     " calories." +
                     "Total calories consumed so far: \" + consumedCalories");
@@ -234,13 +250,17 @@ public class Application {
     }
 
     public void addCustomFood() {
-        currentUser.dietInformation.addCustomFood(customFoodField.getText(), customFoodCaloriesField.getText(),
+        String food = customFoodField.getText();
+        currentUser.dietInformation.addCustomFood(food, customFoodCaloriesField.getText(),
                 customFoodAddedText);
-        double mealCal = currentMealCalories.get(currentMeal) +
-                currentUser.dietInformation.getFoodCalories(customFoodField.getText());
-        System.out.println(mealCal);
-        currentMealCalories.put(currentMeal, mealCal);
-        System.out.println("Hashmap calories: " + currentMealCalories.get(currentMeal));
+        if (currentMeal.equals("Breakfast")) {
+            System.out.println("Food cal: " + currentUser.dietInformation.getFoodCalories(food));
+            breakfastCalories = currentUser.dietInformation.getFoodCalories(food);
+        } else if (currentMeal.equals("Lunch")) {
+            lunchCalories += currentUser.dietInformation.getFoodCalories(food);
+        } else {
+            dinnerCalories += currentUser.dietInformation.getFoodCalories(food);
+        }
     }
 
     public void addDrink() {
@@ -248,29 +268,40 @@ public class Application {
         if (!currentUser.dietInformation.addFood(drinkField)) {
             drinkAddedText.setText("Food not in list, please add custom food item");
         } else {
-            double mealCal = currentMealCalories.get(currentMeal) + currentUser.dietInformation.getFoodCalories(drink);
-            System.out.println(mealCal);
-            currentMealCalories.put(currentMeal, mealCal);
-            drinkAddedText.setText("Added " + drink + " at " + currentUser.dietInformation.getFoodCalories(drink) +
-                    " calories." +
-                    "Total calories consumed so far: \" + consumedCalories");
+            if (currentMeal.equals("Breakfast")) {
+                breakfastCalories += currentUser.dietInformation.getFoodCalories(drinkField.getText());
+            } else if (currentMeal.equals("Lunch")) {
+                lunchCalories += currentUser.dietInformation.getFoodCalories(drinkField.getText());
+            } else {
+                dinnerCalories += currentUser.dietInformation.getFoodCalories(drinkField.getText());
+            }
         }
     }
 
     public void addCustomDrink() {
         currentUser.dietInformation.addCustomFood(customDrinkField.getText(), customDrinkCaloriesField.getText(),
                 customDrinkAddedText);
-        double mealCal = currentMealCalories.get(currentMeal) +
-                currentUser.dietInformation.getFoodCalories(customDrinkField.getText());
-        currentMealCalories.put(currentMeal, mealCal);
+        if (currentMeal.equals("Breakfast")) {
+            breakfastCalories += currentUser.dietInformation.getFoodCalories(customDrinkField.getText());
+        } else if (currentMeal.equals("Lunch")) {
+            lunchCalories += currentUser.dietInformation.getFoodCalories(customDrinkField.getText());
+        } else {
+            dinnerCalories += currentUser.dietInformation.getFoodCalories(customDrinkField.getText());
+        }
     }
 
     public void caloriesConsumed() {
         System.out.println(currentMeal);
         caloriesText.setText(String.valueOf(currentUser.dietInformation.getConsumedCalories()));
-        currentMealText.setText("Breakfast");
-        mealCalories.setText(String.valueOf(currentMealCalories.get(currentMeal)));
-        System.out.println(currentMealCalories.get(currentMeal));
+        currentMealText.setText(currentMeal);
+        System.out.println(breakfastCalories);
+        if (currentMeal.equals("Breakfast")) {
+            mealCalories.setText(String.valueOf(breakfastCalories));
+        } else if (currentMeal.equals("Lunch")) {
+            mealCalories.setText(Double.toString(lunchCalories));
+        } else {
+            mealCalories.setText(String.valueOf(dinnerCalories));
+        }
     }
 
     public void createWeightGoal() {
@@ -283,7 +314,7 @@ public class Application {
 
     public void createExerciseGoal() {
         currentUser.active_goals.put(exerciseGoalName.getText(), new Goal(exerciseGoalName.getText(),
-                Double.parseDouble(goalDistance.getText()), exerciseDate.getText()));
+                Double.parseDouble(goalDistance.getText()), exerciseDate.getText(), goalDuration.getText()));
         exerciseText.setText("Exercise goal added");
         System.out.println("Exercise goal added");
     }
@@ -341,10 +372,10 @@ public class Application {
     public void setMealBreakfast() {
         currentMealText.setText("Breakfast");
         currentMeal = "Breakfast";
-        if (currentMealCalories.isEmpty()) {
+        if (breakfastCalories == 0.0) {
             mealCalories.setText("0.0");
         } else {
-            mealCalories.setText(String.valueOf(currentMealCalories.get("Breakfast")));
+            mealCalories.setText(String.valueOf(breakfastCalories));
         }
 
     }
@@ -352,25 +383,25 @@ public class Application {
     public void setMealLunch() {
         currentMealText.setText("Lunch");
         currentMeal = "Lunch";
-        if (currentMealCalories.isEmpty()) {
+        if (lunchCalories == 0.0) {
             mealCalories.setText("0.0");
         } else {
-            mealCalories.setText(String.valueOf(currentMealCalories.get("Lunch")));
+            mealCalories.setText(String.valueOf(lunchCalories));
         }
     }
 
     public void setMealDinner() {
         currentMealText.setText("Dinner");
         currentMeal = "Dinner";
-        if (currentMealCalories.isEmpty()) {
+        if (dinnerCalories == 0.0) {
             mealCalories.setText("0.0");
         } else {
-            mealCalories.setText(String.valueOf(currentMealCalories.get("Dinner")));
+            mealCalories.setText(String.valueOf(dinnerCalories));
         }
     }
 
     public void checkWeightGoal() {
-        currentUser.active_goals.get(weightGoals.get(0).goalName).checkWeightGoal(weightText1,
+        currentUser.active_goals.get(weightGoals.get(0).goalName).checkWeightGoal(weightStatusText1, weightText1,
                 Double.parseDouble(weightField1.getText()));
         if (currentUser.active_goals.get(weightGoals.get(0).goalName).isComplete) {
             // Remove from active and add to completed
@@ -382,7 +413,7 @@ public class Application {
     }
 
     public void checkWeightGoal1() {
-        currentUser.active_goals.get(weightGoals.get(1).goalName).checkWeightGoal(weightText2,
+        currentUser.active_goals.get(weightGoals.get(1).goalName).checkWeightGoal(weightStatusText2, weightText2,
                 Double.parseDouble(weightField2.getText()));
         if (currentUser.active_goals.get(weightGoals.get(1).goalName).isComplete) {
             // Remove from active and add to completed
@@ -394,7 +425,7 @@ public class Application {
     }
 
     public void checkWeightGoal2() {
-        currentUser.active_goals.get(weightGoals.get(2).goalName).checkWeightGoal(weightText2,
+        currentUser.active_goals.get(weightGoals.get(2).goalName).checkWeightGoal(weightStatusText3, weightText2,
                 Double.parseDouble(weightField2.getText()));
         if (currentUser.active_goals.get(weightGoals.get(2).goalName).isComplete) {
             // Remove from active and add to completed
@@ -406,7 +437,7 @@ public class Application {
     }
 
     public void checkExerciseGoal() {
-        currentUser.active_goals.get(exerciseGoals.get(0).goalName).checkExerciseGoal(exerciseText1,
+        currentUser.active_goals.get(exerciseGoals.get(0).goalName).checkExerciseGoal(exerciseStatusText1, exerciseText1,
                 Double.parseDouble(exerciseField1.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(0).goalName).isComplete) {
             // Remove from active and add to completed
@@ -418,7 +449,7 @@ public class Application {
     }
 
     public void checkExerciseGoal1() {
-        currentUser.active_goals.get(exerciseGoals.get(1).goalName).checkExerciseGoal(exerciseText2,
+        currentUser.active_goals.get(exerciseGoals.get(1).goalName).checkExerciseGoal(exerciseStatusText2, exerciseText2,
                 Double.parseDouble(exerciseField2.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(1).goalName).isComplete) {
             // Remove from active and add to completed
@@ -430,7 +461,7 @@ public class Application {
     }
 
     public void checkExerciseGoal2() {
-        currentUser.active_goals.get(exerciseGoals.get(2).goalName).checkExerciseGoal(exerciseText3,
+        currentUser.active_goals.get(exerciseGoals.get(2).goalName).checkExerciseGoal(exerciseStatusText3, exerciseText3,
                 Double.parseDouble(exerciseField3.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(2).goalName).isComplete) {
             // Remove from active and add to completed
