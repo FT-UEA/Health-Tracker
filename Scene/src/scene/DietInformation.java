@@ -14,10 +14,11 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class DietInformation {
+public class DietInformation implements Serializable {
 
     // Constructor that initialises hashmaps
     public DietInformation() throws FileNotFoundException {

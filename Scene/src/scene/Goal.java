@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.Serializable;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Scanner;
 
-public class Goal {
+public class Goal implements Serializable {
     public double weight;
     public LocalDate goalDate;
     public LocalTime goalTime;

@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,11 +177,47 @@ public class Application {
     private ArrayList<Goal> exerciseGoals;
 
     @FXML
-    private String joinGroupText;
-    @FXML
     private Button registerButton;
     @FXML
     private Text registerText;
+
+    @FXML
+    private TextField groupNameField;
+    @FXML
+    private Text groupCreateText;
+
+    @FXML
+    private TextField groupInviteCode;
+    @FXML
+    private Text joinGroupText;
+
+    @FXML
+    private TitledPane groupPane1;
+    @FXML
+    private Text groupText1;
+    @FXML
+    private TitledPane groupPane2;
+    @FXML
+    private Text groupText2;
+    @FXML
+    private TitledPane groupPane3;
+    @FXML
+    private Text groupText3;
+
+    @FXML
+    private TextField groupEmail1;
+    @FXML
+    private TextField groupEmail2;
+    @FXML
+    private TextField groupEmail3;
+
+    @FXML
+    private Text groupInviteText1;
+    @FXML
+    private Text groupInviteText2;
+    @FXML
+    private Text groupInviteText3;
+
 
 
     public Application() throws FileNotFoundException {
@@ -201,14 +239,34 @@ public class Application {
         } else {
             gender = "M";
         }
-        users.put(userName.getText(), new User(userName.getText(), fullName.getText(), emailAddress.getText(),
-                Integer.parseInt(age.getText()), Double.parseDouble(height.getText()),
-                Double.parseDouble(weight.getText()), gender));
-        currentUserName = userName.getText();
-        System.out.println("Current User: " + currentUserName);
-        currentUser = users.get(currentUserName);
-        System.out.println("User added");
-        System.out.println(users.keySet());
+        if (users.containsKey(userName.getText())) {
+            registerButton.setVisible(false);
+            registerText.setText("Username taken, please try another");
+        } else {
+            if (isValidEmailAddress(emailAddress.getText())) {
+                users.put(userName.getText(), new User(userName.getText(), fullName.getText(), emailAddress.getText(),
+                        Integer.parseInt(age.getText()), Double.parseDouble(height.getText()),
+                        Double.parseDouble(weight.getText()), gender));
+                currentUserName = userName.getText();
+                System.out.println("Current User: " + currentUserName);
+                currentUser = users.get(currentUserName);
+                System.out.println("User added");
+                System.out.println(users.keySet());
+            } else {
+                registerText.setText("Invalid email format");
+            }
+        }
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
 
     public void userLogin(ActionEvent event) throws Exception {
@@ -374,6 +432,11 @@ public class Application {
         }
     }
 
+    public void createGroup() {
+        currentUser.createGroup(groupNameField.getText());
+        groupCreateText.setText("Group created");
+    }
+
     public void setMealBreakfast() {
         currentMealText.setText("Breakfast");
         currentMeal = "Breakfast";
@@ -402,6 +465,29 @@ public class Application {
             mealCalories.setText("0.0");
         } else {
             mealCalories.setText(String.valueOf(dinnerCalories));
+        }
+    }
+
+    public void inviteMember1() {
+        currentUser.getGroup(groupText1.getText()).invite(groupEmail1.getText());
+    }
+
+    public void joinGroup() {
+        currentUser.joinGroup(joinGroupText, groupInviteCode.getText());
+    }
+
+    public void loadGroups() {
+        if (currentUser.groups.size() >= 1) {
+            groupPane1.setText(groupText1.getText());
+            weightPane1.setVisible(true);
+        }
+        if (currentUser.groups.size() >= 2) {
+            groupPane1.setText(weightGoals.get(1).goalName);
+            weightPane2.setVisible(true);
+        }
+        if (currentUser.groups.size() >= 3) {
+            groupPane1.setText(weightGoals.get(2).goalName);
+            weightPane3.setVisible(true);
         }
     }
 
@@ -477,6 +563,36 @@ public class Application {
         }
     }
 
+    public void changeScreenInviteMembers1(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Invite Members1.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenInviteMembers2(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Invite Members2.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenInviteMembers3(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Invite Members3.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
     public void changeScreenCheckGoal(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Check Goal.fxml"));
         Scene loginScene = new Scene(loginRoot);
@@ -486,6 +602,7 @@ public class Application {
         window.setTitle("Health Tracker");
         window.show();
     }
+
 
     public void changeScreenDashboard(ActionEvent event) throws Exception {
         createUser();

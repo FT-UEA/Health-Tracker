@@ -23,7 +23,6 @@ public class Group implements Serializable {
         completedGoals = new ArrayList<>();
         invite_codes = new ArrayList<>();
         save();
-
     }
 
     public String getName(){
@@ -113,7 +112,6 @@ public class Group implements Serializable {
         members.add(user); // temp solution
         invite_codes.remove(invite_code);
         save();
-
     }
 
     public void removeMember(String username){ // temp solution, removes user from list

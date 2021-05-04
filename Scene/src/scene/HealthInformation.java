@@ -8,7 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HealthInformation {
+import java.io.Serializable;
+
+public class HealthInformation implements Serializable {
 
     public HealthInformation(final double height, final double weight, final int age, final String gender) {
         this.height = height;

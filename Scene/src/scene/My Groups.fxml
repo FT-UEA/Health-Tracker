@@ -43,6 +43,7 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="109.0">
                                        <children>
                                           <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" />
+                                          <Button layoutX="50.0" layoutY="7.0" mnemonicParsing="false" onAction="#loadGroups" text="Load Groups" />
                                        </children>
                                     </AnchorPane>
                                  </items>
@@ -59,98 +60,39 @@
                                              <children>
                                                 <Accordion prefHeight="453.0" prefWidth="980.0">
                                                    <panes>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 1">
+                                                      <TitledPane fx:id="groupPane1" animated="false" onMouseClicked="#setDashText" text="scene.Group 1">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
-                                                                  <Text fx:id="dashUser" layoutX="281.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="scene.Group name" textAlignment="CENTER">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                                  <Button layoutX="265.0" layoutY="142.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="scene.Group goals" />
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                          <items>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText1" layoutX="68.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="127.0" />
+                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                          </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
                                                                </children>
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 2">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashName" layoutX="7.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER" wrappingWidth="377.05517578125">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 3">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashEmail" layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER" wrappingWidth="377.0">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 4">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashAge" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 5">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashWeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 6">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashHeight" layoutX="160.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 7">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <Text fx:id="dashGender" layoutX="160.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" textAlignment="CENTER">
-                                                                     <font>
-                                                                        <Font size="37.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 2" />
+                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 3" />
                                                    </panes>
                                                 </Accordion>
                                              </children>

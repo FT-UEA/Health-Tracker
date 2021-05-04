@@ -57,9 +57,9 @@
                                        <children>
                                           <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Text fx:id="joinGroupText" strokeType="OUTSIDE" strokeWidth="0.0" />
-                                                <Button mnemonicParsing="false" onAction="#joinGroup" prefHeight="100.0" prefWidth="262.0" text="Join Group" />
-                                                <TextField fx:id="groupInviteCode" prefHeight="24.0" prefWidth="387.0">
+                                                <Text fx:id="groupCreateText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <Button mnemonicParsing="false" onAction="#inviteMember" prefHeight="100.0" prefWidth="262.0" text="Invite Member" />
+                                                <TextField fx:id="groupNameField" prefHeight="24.0" prefWidth="387.0" promptText="Email Address">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

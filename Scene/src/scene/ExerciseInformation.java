@@ -1,9 +1,10 @@
 package scene;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class ExerciseInformation {
+public class ExerciseInformation implements Serializable {
 
     public ExerciseInformation() {
         exerciseTypes = new HashMap<>();

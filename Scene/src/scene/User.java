@@ -1,10 +1,13 @@
 package scene;
 
-import java.io.FileNotFoundException;
+import javafx.scene.text.Text;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class User {
+public class User implements Serializable {
 
     // Constructor to initialise User variables and HealthInformation variables
     public User(String userName, String realName, String email, int age, double height, double weight, String gender)
@@ -15,7 +18,7 @@ public class User {
         healthInformation = new HealthInformation(height, weight, age, gender);
         dietInformation = new DietInformation();
         exerciseInformation = new ExerciseInformation();
-        groups = new HashMap<>();
+        groups = new ArrayList<>();
         active_goals = new HashMap<>();
         completed_goals = new HashMap<>();
     }
@@ -32,30 +35,68 @@ public class User {
         return email;
     }
 
-//    public void checkGoal() {
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Please enter the name of the goal you would like to check");
-//        String goalName = scan.nextLine();
-//        if (active_goals.containsKey(goalName)) {
-//            if (active_goals.get(goalName).type.equals("weight")) {
-//                System.out.println("Weight goal");
-//                System.out.println("Please enter your current weight");
-//                double currentWeight = Double.parseDouble(scan.nextLine());
-//                active_goals.get(goalName).checkWeightGoal(currentWeight);
-//            } else {
-//                System.out.println("Exercise goal");
-//                System.out.println("Please enter your current distance (m)");
-//                double currentDistance = Double.parseDouble(scan.nextLine());
-//                active_goals.get(goalName).checkExerciseGoal(currentDistance);
-//            }
-//            if (active_goals.get(goalName).isComplete) {
-//                completed_goals.put(goalName, active_goals.get(goalName));
-//                active_goals.remove(goalName);
-//            }
-//        }
-//    }
+    public int getGroupSize(){ return groups.size();}
 
-    // Display group info
+    public Group getGroup(int i){
+        return groups.get(i);
+    }
+
+    public Group getGroup(String name){
+        Group group_out = null;
+        for(Group group: groups){
+            if(group.getName().equals(name)){
+                group_out = group;
+            }
+        }
+        System.out.println("Yes?? " + group_out);
+        return group_out;
+    }
+
+
+    public void createGroup(String group_name){
+        groups.add(new Group(group_name, this));
+    }
+
+    public void joinGroup(Text text, String invite_code) {
+
+        String group_name = invite_code.replaceAll("_.+", "");
+        File f = new File(group_name + ".csv");
+        System.out.println(group_name);
+
+        System.out.println(f.exists());
+        if(f.exists()){
+            try{
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(group_name +".csv"));
+                Group group = (Group) is.readObject();
+
+                if(group.containsInvite_code(invite_code)){
+                    groups.add(group);
+                    group.joinGroup(this, invite_code);
+                    text.setText("Group joined" + group_name);
+                } else{
+                    System.out.println(invite_code);
+                    System.out.println("Invite is invalid");
+                    text.setText("Invite is invalid");
+                }
+                is.close();
+            } catch(IOException | ClassNotFoundException e){
+                e.printStackTrace();
+            }
+        } else{
+            System.out.println("Group doesn't exist");
+            text.setText("Group doesn't exist");
+        }
+    }
+
+    public void leaveGroup(String group_name){
+        for(Group group : this.groups){
+            if(group.getName().equals(group_name)){
+                this.groups.remove(group);
+                group.removeMember(userName);
+                break;
+            }
+        }
+    }
 
     // User details
     private final String userName;
@@ -68,7 +109,8 @@ public class User {
     // ExerciseInformation object
     public ExerciseInformation exerciseInformation;
     // HashMap of groups the user is in
-    public HashMap<String, Group> groups;
+//    public HashMap<String, Group> groups;
+    public ArrayList<Group> groups;
     // HashMap of goals the user has active
     public HashMap<String, Goal> active_goals;
     // HashMap of goals the user has completed
