@@ -1,11 +1,18 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User implements Serializable {
     private String name;
     public ArrayList<Group> groups = new ArrayList<>();
+    private String email;
+
+    User(String name ,String email){
+        this.name = name;
+        this.email = email;
+    }
 
     User(String name){
         this.name = name;
@@ -20,6 +27,11 @@ public class User implements Serializable {
     public Group getGroup(int i){
         return groups.get(i);
     }
+
+    public String getEmail() {
+        return email;
+    }
+
 
 /*    public void loadGroup(String group_name){ // used to keep the group updated in the user
         try {
@@ -94,4 +106,42 @@ public class User implements Serializable {
             }
         }
     }
+
+    public void addGroupGoal(String serializedObject) {
+        Goal goal = null;
+        try {
+            byte b[] = Base64.getDecoder().decode(serializedObject.getBytes());
+            ByteArrayInputStream bi = new ByteArrayInputStream(b);
+            ObjectInputStream si = new ObjectInputStream(bi);
+            goal = (Goal) si.readObject();
+
+            //add goal to user goal array or hashmap or whatever
+
+            System.out.println(goal.bob);
+            System.out.println(goal.dog);
+            System.out.println(goal.hello);
+            System.out.println(goal.array);
+
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sendGroupEmail(String goal_name, String from){
+        ArrayList<User> arrayListUser = new ArrayList<>();
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(from + ".csv"));
+            Group group = (Group) is.readObject();
+            group.sendGroupEmail(goal_name, this.email);
+            is.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
 }
