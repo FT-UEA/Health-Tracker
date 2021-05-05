@@ -22,6 +22,7 @@ public class Group implements Serializable {
         this.owner = owner;
         members = new ArrayList<>();
         members.add(owner);
+
         goals = new ArrayList<>();
         completedGoals = new ArrayList<>();
         invite_codes = new ArrayList<>();
@@ -185,6 +186,106 @@ public class Group implements Serializable {
 
     }
 
+    public void createGoal(){
+
+        Goal goal = new Goal();
+        String redisString = "";
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream so = new ObjectOutputStream(bo);
+            so.writeObject(goal);
+            so.flush();
+            redisString = new String(Base64.getEncoder().encode(bo.toByteArray()));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String username = "noreplyapphealth45@gmail.com";
+        String password = "Health!23";
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+
+        Session session = Session.getInstance(properties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Address[] emails = new Address[members.size()];
+            for(int i = 0; i < members.size(); i++){
+                System.out.println(members.size());
+                System.out.println(members.get(i).getEmail());
+                emails[i] = new InternetAddress(members.get(i).getEmail());
+            }
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.addRecipients(Message.RecipientType.TO, emails);
+            message.setSubject("Group goal: Goalnamegoeshere has been created! ");
+            message.setText("A goal has been created for all the grouop members to complete! Copy the text" +
+                    " below to add it to your local goal. Good Luck! \n \n \n \n" + "\"" + redisString + "\"");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+            save();
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    public void sendGroupEmail(String goal_name, String email){
+        String username = "noreplyapphealth45@gmail.com";
+        String password = "Health!23";
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+
+        Session session = Session.getInstance(properties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            String name = "";
+            Address[] emails = new Address[members.size()];
+            for(int i = 0; i < members.size(); i++){
+                emails[i] = new InternetAddress(members.get(i).getEmail());
+                if(members.get(i).getEmail().equals(email)){
+                    name = members.get(i).getUserName();
+                }
+            }
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.addRecipients(Message.RecipientType.TO, emails);
+            message.setSubject(name + " has completed " + goal_name + "!");
+            message.setText("Congradulations to " + name + " for reaching their goal! It's your turn now!");
+            Transport.send(message);
+
+
+            save();
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void addCompletedGoal(Goal completed){
         load();
         completedGoals.add(completed);
@@ -218,6 +319,16 @@ public class Group implements Serializable {
         }
 
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+      User user = new User("Bobby Cow", "william.andrews314@gmail.com");
+      Group group = new Group("xDDDDD", user);
+      group.createGoal();
+      user.sendGroupEmail("Lose weight", "xDDDDD");
+
+
+
     }
 
 
