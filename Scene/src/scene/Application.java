@@ -566,6 +566,66 @@ public class Application {
         }
     }
 
+    public void changeScreenAddGroupExerciseGoal1(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Exercise Goal1.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddGroupExerciseGoal2(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Exercise Goal2.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddGroupExerciseGoal3(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Exercise Goal3.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddGroupWeightGoal1(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Weight Goal1.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddGroupWeightGoal2(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Weight Goal2.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenAddGroupWeightGoal3(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Weight Goal3.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
     public void changeScreenInviteMembers1(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Invite Members1.fxml"));
         Scene loginScene = new Scene(loginRoot);
@@ -681,6 +741,36 @@ public class Application {
 
     public void changeScreenSettings(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenGroupGoal1(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Group Goal1.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenGroupGoal2(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Group Goal2.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
+    }
+
+    public void changeScreenGroupGoal3(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Group Goal3.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
