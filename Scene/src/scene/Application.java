@@ -22,6 +22,7 @@ public class Application {
     private static HashMap<String, Group> groups;
     private static User currentUser;
     private String currentUserName;
+    private Database database;
     @FXML
     private TextField userName;
     @FXML
@@ -225,6 +226,7 @@ public class Application {
         groups = new HashMap<>();
         users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
                 184, 77, "M"));
+        database = new Database();
     }
 
     // Creates and adds user
@@ -239,8 +241,9 @@ public class Application {
         } else {
             gender = "M";
         }
-        if (users.containsKey(userName.getText())) {
+        if (database.userExists(userName.getText())) {
             registerButton.setVisible(false);
+            registerText.setVisible(true);
             registerText.setText("Username taken, please try another");
         } else {
             if (isValidEmailAddress(emailAddress.getText())) {
@@ -251,7 +254,7 @@ public class Application {
                 System.out.println("Current User: " + currentUserName);
                 currentUser = users.get(currentUserName);
                 System.out.println("User added");
-                System.out.println(users.keySet());
+                database.saveToFile(currentUser);
             } else {
                 registerText.setText("Invalid email format");
             }
@@ -270,12 +273,14 @@ public class Application {
     }
 
     public void userLogin(ActionEvent event) throws Exception {
-        if (users.containsKey(userName.getText())) {
-            System.out.println("User IS registered");
-            currentUserName = userName.getText();
-            System.out.println("User: " + currentUserName);
-            currentUser = users.get(currentUserName);
-            System.out.println("Current User: " + currentUser.getUserName());
+        if (database.userExists(userName.getText())) {
+            User user = new User();
+            database.load(userName.getText());
+//            System.out.println("User IS registered");
+//            currentUserName = userName.getText();
+//            System.out.println("User: " + currentUserName);
+//            currentUser = users.get(currentUserName);
+//            System.out.println("Current User: " + currentUser.getUserName());
             changeScreenDashboardNoCreate(event);
         } else {
             loginMessage.setText("User not registered");

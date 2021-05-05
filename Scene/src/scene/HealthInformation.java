@@ -51,13 +51,25 @@ public class HealthInformation implements Serializable {
         this.gender = gender;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     public String getGender() {
         return gender;
     }
 
-    private final double height;
-    private final double weight;
-    private final int age;
+    private double height;
+    private double weight;
+    private int age;
     @FXML
     private double bmi = 0;
     @FXML

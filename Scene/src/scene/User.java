@@ -52,6 +52,41 @@ public class User implements Serializable {
         return group_out;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAge(int age) {
+        this.healthInformation.setAge(age);
+    }
+
+    public void setWeight(double weight) {
+        this.healthInformation.setWeight(weight);
+    }
+
+    public void setHeight(double height) {
+        this.healthInformation.setHeight(height);
+    }
+
+    public int getAge() {
+        return this.healthInformation.getAge();
+    }
+
+    public double getHeight() {
+        return this.healthInformation.getHeight();
+    }
+
+    public double getWeight() {
+        return this.healthInformation.getWeight();
+    }
 
     public void createGroup(String group_name){
         groups.add(new Group(group_name, this));
@@ -99,11 +134,11 @@ public class User implements Serializable {
     }
 
     // User details
-    private final String userName;
-    private final String realName;
-    private final String email;
+    private String userName;
+    private String realName;
+    private String email;
     // HealthInformation object
-    public final HealthInformation healthInformation;
+    public HealthInformation healthInformation;
     // DietInformation object
     public DietInformation dietInformation;
     // ExerciseInformation object
