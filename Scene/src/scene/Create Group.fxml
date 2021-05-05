@@ -42,7 +42,7 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="109.0">
                                        <children>
                                           <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" />
-                                          <Button layoutX="672.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenGoalDashboard" text="Back" />
+                                          <Button layoutX="672.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenGroupDashboard" text="Back" />
                                        </children>
                                     </AnchorPane>
                                  </items>
@@ -59,7 +59,7 @@
                                              <children>
                                                 <Text fx:id="groupCreateText" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                 <Button mnemonicParsing="false" onAction="#createGroup" prefHeight="100.0" prefWidth="262.0" text="Create Group" />
-                                                <TextField fx:id="groupNameField" prefHeight="24.0" prefWidth="387.0" promptText="scene.Group Name">
+                                                <TextField fx:id="groupNameField" prefHeight="24.0" prefWidth="387.0" promptText="Group Name">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

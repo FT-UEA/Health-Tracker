@@ -478,16 +478,19 @@ public class Application {
 
     public void loadGroups() {
         if (currentUser.groups.size() >= 1) {
-            groupPane1.setText(groupText1.getText());
-            weightPane1.setVisible(true);
+            groupPane1.setText(currentUser.groups.get(0).getName());
+            groupText1.setText(currentUser.groups.get(0).getName());
+            groupPane1.setVisible(true);
         }
         if (currentUser.groups.size() >= 2) {
-            groupPane1.setText(weightGoals.get(1).goalName);
-            weightPane2.setVisible(true);
+            groupPane2.setText(currentUser.groups.get(1).getName());
+            groupText2.setText(currentUser.groups.get(1).getName());
+            groupPane2.setVisible(true);
         }
         if (currentUser.groups.size() >= 3) {
-            groupPane1.setText(weightGoals.get(2).goalName);
-            weightPane3.setVisible(true);
+            groupPane3.setText(currentUser.groups.get(2).getName());
+            groupText3.setText(currentUser.groups.get(2).getName());
+            groupPane3.setVisible(true);
         }
     }
 

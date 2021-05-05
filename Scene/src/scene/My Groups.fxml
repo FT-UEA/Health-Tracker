@@ -44,6 +44,7 @@
                                        <children>
                                           <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" />
                                           <Button layoutX="50.0" layoutY="7.0" mnemonicParsing="false" onAction="#loadGroups" text="Load Groups" />
+                                          <Button alignment="CENTER" layoutX="667.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenMyGroups" text="Back" />
                                        </children>
                                     </AnchorPane>
                                  </items>
@@ -60,7 +61,7 @@
                                              <children>
                                                 <Accordion prefHeight="453.0" prefWidth="980.0">
                                                    <panes>
-                                                      <TitledPane fx:id="groupPane1" animated="false" onMouseClicked="#setDashText" text="scene.Group 1">
+                                                      <TitledPane fx:id="groupPane1" animated="false" visible="false">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -70,7 +71,7 @@
                                                                           <items>
                                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                                  <children>
-                                                                                    <Text fx:id="groupText1" layoutX="68.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                    <Text fx:id="groupText1" layoutX="137.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                                                                                        <font>
                                                                                           <Font size="37.0" />
                                                                                        </font>
@@ -79,7 +80,7 @@
                                                                               </AnchorPane>
                                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
                                                                                  <children>
-                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="127.0" />
+                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
                                                                                     <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
                                                                                  </children>
                                                                               </AnchorPane>
@@ -91,8 +92,66 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 2" />
-                                                      <TitledPane animated="false" onMouseClicked="#setDashText" text="scene.Group 3" />
+                                                      <TitledPane fx:id="groupPane2" animated="false" visible="false">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                           <items>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText2" layoutX="137.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers2" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
+                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                           </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content></TitledPane>
+                                                      <TitledPane fx:id="groupPane3" animated="false" visible="false">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                           <items>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText3" layoutX="137.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers3" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
+                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                           </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content></TitledPane>
                                                    </panes>
                                                 </Accordion>
                                              </children>
