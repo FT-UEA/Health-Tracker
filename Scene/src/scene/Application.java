@@ -222,13 +222,14 @@ public class Application {
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
         groups = new HashMap<>();
-        users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
-                184, 77, "M"));
+//        users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
+//                184, 77, "M"));
         database = new Database();
     }
 
     // Creates and adds user
-    public void createUser() throws FileNotFoundException {
+    public boolean createUser() throws FileNotFoundException {
+        registerButton.setDisable(false);
         male = new CheckBox();
         female = new CheckBox();
         String gender;
@@ -240,10 +241,10 @@ public class Application {
             gender = "M";
         }
         if (database.userExists(userName.getText())) {
-            registerButton.setVisible(false);
-            registerText.setVisible(true);
-            registerText.setText("Username taken, please try another");
+            registerText.setText("Username taken");
+            registerButton.setDisable(true);
             System.out.println("Username taken");
+            return false;
         } else {
             if (isValidEmailAddress(emailAddress.getText())) {
                 users.put(userName.getText(), new User(userName.getText(), fullName.getText(), emailAddress.getText(),
@@ -254,9 +255,13 @@ public class Application {
                 currentUser = users.get(currentUserName);
                 System.out.println("User added");
                 database.saveToFile(currentUser);
+                registerText.setText("User created");
+                return true;
             } else {
                 registerText.setText("Invalid email format");
+                registerButton.setDisable(true);
                 System.out.println("Invalid email format");
+                return false;
             }
         }
     }
@@ -489,21 +494,40 @@ public class Application {
         }
     }
 
-    public void createGroupExerciseGoal() {
-        currentUser.groups
-        currentUser.active_goals.put(weightGoalName.getText(), new Goal(weightGoalName.getText(),
-                currentUser.healthInformation.getWeight(), Double.parseDouble(goalWeight.getText()),
-                weightDate.getText()));
-        weightText.setText("Weight goal added");
-        System.out.println("Weight goal added");
+    public void createGroupExerciseGoal1() {
+        currentUser.groups.get(0).createGoalExercise(exerciseGoalName.getText(),
+                Double.parseDouble(goalDistance.getText()), exerciseDate.getText(), goalDuration.getText());
+        System.out.println("Group goal " + exerciseGoalName.getText() + " created");
     }
 
-    public void createGroupWeightGoal() {
-        currentUser.active_goals.put(weightGoalName.getText(), new Goal(weightGoalName.getText(),
-                currentUser.healthInformation.getWeight(), Double.parseDouble(goalWeight.getText()),
-                weightDate.getText()));
-        weightText.setText("Weight goal added");
-        System.out.println("Weight goal added");
+    public void createGroupExerciseGoal2() {
+        currentUser.groups.get(1).createGoalExercise(exerciseGoalName.getText(),
+                Double.parseDouble(goalDistance.getText()), exerciseDate.getText(), goalDuration.getText());
+        System.out.println("Group goal " + exerciseGoalName.getText() + " created");
+    }
+
+    public void createGroupExerciseGoal3() {
+        currentUser.groups.get(2).createGoalExercise(exerciseGoalName.getText(),
+                Double.parseDouble(goalDistance.getText()), exerciseDate.getText(), goalDuration.getText());
+        System.out.println("Group goal " + exerciseGoalName.getText() + " created");
+    }
+
+    public void createGroupWeightGoal1() {
+        currentUser.groups.get(0).createGoalWeight(weightGoalName.getText(), currentUser.healthInformation.getWeight(),
+                Double.parseDouble(goalWeight.getText()), weightDate.getText());
+        System.out.println("Group goal " + weightGoalName.getText() + " created");
+    }
+
+    public void createGroupWeightGoal2() {
+        currentUser.groups.get(1).createGoalWeight(weightGoalName.getText(), currentUser.healthInformation.getWeight(),
+                Double.parseDouble(goalWeight.getText()), weightDate.getText());
+        System.out.println("Group goal " + weightGoalName.getText() + " created");
+    }
+
+    public void createGroupWeightGoal3() {
+        currentUser.groups.get(2).createGoalWeight(weightGoalName.getText(), currentUser.healthInformation.getWeight(),
+                Double.parseDouble(goalWeight.getText()), weightDate.getText());
+        System.out.println("Group goal " + weightGoalName.getText() + " created");
     }
 
     public void checkWeightGoal() {
@@ -680,14 +704,24 @@ public class Application {
 
 
     public void changeScreenDashboard(ActionEvent event) throws Exception {
-        createUser();
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
-        Scene loginScene = new Scene(loginRoot);
-        // This line gets the stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(loginScene);
-        window.setTitle("Health Tracker");
-        window.show();
+        if (createUser()) {
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
+            Scene loginScene = new Scene(loginRoot);
+            // This line gets the stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(loginScene);
+            window.setTitle("Health Tracker");
+            window.show();
+        } else {
+            changeScreenDashboard(event);
+            userName.clear();
+            fullName.clear();
+            age.clear();
+            height.clear();
+            weight.clear();
+            male.setSelected(false);
+            female.setSelected(false);
+        }
     }
 
     public void changeScreenLoggedOut(ActionEvent event) throws Exception {
