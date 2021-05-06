@@ -10,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -220,7 +218,6 @@ public class Application {
     private Text groupInviteText3;
 
 
-
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
         groups = new HashMap<>();
@@ -262,25 +259,14 @@ public class Application {
     }
 
     public static boolean isValidEmailAddress(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
+        return email.contains("@") && (email.contains(".co.uk") || email.contains(".com"));
     }
 
     public void userLogin(ActionEvent event) throws Exception {
         if (database.userExists(userName.getText())) {
-            User user = new User();
-            database.load(userName.getText());
-//            System.out.println("User IS registered");
-//            currentUserName = userName.getText();
-//            System.out.println("User: " + currentUserName);
-//            currentUser = users.get(currentUserName);
-//            System.out.println("Current User: " + currentUser.getUserName());
+            users.put(userName.getText(), database.load(userName.getText()));
+            currentUser = database.load(userName.getText());
+            System.out.println("Loaded user: " + currentUser.getUserName());
             changeScreenDashboardNoCreate(event);
         } else {
             loginMessage.setText("User not registered");

@@ -41,6 +41,10 @@ public class User implements Serializable {
         return groups.get(i);
     }
 
+    public String getGender() {
+        return this.healthInformation.getGender();
+    }
+
     public Group getGroup(String name){
         Group group_out = null;
         for(Group group: groups){
