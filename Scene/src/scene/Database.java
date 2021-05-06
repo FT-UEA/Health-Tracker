@@ -6,12 +6,12 @@ import java.util.HashMap;
 
 public class Database {
 
-    boolean exists;
-    User loadedUser;
+    private boolean exists;
+    private User loadedUser;
 
     public void saveToFile(User user) {
         try {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getUserName() + ".csv"));
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(user.getUserName()));
             os.writeObject(user);
             os.close();
             System.out.println("\nSuccessfully saved! ");
@@ -22,7 +22,7 @@ public class Database {
 
     public User load(String userName) {
         try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(userName + ".csv"));
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(userName));
             loadedUser = (User) is.readObject();
             System.out.println("\nSuccessfully Loaded! ");
             is.close();
@@ -34,7 +34,7 @@ public class Database {
     }
 
     public boolean userExists(String userName) {
-        File f = new File(userName + ".csv");
+        File f = new File(userName);
         exists = f.exists(); // stores true or false in exists
         return exists;
     }

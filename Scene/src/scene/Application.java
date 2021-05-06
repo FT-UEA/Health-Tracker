@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Application {
 
@@ -275,6 +274,7 @@ public class Application {
             users.put(userName.getText(), database.load(userName.getText()));
             currentUser = database.load(userName.getText());
             System.out.println("Loaded user: " + currentUser.getUserName());
+            System.out.println("Goal: " + currentUser.active_goals.get("Weight Goal"));
             changeScreenDashboardNoCreate(event);
         } else {
             loginMessage.setText("User not registered");
@@ -725,6 +725,7 @@ public class Application {
     }
 
     public void changeScreenLoggedOut(ActionEvent event) throws Exception {
+        database.saveToFile(currentUser);
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
