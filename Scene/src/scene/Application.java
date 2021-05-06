@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Application {
 
@@ -242,6 +243,7 @@ public class Application {
             registerButton.setVisible(false);
             registerText.setVisible(true);
             registerText.setText("Username taken, please try another");
+            System.out.println("Username taken");
         } else {
             if (isValidEmailAddress(emailAddress.getText())) {
                 users.put(userName.getText(), new User(userName.getText(), fullName.getText(), emailAddress.getText(),
@@ -254,6 +256,7 @@ public class Application {
                 database.saveToFile(currentUser);
             } else {
                 registerText.setText("Invalid email format");
+                System.out.println("Invalid email format");
             }
         }
     }
@@ -390,6 +393,7 @@ public class Application {
         exercisePane1.setVisible(false);
         exercisePane2.setVisible(false);
         exercisePane3.setVisible(false);
+
         if (weightGoals.size() >= 1) {
             weightPane1.setText(weightGoals.get(0).goalName);
             weightText1.setText(weightGoals.get(0).goalName);
@@ -483,6 +487,23 @@ public class Application {
             groupText3.setText(currentUser.groups.get(2).getName());
             groupPane3.setVisible(true);
         }
+    }
+
+    public void createGroupExerciseGoal() {
+        currentUser.groups
+        currentUser.active_goals.put(weightGoalName.getText(), new Goal(weightGoalName.getText(),
+                currentUser.healthInformation.getWeight(), Double.parseDouble(goalWeight.getText()),
+                weightDate.getText()));
+        weightText.setText("Weight goal added");
+        System.out.println("Weight goal added");
+    }
+
+    public void createGroupWeightGoal() {
+        currentUser.active_goals.put(weightGoalName.getText(), new Goal(weightGoalName.getText(),
+                currentUser.healthInformation.getWeight(), Double.parseDouble(goalWeight.getText()),
+                weightDate.getText()));
+        weightText.setText("Weight goal added");
+        System.out.println("Weight goal added");
     }
 
     public void checkWeightGoal() {

@@ -4,6 +4,7 @@ import javafx.scene.text.Text;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -135,6 +136,37 @@ public class User implements Serializable {
                 break;
             }
         }
+    }
+
+    public void addGroupGoal(String serializedObject) {
+        Goal goal = null;
+        try {
+            byte b[] = Base64.getDecoder().decode(serializedObject.getBytes());
+            ByteArrayInputStream bi = new ByteArrayInputStream(b);
+            ObjectInputStream si = new ObjectInputStream(bi);
+            goal = (Goal) si.readObject();
+
+            //add goal to user goal array or hashmap or whatever
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sendGroupEmail(String goal_name, String from){
+        ArrayList<User> arrayListUser = new ArrayList<>();
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(from + ".csv"));
+            Group group = (Group) is.readObject();
+            group.sendGroupEmail(goal_name, this.email);
+            is.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     // User details

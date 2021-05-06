@@ -35,18 +35,9 @@ public class Database {
             anyCompletedGoals = person.completed_goals.isEmpty();      //checks for any completed goals
             inGroup = person.groups.isEmpty();                         //checks if user is in a group
 
-            //if the user has goals it will add them to the goals hashmap
-            if (!anyActiveGoals) {
-                user.active_goals.putAll(person.active_goals);
-            }
-            //if the user has completed goals it will add them to the completed goals hashmap
-            if (!anyCompletedGoals) {
-                user.completed_goals.putAll(person.active_goals);
-            }
-            //if the user is in a group it will add it to the groups hashmap
-            if (!inGroup) {
-                user.groups.addAll(person.groups);
-            }
+            user.active_goals = person.active_goals;
+            user.completed_goals = person.completed_goals;
+            user.groups = person.groups;
 
             loadedUser = user;
             System.out.println("\nSuccessfully Loaded! ");
