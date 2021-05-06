@@ -26,22 +26,10 @@ public class Database {
             //creates new user object from the saved info in the database
             User user = new User(person.userName, person.realName, person.email, person.age, person.height, person.weight);
 
-            anyActiveGoals = person.active_goals.isEmpty();            //checks for any active goals
-            anyCompletedGoals = person.completed_goals.isEmpty();      //checks for any completed goals
-            inGroup = person.groups.isEmpty();                         //checks if user is in a group
+            user.active_goals = person.active_goals;
+            user.completed_goals = person.completed_goals;
+            user.groups = person.groups;
 
-            //if the user has goals it will add them to the goals hashmap
-            if (!anyActiveGoals){
-                user.active_goals.putAll(person.active_goals);
-            }
-            //if the user has completed goals it will add them to the completed goals hashmap
-            if (!anyCompletedGoals){
-                user.completed_goals.putAll(person.active_goals);
-            }
-            //if the user is in a group it will add it to the groups hashmap
-            if (!inGroup){
-                user.groups.putAll(person.groups);
-            }
 
             loadedUser = user;
             System.out.println("\nSuccessfully Loaded! ");
@@ -62,7 +50,7 @@ public class Database {
 
     /*    ---- testing ----
     public static void main(String[] args){
-       // User u = new User("JaG", "James", "J.G@e.com", 19,  85.2, 74.3);
+        //User u = new User("JaG", "James", "J.G@e.com", 19,  85.2, 74.3);
         //Database d = new Database();
         //d.saveToFile(u);
         //System.out.println(d.userExists("JaG"));
