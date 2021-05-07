@@ -9,11 +9,12 @@ public class User implements Serializable {
     String name;
     public ArrayList<Group> groups = new ArrayList<>();
     private String email;
-    HashMap<String, Double> goal = new HashMap<>();
 
     User(String name ,String email){
         this.name = name;
         this.email = email;
+        Database database = new Database();
+        database.saveEmail(email);
     }
 
     User(String name){
@@ -92,6 +93,7 @@ public class User implements Serializable {
 
     public void addGroupGoal(String serializedObject) {
         Goal goal = null;
+
         try {
             byte b[] = Base64.getDecoder().decode(serializedObject.getBytes());
             ByteArrayInputStream bi = new ByteArrayInputStream(b);
@@ -100,15 +102,11 @@ public class User implements Serializable {
 
             //add goal to user goal array or hashmap or whatever
 
-            System.out.println(goal.bob);
-            System.out.println(goal.dog);
-            System.out.println(goal.hello);
-            System.out.println(goal.array);
 
 
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("invalid code");
         }
 
     }
@@ -125,6 +123,13 @@ public class User implements Serializable {
 
         }
 
+    }
+
+    public static void main(String[] args) {
+        User user = new User("Bob", "william.andrews314@gmail.com");
+        user.addGroupGoal("asdasd123gsad");
+        Group group = new Group("Lalala", user);
+        group.invite("william.andrews314@gmail.com");
     }
 
 }

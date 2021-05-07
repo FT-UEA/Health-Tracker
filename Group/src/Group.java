@@ -8,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.*;
 import javax.activation.*;
+import javax.xml.crypto.Data;
 
 public class Group implements Serializable {
     private String name;
@@ -17,21 +18,13 @@ public class Group implements Serializable {
 
     Group(String name, User owner){
 
-//        File f = new File(name + ".csv");
-//
-//        if(f.exists()){
-//            System.out.println("Sorry Group name already exists");
-//        }
             this.name = name;
             this.owner = owner;
             members = new ArrayList<>();
             members.add(owner);
 
             invite_codes = new ArrayList<>();
-
             save();
-
-
 
     }
 
@@ -56,44 +49,48 @@ public class Group implements Serializable {
     }
 
     public void invite(String email){
+        Database database = new Database();
+        if(database.containsEmail(email)){
+            String username = "noreplyapphealth45@gmail.com";
+            String password = "Health!23";
+            String to = email;
+            String alpha_numeric = name;
+            alpha_numeric = alpha_numeric + "_" + getAlphaNumericString(10);
+            invite_codes.add(alpha_numeric);
 
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
 
+            Session session = Session.getInstance(properties,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+            try {
 
-        String username = "noreplyapphealth45@gmail.com";
-        String password = "Health!23";
-        String to = email;
-        String alpha_numeric = name;
-        alpha_numeric = alpha_numeric + "_" + getAlphaNumericString(10);
-        invite_codes.add(alpha_numeric);
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(email));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                message.setSubject("Invite to " + name);
+                message.setText("You have been invited to join " + name + " here is your invite code " + "\"" +  alpha_numeric + "\"");
 
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
+                Transport.send(message);
 
-        Session session = Session.getInstance(properties,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-        try {
+                System.out.println("Done");
+                save();
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(email));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Invite to " + name);
-            message.setText("You have been invited to join " + name + " here is your invite code " + "\"" +  alpha_numeric + "\"");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
 
-            Transport.send(message);
-
-            System.out.println("Done");
-            save();
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
+        } else{
+            System.out.println("Sorry email isnt registered to any known user");
         }
+
 
 
     }
