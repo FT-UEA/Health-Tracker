@@ -9,7 +9,6 @@ public class User implements Serializable {
     String name;
     public ArrayList<Group> groups = new ArrayList<>();
     private String email;
-    HashMap<String, Double> goal = new HashMap<>();
 
     User(String name ,String email){
         this.name = name;
