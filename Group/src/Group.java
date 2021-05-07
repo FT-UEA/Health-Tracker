@@ -13,20 +13,25 @@ public class Group implements Serializable {
     private String name;
     private User owner;
     private ArrayList<User> members;
-    private ArrayList<Goal> goals;
-    private ArrayList<Goal> completedGoals;
     private ArrayList<String> invite_codes;
 
     Group(String name, User owner){
-        this.name = name;
-        this.owner = owner;
-        members = new ArrayList<>();
-        members.add(owner);
 
-        goals = new ArrayList<>();
-        completedGoals = new ArrayList<>();
-        invite_codes = new ArrayList<>();
-        save();
+//        File f = new File(name + ".csv");
+//
+//        if(f.exists()){
+//            System.out.println("Sorry Group name already exists");
+//        }
+            this.name = name;
+            this.owner = owner;
+            members = new ArrayList<>();
+            members.add(owner);
+
+            invite_codes = new ArrayList<>();
+
+            save();
+
+
 
     }
 
@@ -42,27 +47,7 @@ public class Group implements Serializable {
         return members.size();
     }
 
-    public int getTotalGoals(){ return goals.size();}
-
-    public int getTotalCompletedGoals(){ return completedGoals.size();}
-
-    public Goal getGoal(int index){ return goals.get(index);}
-
-    public Goal getCompletedGoal(int index){ return completedGoals.get(index);}
-
     public User getMember(int index){ return members.get(index);}
-
-    public ArrayList<Goal> getGoalList(){
-        ArrayList<Goal> goals_out = new ArrayList<>();
-        goals_out.addAll(goals);
-        return goals_out;
-    }
-
-    public ArrayList<Goal> getCompletedGoalList(){
-        ArrayList<Goal> completed_goals_out = new ArrayList<>();
-        completed_goals_out.addAll(completedGoals);
-        return completed_goals_out;
-    }
 
     public ArrayList<User> getMembersList(){
         ArrayList<User> members_out = new ArrayList<>();
@@ -70,9 +55,10 @@ public class Group implements Serializable {
         return members_out;
     }
 
-
-
     public void invite(String email){
+
+
+
         String username = "noreplyapphealth45@gmail.com";
         String password = "Health!23";
         String to = email;
@@ -112,9 +98,9 @@ public class Group implements Serializable {
 
     }
 
-    public void joinGroup(User user, String invite_code ){  // temp join needs changing // error handling if already joied
+    public void joinGroup(User user, String invite_code ){
         load();
-        members.add(user); // temp solution
+        members.add(user);
         invite_codes.remove(invite_code);
         save();
 
@@ -144,11 +130,6 @@ public class Group implements Serializable {
     public void save() {
 
         File f = new File(name + ".csv");
-
-        if(f.exists()){
-           // error handling here
-        }
-
         try{
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(name + ".csv"));
             os.writeObject(this);
@@ -166,25 +147,16 @@ public class Group implements Serializable {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(this.name + ".csv"));
             Group group = (Group) is.readObject();
-
             this.members = group.members;
-            this.goals = group.goals;
-            this.completedGoals = group.completedGoals;
             this.invite_codes = group.invite_codes;
 
             is.close();
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
 
         }
     }
 
-
-    public void addGoal(){
-        load();
-        goals.add(new Goal());
-        save();
-
-    }
 
     public void createGoal(){
 
@@ -244,7 +216,7 @@ public class Group implements Serializable {
 
     }
 
-    public void sendGroupEmail(String goal_name, String email){
+    public void sendCompletionEmail(String goal_name, String email){
         String username = "noreplyapphealth45@gmail.com";
         String password = "Health!23";
 
@@ -286,14 +258,6 @@ public class Group implements Serializable {
     }
 
 
-    public void addCompletedGoal(Goal completed){
-        load();
-        completedGoals.add(completed);
-        goals.remove(completed);
-        save();
-
-    }
-
     public String getAlphaNumericString(int n)
     {
 
@@ -321,46 +285,5 @@ public class Group implements Serializable {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-      User user = new User("Bobby Cow", "william.andrews314@gmail.com");
-      Group group = new Group("xDDDDD", user);
-      group.createGoal();
-      user.sendGroupEmail("Lose weight", "xDDDDD");
-
-
-
-    }
-
-
-
-
-
-    // old save with counter for files
-//    public void save() {
-//        int count = 1;
-//        String filename = "groups ";
-//        File f = new File(filename + count + ".csv");
-//
-//        System.out.println(f.exists());
-//        while(f.exists()){
-//            count++;
-//            f = new File(filename + count + ".csv");
-//        }
-//
-//
-//        try{
-//            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filename + count + ".csv"));
-//            os.writeObject(this);
-//            os.close();
-//        } catch (IOException e ){
-//            e.printStackTrace();
-//        }
-//
-//        this.id = count;
-//        this.join_id = count + "_" +  name;
-//        System.out.println(this.join_id);
-//        System.out.println("saved file");
-//
-//    }
 
 }

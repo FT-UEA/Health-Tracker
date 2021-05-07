@@ -1,13 +1,15 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User implements Serializable {
-    private String name;
+    String name;
     public ArrayList<Group> groups = new ArrayList<>();
     private String email;
+    HashMap<String, Double> goal = new HashMap<>();
 
     User(String name ,String email){
         this.name = name;
@@ -31,25 +33,6 @@ public class User implements Serializable {
     public String getEmail() {
         return email;
     }
-
-
-/*    public void loadGroup(String group_name){ // used to keep the group updated in the user
-        try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(this.name + ".csv"));
-            Group group = (Group) is.readObject();
-
-            for(int i = 0; i < groups.size(); i++){
-                if(groups.get(i).getName().equals(group.getName())){
-                    groups.add(i, group);
-                    break;
-                }
-            }
-            is.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-
-        }
-    }*/
 
     public Group getGroup(String name){
         Group group_out = null;
@@ -130,12 +113,12 @@ public class User implements Serializable {
 
     }
 
-    public void sendGroupEmail(String goal_name, String from){
+    public void sendCompletionEmail(String goal_name, String from){
         ArrayList<User> arrayListUser = new ArrayList<>();
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(from + ".csv"));
             Group group = (Group) is.readObject();
-            group.sendGroupEmail(goal_name, this.email);
+            group.sendCompletionEmail(goal_name, this.email);
             is.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
