@@ -15,75 +15,54 @@ public class Group implements Serializable {
     private String name;
     private User owner;
     private ArrayList<User> members;
-    private ArrayList<Goal> goals;
-    private ArrayList<Goal> completedGoals;
     private ArrayList<String> invite_codes;
 
-    Group(String name, User owner) {
+    Group(String name, User owner){
+
+//        File f = new File(name + ".csv");
+//
+//        if(f.exists()){
+//            System.out.println("Sorry Group name already exists");
+//        }
         this.name = name;
         this.owner = owner;
         members = new ArrayList<>();
         members.add(owner);
 
-        goals = new ArrayList<>();
-        completedGoals = new ArrayList<>();
         invite_codes = new ArrayList<>();
-        save();
 
+        save();
     }
 
-    public String getName() {
+    public static boolean checkGroup(String name) {
+        File f = new File(name + ".csv");
+        return f.exists();
+    }
+
+    public String getName(){
         return name;
     }
 
-    public User getOwner() {
+    public User getOwner(){
         return owner;
     }
 
-    public int getTotalMembers() {
+    public int getTotalMembers(){
         return members.size();
     }
 
-    public int getTotalGoals() {
-        return goals.size();
-    }
+    public User getMember(int index){ return members.get(index);}
 
-    public int getTotalCompletedGoals() {
-        return completedGoals.size();
-    }
-
-    public Goal getGoal(int index) {
-        return goals.get(index);
-    }
-
-    public Goal getCompletedGoal(int index) {
-        return completedGoals.get(index);
-    }
-
-    public User getMember(int index) {
-        return members.get(index);
-    }
-
-    public ArrayList<Goal> getGoalList() {
-        ArrayList<Goal> goals_out = new ArrayList<>();
-        goals_out.addAll(goals);
-        return goals_out;
-    }
-
-    public ArrayList<Goal> getCompletedGoalList() {
-        ArrayList<Goal> completed_goals_out = new ArrayList<>();
-        completed_goals_out.addAll(completedGoals);
-        return completed_goals_out;
-    }
-
-    public ArrayList<User> getMembersList() {
+    public ArrayList<User> getMembersList(){
         ArrayList<User> members_out = new ArrayList<>();
         members_out.addAll(members);
         return members_out;
     }
 
+    public void invite(String email){
 
-    public void invite(String email) {
+
+
         String username = "noreplyapphealth45@gmail.com";
         String password = "Health!23";
         String to = email;
@@ -109,7 +88,7 @@ public class Group implements Serializable {
             message.setFrom(new InternetAddress(email));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject("Invite to " + name);
-            message.setText("You have been invited to join " + name + " here is your invite code " + "\"" + alpha_numeric + "\"");
+            message.setText("You have been invited to join " + name + " here is your invite code " + "\"" +  alpha_numeric + "\"");
 
             Transport.send(message);
 
@@ -123,18 +102,18 @@ public class Group implements Serializable {
 
     }
 
-    public void joinGroup(User user, String invite_code) {  // temp join needs changing // error handling if already joied
+    public void joinGroup(User user, String invite_code ){
         load();
-        members.add(user); // temp solution
+        members.add(user);
         invite_codes.remove(invite_code);
         save();
 
     }
 
-    public void removeMember(String username) { // temp solution, removes user from list
+    public void removeMember(String username){ // temp solution, removes user from list
         System.out.println("this user:" + username);
-        for (int i = 0; i < members.size(); i++) {
-            if (username.equals(members.get(i).getUserName())) {
+        for(int i = 0; i < members.size(); i++){
+            if(username.equals(members.get(i).getUserName())){
                 System.out.println("User " + members.get(i).getUserName() + " has been removed");
                 members.remove(i);
                 break;
@@ -145,9 +124,9 @@ public class Group implements Serializable {
 
 
     public boolean containsInvite_code(String code) {
-        if (invite_codes.contains(code)) {
+        if(invite_codes.contains(code)){
             return true;
-        } else {
+        } else{
             return false;
         }
     }
@@ -155,16 +134,11 @@ public class Group implements Serializable {
     public void save() {
 
         File f = new File(name + ".csv");
-
-        if (f.exists()) {
-            // error handling here
-        }
-
-        try {
+        try{
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(name + ".csv"));
             os.writeObject(this);
             os.close();
-        } catch (IOException e) {
+        } catch (IOException e ){
             e.printStackTrace();
         }
 
@@ -177,28 +151,21 @@ public class Group implements Serializable {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(this.name + ".csv"));
             Group group = (Group) is.readObject();
-
             this.members = group.members;
-            this.goals = group.goals;
-            this.completedGoals = group.completedGoals;
             this.invite_codes = group.invite_codes;
 
             is.close();
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
 
         }
     }
 
 
-    public void addGoal() {
-        load();
-//        goals.add(new Goal());
-        save();
-    }
-
     public void createGoalWeight(String goalName, double userWeight, double goalWeight, String dateIn) {
 
         Goal goal = new Goal(goalName, userWeight, goalWeight, dateIn);
+        goal.setFrom(this.name);
         String redisString = "";
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -236,8 +203,8 @@ public class Group implements Serializable {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.addRecipients(Message.RecipientType.TO, emails);
-            message.setSubject("Group goal: Goalnamegoeshere has been created! ");
-            message.setText("A goal has been created for all the grouop members to complete! Copy the text" +
+            message.setSubject("Group goal: " + goalName + " has been created! ");
+            message.setText("A goal has been created for all the group members to complete! Copy the text" +
                     " below to add it to your local goal. Good Luck! \n \n \n \n" + "\"" + redisString + "\"");
 
             Transport.send(message);
@@ -305,7 +272,7 @@ public class Group implements Serializable {
     }
 
 
-    public void sendGroupEmail(String goal_name, String email) {
+    public void sendCompletionEmail(String goal_name, String email){
         String username = "noreplyapphealth45@gmail.com";
         String password = "Health!23";
 
@@ -324,9 +291,9 @@ public class Group implements Serializable {
         try {
             String name = "";
             Address[] emails = new Address[members.size()];
-            for (int i = 0; i < members.size(); i++) {
+            for(int i = 0; i < members.size(); i++){
                 emails[i] = new InternetAddress(members.get(i).getEmail());
-                if (members.get(i).getEmail().equals(email)) {
+                if(members.get(i).getEmail().equals(email)){
                     name = members.get(i).getUserName();
                 }
             }
@@ -335,7 +302,7 @@ public class Group implements Serializable {
             message.setFrom(new InternetAddress(username));
             message.addRecipients(Message.RecipientType.TO, emails);
             message.setSubject(name + " has completed " + goal_name + "!");
-            message.setText("Congratulations to " + name + " for reaching their goal! It's your turn now!");
+            message.setText("Congradulations to " + name + " for reaching their goal! It's your turn now!");
             Transport.send(message);
 
 
@@ -347,15 +314,8 @@ public class Group implements Serializable {
     }
 
 
-    public void addCompletedGoal(Goal completed) {
-        load();
-        completedGoals.add(completed);
-        goals.remove(completed);
-        save();
-
-    }
-
-    public String getAlphaNumericString(int n) {
+    public String getAlphaNumericString(int n)
+    {
 
         // chose a Character random from this String
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -370,7 +330,7 @@ public class Group implements Serializable {
             // generate a random number between
             // 0 to AlphaNumericString variable length
             int index
-                    = (int) (AlphaNumericString.length()
+                    = (int)(AlphaNumericString.length()
                     * Math.random());
 
             // add Character one by one in end of sb
@@ -381,13 +341,5 @@ public class Group implements Serializable {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-//        User user = new User("Bobby Cow", "william.andrews314@gmail.com");
-//        Group group = new Group("xDDDDD", user);
-//        group.createGoal();
-//        user.sendGroupEmail("Lose weight", "xDDDDD");
 
-
-    }
 }
-

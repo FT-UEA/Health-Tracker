@@ -71,7 +71,7 @@
                                                                           <items>
                                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                                  <children>
-                                                                                    <Text fx:id="groupText1" layoutX="157.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                    <Text fx:id="groupText1" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
                                                                                        <font>
                                                                                           <Font size="37.0" />
                                                                                        </font>
@@ -80,8 +80,9 @@
                                                                               </AnchorPane>
                                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
                                                                                  <children>
-                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
-                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal1" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="60.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="169.0" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal1" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup1" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                           </items>
@@ -102,7 +103,7 @@
                                                                            <items>
                                                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                                  <children>
-                                                                                    <Text fx:id="groupText2" layoutX="157.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                    <Text fx:id="groupText2" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
                                                                                        <font>
                                                                                           <Font size="37.0" />
                                                                                        </font>
@@ -111,8 +112,9 @@
                                                                               </AnchorPane>
                                                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
                                                                                  <children>
-                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers2" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
-                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal2" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers2" prefHeight="60.0" prefWidth="262.0" text="Invite Members" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal2" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup2" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                            </items>
@@ -132,7 +134,7 @@
                                                                            <items>
                                                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                                                  <children>
-                                                                                    <Text fx:id="groupText3" layoutX="157.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                                                    <Text fx:id="groupText3" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
                                                                                        <font>
                                                                                           <Font size="37.0" />
                                                                                        </font>
@@ -141,8 +143,9 @@
                                                                               </AnchorPane>
                                                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
                                                                                  <children>
-                                                                                    <Button layoutX="60.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers3" prefHeight="100.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="144.0" />
-                                                                                    <Button layoutX="60.0" layoutY="135.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal3" prefHeight="100.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers3" prefHeight="60.0" prefWidth="262.0" text="Invite Members" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal3" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup3" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                            </items>

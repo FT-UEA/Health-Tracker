@@ -25,6 +25,7 @@ public class Goal implements Serializable {
     public String goalName;
     public String type;
     public double goalWeight;
+    private String from;
 
     private LocalDate date2 = LocalDate.now();
     private LocalTime currentTime = LocalTime.now();
@@ -44,6 +45,10 @@ public class Goal implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.goalDate = LocalDate.parse(dateIn, formatter);
         this.type = "weight";
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     // Constructor for exercise goal
@@ -66,11 +71,14 @@ public class Goal implements Serializable {
         return isComplete;
     }
 
-    public void checkWeightGoal(Text statusText, Text completeText, double currentWeight) {
+    public void checkWeightGoal(User user, Text statusText, Text completeText, double currentWeight) {
         if (goalDate.isAfter(date2)) {
             if (currentWeight == goalWeight) {
                 statusText.setText("Congratulations you've hit your weight goal!");
                 isComplete = true;
+                if (from != null) {
+                    user.sendCompletionEmail(this.goalName, this.from);
+                }
             } else {
                 statusText.setText("You have not hit your weight but keep going there's still time!");
             }
@@ -124,7 +132,10 @@ public class Goal implements Serializable {
         this.timeSet = LocalTime.now();
     }
 
-    public void checkExerciseGoal(Text statusText, Text completeText, double currentDistance) {
+    public void checkExerciseGoal(User user, Text statusText, Text completeText, double currentDistance) {
+        if (from != null) {
+            user.sendCompletionEmail(this.goalName, this.from);
+        }
         //calculating time passed since goal set
         long hourToAdd = timeSet.getHour();
         long minToAdd = timeSet.getMinute();

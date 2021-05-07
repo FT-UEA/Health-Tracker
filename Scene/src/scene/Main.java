@@ -1,6 +1,7 @@
 package scene;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,14 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.setTitle("Health Tracker");
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+            Database database = new Database();
+            if (scene.Application.getUser() != null) {
+                database.saveToFile(scene.Application.getUser());
+            }
+            Platform.exit();
+        });
     }
 
     public static void main(String[] args) {

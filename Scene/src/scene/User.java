@@ -147,7 +147,8 @@ public class User implements Serializable {
             goal = (Goal) si.readObject();
 
             //add goal to user goal array or hashmap or whatever
-
+            active_goals.put(goal.goalName, goal);
+            System.out.println(goal.goalName + " added");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -155,18 +156,17 @@ public class User implements Serializable {
 
     }
 
-    public void sendGroupEmail(String goal_name, String from){
+    public void sendCompletionEmail(String goal_name, String from){
         ArrayList<User> arrayListUser = new ArrayList<>();
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(from + ".csv"));
             Group group = (Group) is.readObject();
-            group.sendGroupEmail(goal_name, this.email);
+            group.sendCompletionEmail(goal_name, this.email);
             is.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
 
         }
-
     }
 
     // User details

@@ -1,5 +1,6 @@
 package scene;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -217,6 +218,18 @@ public class Application {
     @FXML
     private Text groupInviteText3;
 
+    @FXML
+    private Button addGroupGoalButton;
+    @FXML
+    private TextField groupGoalCode;
+    @FXML
+    private Text addGroupGoalText;
+
+    @FXML
+    private Text loginBMIText;
+    @FXML
+    private Text loginFeedbackText;
+
 
     public Application() throws FileNotFoundException {
         users = new HashMap<>();
@@ -224,6 +237,10 @@ public class Application {
 //        users.put("JT", new User("JT", "Josh Thomson", "JoshT626@hotmail.co.uk", 28,
 //                184, 77, "M"));
         database = new Database();
+    }
+
+    public static User getUser() {
+        return currentUser;
     }
 
     // Creates and adds user
@@ -433,8 +450,13 @@ public class Application {
     }
 
     public void createGroup() {
-        currentUser.createGroup(groupNameField.getText());
-        groupCreateText.setText("Group created");
+        if (Group.checkGroup(groupNameField.getText())) {
+            groupCreateText.setText("Group name already exists");
+            groupNameField.clear();
+        } else {
+            currentUser.createGroup(groupNameField.getText());
+            groupCreateText.setText("Group created");
+        }
     }
 
     public void setMealBreakfast() {
@@ -494,7 +516,13 @@ public class Application {
         }
     }
 
+    public void addGroupGoal() {
+        currentUser.addGroupGoal(groupGoalCode.getText());
+        addGroupGoalText.setText("Group goal added");
+    }
+
     public void createGroupExerciseGoal1() {
+        // Add completion text here
         currentUser.groups.get(0).createGoalExercise(exerciseGoalName.getText(),
                 Double.parseDouble(goalDistance.getText()), exerciseDate.getText(), goalDuration.getText());
         System.out.println("Group goal " + exerciseGoalName.getText() + " created");
@@ -530,8 +558,23 @@ public class Application {
         System.out.println("Group goal " + weightGoalName.getText() + " created");
     }
 
+    public void leaveGroup1() {
+        currentUser.leaveGroup(currentUser.groups.get(0).getName());
+        groupText1.setText("Left group");
+    }
+
+    public void leaveGroup2() {
+        currentUser.leaveGroup(currentUser.groups.get(1).getName());
+        groupText2.setText("Left group");
+    }
+
+    public void leaveGroup3() {
+        currentUser.leaveGroup(currentUser.groups.get(2).getName());
+        groupText3.setText("Left group");
+    }
+
     public void checkWeightGoal() {
-        currentUser.active_goals.get(weightGoals.get(0).goalName).checkWeightGoal(weightStatusText1, weightText1,
+        currentUser.active_goals.get(weightGoals.get(0).goalName).checkWeightGoal(currentUser, weightStatusText1, weightText1,
                 Double.parseDouble(weightField1.getText()));
         if (currentUser.active_goals.get(weightGoals.get(0).goalName).isComplete) {
             // Remove from active and add to completed
@@ -543,7 +586,7 @@ public class Application {
     }
 
     public void checkWeightGoal1() {
-        currentUser.active_goals.get(weightGoals.get(1).goalName).checkWeightGoal(weightStatusText2, weightText2,
+        currentUser.active_goals.get(weightGoals.get(1).goalName).checkWeightGoal(currentUser, weightStatusText2, weightText2,
                 Double.parseDouble(weightField2.getText()));
         if (currentUser.active_goals.get(weightGoals.get(1).goalName).isComplete) {
             // Remove from active and add to completed
@@ -555,7 +598,7 @@ public class Application {
     }
 
     public void checkWeightGoal2() {
-        currentUser.active_goals.get(weightGoals.get(2).goalName).checkWeightGoal(weightStatusText3, weightText2,
+        currentUser.active_goals.get(weightGoals.get(2).goalName).checkWeightGoal(currentUser, weightStatusText3, weightText2,
                 Double.parseDouble(weightField2.getText()));
         if (currentUser.active_goals.get(weightGoals.get(2).goalName).isComplete) {
             // Remove from active and add to completed
@@ -567,7 +610,7 @@ public class Application {
     }
 
     public void checkExerciseGoal() {
-        currentUser.active_goals.get(exerciseGoals.get(0).goalName).checkExerciseGoal(exerciseStatusText1, exerciseText1,
+        currentUser.active_goals.get(exerciseGoals.get(0).goalName).checkExerciseGoal(currentUser, exerciseStatusText1, exerciseText1,
                 Double.parseDouble(exerciseField1.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(0).goalName).isComplete) {
             // Remove from active and add to completed
@@ -579,7 +622,7 @@ public class Application {
     }
 
     public void checkExerciseGoal1() {
-        currentUser.active_goals.get(exerciseGoals.get(1).goalName).checkExerciseGoal(exerciseStatusText2, exerciseText2,
+        currentUser.active_goals.get(exerciseGoals.get(1).goalName).checkExerciseGoal(currentUser, exerciseStatusText2, exerciseText2,
                 Double.parseDouble(exerciseField2.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(1).goalName).isComplete) {
             // Remove from active and add to completed
@@ -591,7 +634,7 @@ public class Application {
     }
 
     public void checkExerciseGoal2() {
-        currentUser.active_goals.get(exerciseGoals.get(2).goalName).checkExerciseGoal(exerciseStatusText3, exerciseText3,
+        currentUser.active_goals.get(exerciseGoals.get(2).goalName).checkExerciseGoal(currentUser, exerciseStatusText3, exerciseText3,
                 Double.parseDouble(exerciseField3.getText()));
         if (currentUser.active_goals.get(exerciseGoals.get(2).goalName).isComplete) {
             // Remove from active and add to completed
@@ -600,6 +643,16 @@ public class Application {
             System.out.println("Goal moved to completed");
             currentUser.active_goals.remove(exerciseGoals.get(2).goalName);
         }
+    }
+
+    public void changeScreenAddGroupGoal(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Add Group Goal.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
     }
 
     public void changeScreenAddGroupExerciseGoal1(ActionEvent event) throws Exception {
@@ -670,6 +723,7 @@ public class Application {
         window.setScene(loginScene);
         window.setTitle("Health Tracker");
         window.show();
+
     }
 
     public void changeScreenInviteMembers2(ActionEvent event) throws Exception {
@@ -702,10 +756,10 @@ public class Application {
         window.show();
     }
 
-
-    public void changeScreenDashboard(ActionEvent event) throws Exception {
+    public void changeScreenLoginFeedback(ActionEvent event) throws Exception {
         if (createUser()) {
-            Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
+            System.out.println("asfsdfsdg");
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("Feedback.fxml"));
             Scene loginScene = new Scene(loginRoot);
             // This line gets the stage information
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -722,6 +776,26 @@ public class Application {
             male.setSelected(false);
             female.setSelected(false);
         }
+    }
+
+    public void changeScreenDashboard(ActionEvent event) throws Exception {
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("Personal Dashboard.fxml"));
+            Scene loginScene = new Scene(loginRoot);
+            // This line gets the stage information
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(loginScene);
+            window.setTitle("Health Tracker");
+            window.show();
+    }
+
+    public void changeScreenBackLoggedOut(ActionEvent event) throws Exception {
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));
+        Scene loginScene = new Scene(loginRoot);
+        // This line gets the stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
+        window.setTitle("Health Tracker");
+        window.show();
     }
 
     public void changeScreenLoggedOut(ActionEvent event) throws Exception {
@@ -927,6 +1001,22 @@ public class Application {
             feedbackText.setText("Overweight");
         } else {
             feedbackText.setText("Healthy");
+        }
+    }
+
+    public void calculateBMIFeedback() {
+        currentUser.healthInformation.setBmi(100 * (currentUser.healthInformation.getWeight() /
+                Math.pow(currentUser.healthInformation.getHeight() * 0.1, 2)));
+        this.bmi.setText(Integer.toString((int) currentUser.healthInformation.getBmi()));
+        if (currentUser.healthInformation.getBmi() < 18) {
+            feedbackText.setText("Underweight");
+            loginFeedbackText.setText("Your BMI indicates you are underweight, would you like to set a weight goal?");
+        } else if (currentUser.healthInformation.getBmi() > 24) {
+            feedbackText.setText("Overweight");
+            loginFeedbackText.setText("Your BMI indicates you are overweight, would you like to set a weight goal?");
+        } else {
+            feedbackText.setText("Healthy");
+            loginFeedbackText.setText("Your BMI indicates you are healthy, would you like to set a weight goal?");
         }
     }
 
