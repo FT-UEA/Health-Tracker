@@ -35,6 +35,11 @@ public class User implements Serializable {
         return email;
     }
 
+    public void setGroup(int i, Group group){
+        groups.set(i, group);
+
+    }
+
     public Group getGroup(String name){
         Group group_out = null;
         for(Group group: groups){

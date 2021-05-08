@@ -8,6 +8,24 @@ public class Database {
     boolean exists;
     User loadedUser;
 
+
+    public void loadGroups(User user){
+        try {
+            for(int i = 0; i < user.getGroupSize(); i++){
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(user.getGroup(i).getName() + ".csv"));
+                System.out.println(user.getGroup(i).getTotalMembers());
+                Group loadedGroup = (Group) is.readObject();
+                user.setGroup(i, loadedGroup);
+                System.out.println(user.getGroup(i).getTotalMembers());
+                is.close();
+
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void saveToFile(User user) {
         try{
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream( user.name ));
