@@ -563,8 +563,13 @@ public class Application {
     }
 
     public void addGroupGoal() {
-        currentUser.addGroupGoal(groupGoalCode.getText());
-        addGroupGoalText.setText("Group goal added");
+        if (!currentUser.addGroupGoal(groupGoalCode.getText())) {
+            addGroupGoalText.setText("Invalid code");
+            groupGoalCode.clear();
+        } else {
+            addGroupGoalText.setText("Group goal added");
+        }
+
     }
 
     public void createGroupExerciseGoal1() {
@@ -1054,10 +1059,10 @@ public class Application {
                 Math.pow(currentUser.healthInformation.getHeight() * 0.1, 2)));
         this.bmi.setText(Integer.toString((int) currentUser.healthInformation.getBmi()));
         if (currentUser.healthInformation.getBmi() < 18) {
-            feedbackText.setText("Underweight");
+            loginFeedbackText.setText("Underweight");
             loginFeedbackText.setText("Your BMI indicates you are underweight, would you like to set a goal?");
         } else if (currentUser.healthInformation.getBmi() > 24) {
-            feedbackText.setText("Overweight");
+            loginFeedbackText.setText("Overweight");
             loginFeedbackText.setText("Your BMI indicates you are overweight, would you like to set a goal?");
         } else {
             loginFeedbackText.setText("Healthy");

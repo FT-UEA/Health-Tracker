@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
 
     @Override
@@ -15,6 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Logged Out.fxml"));
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.setTitle("Health Tracker");
+        primaryStage.setResizable(false);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
             e.consume();

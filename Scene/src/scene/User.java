@@ -142,7 +142,7 @@ public class User implements Serializable {
         }
     }
 
-    public void addGroupGoal(String serializedObject) {
+    public boolean addGroupGoal(String serializedObject) {
         Goal goal = null;
         try {
             byte b[] = Base64.getDecoder().decode(serializedObject.getBytes());
@@ -153,8 +153,9 @@ public class User implements Serializable {
             //add goal to user goal array or hashmap or whatever
             active_goals.put(goal.getGoalName(), goal);
             System.out.println(goal.getGoalName() + " added");
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
 
     }
