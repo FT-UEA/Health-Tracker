@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Scene:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4763801e-2472-46c5-8b96-4614374e9b72" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1rcXrEwcYvJkIe7a6iAQttWZHDa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../javafx-sdk-16/lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="scene.Main" />
+      <module name="Scene" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../../../../javafx-sdk-16/lib --add-modules javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="scene.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4763801e-2472-46c5-8b96-4614374e9b72" name="Default Changelist" comment="" />
+      <created>1619276549040</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619276549040</updated>
+      <workItem from="1619276550628" duration="8197000" />
+      <workItem from="1619339041348" duration="15293000" />
+      <workItem from="1619442619652" duration="11755000" />
+      <workItem from="1619535911249" duration="599000" />
+      <workItem from="1619610481065" duration="10743000" />
+      <workItem from="1619692896382" duration="10311000" />
+      <workItem from="1619857210924" duration="16870000" />
+      <workItem from="1619984954352" duration="1951000" />
+      <workItem from="1619988132562" duration="76000" />
+      <workItem from="1620041070581" duration="7509000" />
+      <workItem from="1620056582055" duration="240000" />
+      <workItem from="1620056837135" duration="71000" />
+      <workItem from="1620056923634" duration="2141000" />
+      <workItem from="1620059938707" duration="2785000" />
+      <workItem from="1620137497692" duration="6368000" />
+      <workItem from="1620149383383" duration="48000" />
+      <workItem from="1620151759690" duration="1137000" />
+      <workItem from="1620210552942" duration="2374000" />
+      <workItem from="1620237033725" duration="172000" />
+      <workItem from="1620237220824" duration="3364000" />
+      <workItem from="1620242634250" duration="3669000" />
+      <workItem from="1620247897844" duration="310000" />
+      <workItem from="1620314103979" duration="10557000" />
+      <workItem from="1620386108963" duration="11951000" />
+      <workItem from="1620461839264" duration="1326000" />
+      <workItem from="1620464187861" duration="9504000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added lots of stuff">
+      <created>1619354138051</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619354138051</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added more stuff">
+      <created>1619442670318</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619442670318</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed calories/food text">
+      <created>1619458839949</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619458839949</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed add food/drink">
+      <created>1619468062244</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619468062244</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implemented goals">
+      <created>1619637399709</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1619637399709</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Working on goals, changed check goal screen">
+      <created>1619861399668</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1619861399668</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Implemented check exercise">
+      <created>1619988157261</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1619988157261</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Finished exercise and weight goal implementation and presentation">
+      <created>1620056114606</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1620056114606</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added groups in">
+      <created>1620059167849</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620059167849</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Worked on groups">
+      <created>1620149417368</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620149417368</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implemented My Groups">
+      <created>1620212548605</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620212548605</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Worked on group goals">
+      <created>1620241186099</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620241186099</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Begun database implementation">
+      <created>1620248118661</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620248118661</updated>
+    </task>
+    <task id="LOCAL-00014" summary="User now saves and loads but does not retain goal info, possibly groups too.">
+      <created>1620315523188</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620315523188</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Working on groups">
+      <created>1620317585775</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620317585775</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Working on getting goals to save">
+      <created>1620328099444</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620328099444</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Goals and groups now save">
+      <created>1620331041387</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620331041387</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Working on registration feedback">
+      <created>1620402325697</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1620402325697</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Finished group goals ui implementation">
+      <created>1620470919075</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1620470919075</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added .jar">
+      <created>1620483994089</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620483994089</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added .jar">
+      <created>1620484050389</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1620484050389</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added lots of stuff" />
+    <MESSAGE value="Added more stuff" />
+    <MESSAGE value="Fixed calories/food text" />
+    <MESSAGE value="Fixed add food/drink" />
+    <MESSAGE value="Implemented goals" />
+    <MESSAGE value="Working on goals, changed check goal screen" />
+    <MESSAGE value="Implemented check exercise" />
+    <MESSAGE value="Finished exercise and weight goal implementation and presentation" />
+    <MESSAGE value="Added groups in" />
+    <MESSAGE value="Worked on groups" />
+    <MESSAGE value="Implemented My Groups" />
+    <MESSAGE value="Worked on group goals" />
+    <MESSAGE value="Begun database implementation" />
+    <MESSAGE value="User now saves and loads but does not retain goal info, possibly groups too." />
+    <MESSAGE value="Working on groups" />
+    <MESSAGE value="Working on getting goals to save" />
+    <MESSAGE value="Goals and groups now save" />
+    <MESSAGE value="Working on registration feedback" />
+    <MESSAGE value="Finished group goals ui implementation" />
+    <MESSAGE value="Added .jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .jar" />
+  </component>
+</project>
