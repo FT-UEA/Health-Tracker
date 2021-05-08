@@ -1,13 +1,11 @@
 package scene;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class Database {
-
-    private boolean exists;
-    private User loadedUser;
+    boolean exists;
+    User loadedUser;
 
     public void saveToFile(User user) {
         try {
@@ -33,20 +31,46 @@ public class Database {
         return loadedUser;
     }
 
+    public void saveEmail(String email) {
+        try {
+            FileWriter fw = new FileWriter("userEmails.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(email);
+            bw.newLine();
+            bw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public boolean containsEmail(String email) {
+        boolean contain = false;
+        try {
+            File file = new File("userEmails.txt");
+            Scanner myReader = new Scanner(file);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                if (email.equals(data)) {
+                    contain = true;
+                    break;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return contain;
+    }
+
     public boolean userExists(String userName) {
         File f = new File(userName);
         exists = f.exists(); // stores true or false in exists
+
         return exists;
     }
-    /*  ---- testing ----
-    public static void main(String[] args){
-        User u = new User("JaG", "James", "J.G@e.com", 19,  85.2, 74.3);
-        Database d = new Database();
-        d.saveToFile(u);
-        System.out.println(d.userExists("JaG"));
-        User u2 = new User("Isa", "Ishan", "I.S@e.com", 19,  85.2, 74.3);
-        d.saveToFile(u2);
-        d.load(u);
 
-    }*/
 }

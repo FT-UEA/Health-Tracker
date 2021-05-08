@@ -22,6 +22,8 @@ public class User implements Serializable {
         groups = new ArrayList<>();
         active_goals = new HashMap<>();
         completed_goals = new HashMap<>();
+        Database database = new Database();
+        database.saveEmail(email);
     }
 
     public String getUserName() {
@@ -36,9 +38,11 @@ public class User implements Serializable {
         return email;
     }
 
-    public int getGroupSize(){ return groups.size();}
+    public int getGroupSize() {
+        return groups.size();
+    }
 
-    public Group getGroup(int i){
+    public Group getGroup(int i) {
         return groups.get(i);
     }
 
@@ -46,10 +50,10 @@ public class User implements Serializable {
         return this.healthInformation.getGender();
     }
 
-    public Group getGroup(String name){
+    public Group getGroup(String name) {
         Group group_out = null;
-        for(Group group: groups){
-            if(group.getName().equals(name)){
+        for (Group group : groups) {
+            if (group.getName().equals(name)) {
                 group_out = group;
             }
         }
@@ -93,7 +97,7 @@ public class User implements Serializable {
         return this.healthInformation.getWeight();
     }
 
-    public void createGroup(String group_name){
+    public void createGroup(String group_name) {
         groups.add(new Group(group_name, this));
     }
 
@@ -104,33 +108,33 @@ public class User implements Serializable {
         System.out.println(group_name);
 
         System.out.println(f.exists());
-        if(f.exists()){
-            try{
-                ObjectInputStream is = new ObjectInputStream(new FileInputStream(group_name +".csv"));
+        if (f.exists()) {
+            try {
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(group_name + ".csv"));
                 Group group = (Group) is.readObject();
 
-                if(group.containsInvite_code(invite_code)){
+                if (group.containsInvite_code(invite_code)) {
                     groups.add(group);
                     group.joinGroup(this, invite_code);
                     text.setText("Group joined" + group_name);
-                } else{
+                } else {
                     System.out.println(invite_code);
                     System.out.println("Invite is invalid");
                     text.setText("Invite is invalid");
                 }
                 is.close();
-            } catch(IOException | ClassNotFoundException e){
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        } else{
+        } else {
             System.out.println("Group doesn't exist");
             text.setText("Group doesn't exist");
         }
     }
 
-    public void leaveGroup(String group_name){
-        for(Group group : this.groups){
-            if(group.getName().equals(group_name)){
+    public void leaveGroup(String group_name) {
+        for (Group group : this.groups) {
+            if (group.getName().equals(group_name)) {
                 this.groups.remove(group);
                 group.removeMember(userName);
                 break;
@@ -147,16 +151,15 @@ public class User implements Serializable {
             goal = (Goal) si.readObject();
 
             //add goal to user goal array or hashmap or whatever
-            active_goals.put(goal.goalName, goal);
-            System.out.println(goal.goalName + " added");
-        }
-        catch (Exception e) {
+            active_goals.put(goal.getGoalName(), goal);
+            System.out.println(goal.getGoalName() + " added");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void sendCompletionEmail(String goal_name, String from){
+    public void sendCompletionEmail(String goal_name, String from) {
         ArrayList<User> arrayListUser = new ArrayList<>();
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(from + ".csv"));

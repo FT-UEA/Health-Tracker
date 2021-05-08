@@ -57,7 +57,10 @@
                                        <children>
                                           <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Text fx:id="groupCreateText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <Text fx:id="groupCreateText" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font></Text>
                                                 <Button mnemonicParsing="false" onAction="#createGroup" prefHeight="100.0" prefWidth="262.0" text="Create Group" />
                                                 <TextField fx:id="groupNameField" prefHeight="24.0" prefWidth="387.0" promptText="Group Name">
                                                    <font>

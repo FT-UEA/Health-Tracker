@@ -29,18 +29,18 @@
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                    <children>
-                                                      <Text layoutX="51.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BMI">
+                                                      <Text layoutX="61.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BMI">
                                                          <font>
-                                                            <Font size="49.0" />
+                                                            <Font size="39.0" />
                                                          </font>
                                                       </Text>
                                                    </children>
                                                 </AnchorPane>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                    <children>
-                                                      <Text fx:id="bmi" layoutX="51.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                                                      <Text fx:id="bmi" layoutX="96.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                                                          <font>
-                                                            <Font size="49.0" />
+                                                            <Font size="39.0" />
                                                          </font>
                                                       </Text>
                                                    </children>
@@ -55,7 +55,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <Text fx:id="loginFeedbackText" layoutX="47.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="703.0">
+                              <Text fx:id="loginFeedbackText" layoutX="53.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="703.0">
                                  <font>
                                     <Font size="49.0" />
                                  </font>

@@ -71,12 +71,12 @@
                                        <children>
                                           <TilePane alignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#createWeightGoal" prefHeight="100.0" prefWidth="262.0" text="Add Weight Goal">
+                                                <Button mnemonicParsing="false" onAction="#createGroupWeightGoal2" prefHeight="100.0" prefWidth="262.0" text="Add Weight Goal">
                                                    <TilePane.margin>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <Text fx:id="weightText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="267.7294921875">
+                                                <Text fx:id="groupWeightText2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="267.7294921875">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

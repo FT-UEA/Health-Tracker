@@ -57,7 +57,10 @@
                                        <children>
                                           <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Text fx:id="groupInviteText1" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                <Text fx:id="groupInviteText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font size="29.0" />
+                                                   </font></Text>
                                                 <Button mnemonicParsing="false" onAction="#inviteMember1" prefHeight="100.0" prefWidth="262.0" text="Invite Member" />
                                                 <TextField fx:id="groupEmail1" prefHeight="24.0" prefWidth="387.0" promptText="Email Address">
                                                    <font>

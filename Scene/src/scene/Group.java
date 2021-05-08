@@ -1,15 +1,10 @@
 package scene;
 
-import java.awt.desktop.AppForegroundListener;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import javax.mail.*;
-import java.util.regex.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.*;
-import javax.activation.*;
 
 public class Group implements Serializable {
     private String name;
@@ -17,13 +12,7 @@ public class Group implements Serializable {
     private ArrayList<User> members;
     private ArrayList<String> invite_codes;
 
-    Group(String name, User owner){
-
-//        File f = new File(name + ".csv");
-//
-//        if(f.exists()){
-//            System.out.println("Sorry Group name already exists");
-//        }
+    Group(String name, User owner) {
         this.name = name;
         this.owner = owner;
         members = new ArrayList<>();
@@ -39,70 +28,70 @@ public class Group implements Serializable {
         return f.exists();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public User getOwner(){
+    public User getOwner() {
         return owner;
     }
 
-    public int getTotalMembers(){
+    public int getTotalMembers() {
         return members.size();
     }
 
-    public User getMember(int index){ return members.get(index);}
+    public User getMember(int index) {
+        return members.get(index);
+    }
 
-    public ArrayList<User> getMembersList(){
+    public ArrayList<User> getMembersList() {
         ArrayList<User> members_out = new ArrayList<>();
         members_out.addAll(members);
         return members_out;
     }
 
-    public void invite(String email){
+    public void invite(String email) {
+        Database database = new Database();
+        if (database.containsEmail(email)) {
+            String username = "noreplyapphealth45@gmail.com";
+            String password = "Health!23";
+            String to = email;
+            String alpha_numeric = name;
+            alpha_numeric = alpha_numeric + "_" + getAlphaNumericString(10);
+            invite_codes.add(alpha_numeric);
 
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
 
+            Session session = Session.getInstance(properties,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+            try {
 
-        String username = "noreplyapphealth45@gmail.com";
-        String password = "Health!23";
-        String to = email;
-        String alpha_numeric = name;
-        alpha_numeric = alpha_numeric + "_" + getAlphaNumericString(10);
-        invite_codes.add(alpha_numeric);
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(email));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                message.setSubject("Invite to " + name);
+                message.setText("You have been invited to join " + name + " here is your invite code " + "\"" + alpha_numeric + "\"");
 
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
+                Transport.send(message);
 
-        Session session = Session.getInstance(properties,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-        try {
+                System.out.println("Done");
+                save();
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(email));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Invite to " + name);
-            message.setText("You have been invited to join " + name + " here is your invite code " + "\"" +  alpha_numeric + "\"");
-
-            Transport.send(message);
-
-            System.out.println("Done");
-            save();
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
-
-
     }
 
-    public void joinGroup(User user, String invite_code ){
+    public void joinGroup(User user, String invite_code) {
         load();
         members.add(user);
         invite_codes.remove(invite_code);
@@ -110,10 +99,10 @@ public class Group implements Serializable {
 
     }
 
-    public void removeMember(String username){ // temp solution, removes user from list
+    public void removeMember(String username) { // temp solution, removes user from list
         System.out.println("this user:" + username);
-        for(int i = 0; i < members.size(); i++){
-            if(username.equals(members.get(i).getUserName())){
+        for (int i = 0; i < members.size(); i++) {
+            if (username.equals(members.get(i).getUserName())) {
                 System.out.println("User " + members.get(i).getUserName() + " has been removed");
                 members.remove(i);
                 break;
@@ -124,9 +113,9 @@ public class Group implements Serializable {
 
 
     public boolean containsInvite_code(String code) {
-        if(invite_codes.contains(code)){
+        if (invite_codes.contains(code)) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -134,11 +123,11 @@ public class Group implements Serializable {
     public void save() {
 
         File f = new File(name + ".csv");
-        try{
+        try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(name + ".csv"));
             os.writeObject(this);
             os.close();
-        } catch (IOException e ){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -272,7 +261,7 @@ public class Group implements Serializable {
     }
 
 
-    public void sendCompletionEmail(String goal_name, String email){
+    public void sendCompletionEmail(String goal_name, String email) {
         String username = "noreplyapphealth45@gmail.com";
         String password = "Health!23";
 
@@ -291,9 +280,9 @@ public class Group implements Serializable {
         try {
             String name = "";
             Address[] emails = new Address[members.size()];
-            for(int i = 0; i < members.size(); i++){
+            for (int i = 0; i < members.size(); i++) {
                 emails[i] = new InternetAddress(members.get(i).getEmail());
-                if(members.get(i).getEmail().equals(email)){
+                if (members.get(i).getEmail().equals(email)) {
                     name = members.get(i).getUserName();
                 }
             }
@@ -302,7 +291,7 @@ public class Group implements Serializable {
             message.setFrom(new InternetAddress(username));
             message.addRecipients(Message.RecipientType.TO, emails);
             message.setSubject(name + " has completed " + goal_name + "!");
-            message.setText("Congradulations to " + name + " for reaching their goal! It's your turn now!");
+            message.setText("Congratulations to " + name + " for reaching their goal! It's your turn now!");
             Transport.send(message);
 
 
@@ -314,8 +303,7 @@ public class Group implements Serializable {
     }
 
 
-    public String getAlphaNumericString(int n)
-    {
+    public String getAlphaNumericString(int n) {
 
         // chose a Character random from this String
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -330,7 +318,7 @@ public class Group implements Serializable {
             // generate a random number between
             // 0 to AlphaNumericString variable length
             int index
-                    = (int)(AlphaNumericString.length()
+                    = (int) (AlphaNumericString.length()
                     * Math.random());
 
             // add Character one by one in end of sb

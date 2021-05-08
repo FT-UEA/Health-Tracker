@@ -76,7 +76,7 @@
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                    </TilePane.margin>
                                                 </Button>
-                                                <Text fx:id="weightText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="267.7294921875">
+                                                <Text fx:id="groupWeightText1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="267.7294921875">
                                                    <font>
                                                       <Font size="22.0" />
                                                    </font>

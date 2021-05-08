@@ -42,7 +42,7 @@
                                  <items>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="109.0">
                                        <children>
-                                          <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" textAlignment="CENTER" />
+                                          <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" />
                                           <Button layoutX="50.0" layoutY="7.0" mnemonicParsing="false" onAction="#loadGroups" text="Load Groups" />
                                           <Button alignment="CENTER" layoutX="667.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenGroupDashboard" text="Back" />
                                        </children>
@@ -61,7 +61,7 @@
                                              <children>
                                                 <Accordion prefHeight="453.0" prefWidth="980.0">
                                                    <panes>
-                                                      <TitledPane fx:id="groupPane1" animated="false" visible="false">
+                                                      <TitledPane fx:id="groupPane1" animated="false" onMouseClicked="#loadGroups" visible="false">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -93,7 +93,7 @@
                                                             </AnchorPane>
                                                          </content>
                                                       </TitledPane>
-                                                      <TitledPane fx:id="groupPane2" animated="false" visible="false">
+                                                      <TitledPane fx:id="groupPane2" animated="false" onMouseClicked="#loadGroups" visible="false">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -124,7 +124,7 @@
                                                                </children>
                                                             </AnchorPane>
                                                          </content></TitledPane>
-                                                      <TitledPane fx:id="groupPane3" animated="false" visible="false">
+                                                      <TitledPane fx:id="groupPane3" animated="false" onMouseClicked="#loadGroups" visible="false">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>

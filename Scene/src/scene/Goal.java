@@ -17,14 +17,14 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.Scanner;
 
 public class Goal implements Serializable {
-    public double weight;
-    public LocalDate goalDate;
-    public LocalTime goalTime;
-    public double distance;
-    public boolean isComplete;
-    public String goalName;
-    public String type;
-    public double goalWeight;
+    private double weight;
+    private LocalDate goalDate;
+    private LocalTime goalTime;
+    private double distance;
+    private boolean isComplete;
+    private String goalName;
+    private String type;
+    private double goalWeight;
     private String from;
 
     private LocalDate date2 = LocalDate.now();
@@ -61,6 +61,10 @@ public class Goal implements Serializable {
         this.type = "exercise";
         timeSet = LocalTime.parse(goalTime);
         System.out.println(timeSet);
+    }
+
+    public String getGoalName() {
+        return goalName;
     }
 
     public String getType() {
@@ -192,11 +196,11 @@ public class Goal implements Serializable {
         }
     }
 
-    public void changeScreenSettings(ActionEvent event) throws Exception{
+    public void changeScreenSettings(ActionEvent event) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Scene loginScene = new Scene(loginRoot);
         // This line gets the stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(loginScene);
         window.show();
     }
