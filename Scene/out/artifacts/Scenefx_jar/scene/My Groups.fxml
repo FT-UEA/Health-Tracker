@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Application">
+   <children>
+      <SplitPane dividerPositions="0.12" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="386.0" prefWidth="586.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="597.0">
+               <children>
+                  <SplitPane dividerPositions="0.1" layoutX="-36.0" layoutY="-52.0" prefHeight="47.0" prefWidth="597.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="109.0">
+                           <children>
+                              <Button layoutX="61.0" layoutY="34.0" mnemonicParsing="false" onAction="#changeScreenLoggedOut" text="Log Out" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <TextArea layoutX="134.0" layoutY="-78.0" prefHeight="200.0" prefWidth="200.0" promptText="Search..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0">
+               <children>
+                  <SplitPane dividerPositions="0.12" layoutY="103.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane prefHeight="47.0" prefWidth="597.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="109.0">
+                                       <children>
+                                          <Button layoutX="197.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenDashboardNoCreate" prefWidth="400.0" text="My Dashboard" />
+                                          <Button layoutX="50.0" layoutY="7.0" mnemonicParsing="false" onAction="#loadGroups" text="Load Groups" />
+                                          <Button alignment="CENTER" layoutX="667.0" layoutY="7.0" mnemonicParsing="false" onAction="#changeScreenGroupDashboard" text="Back" />
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="595.0">
+                           <children>
+                              <SplitPane layoutX="105.0" layoutY="105.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <TilePane alignment="CENTER" layoutX="97.0" layoutY="59.0" prefHeight="453.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Accordion prefHeight="453.0" prefWidth="980.0">
+                                                   <panes>
+                                                      <TitledPane fx:id="groupPane1" animated="false" onMouseClicked="#loadGroups" visible="false">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                          <items>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText1" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers1" prefHeight="60.0" prefWidth="262.0" text="Invite Members" AnchorPane.bottomAnchor="169.0" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal1" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup1" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                          </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                      <TitledPane fx:id="groupPane2" animated="false" onMouseClicked="#loadGroups" visible="false">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                           <items>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText2" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers2" prefHeight="60.0" prefWidth="262.0" text="Invite Members" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal2" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup2" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                           </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content></TitledPane>
+                                                      <TitledPane fx:id="groupPane3" animated="false" onMouseClicked="#loadGroups" visible="false">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TilePane layoutX="174.0" layoutY="14.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <SplitPane dividerPositions="0.5" prefHeight="281.0" prefWidth="786.0">
+                                                                           <items>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                    <Text fx:id="groupText3" layoutX="14.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="354.0">
+                                                                                       <font>
+                                                                                          <Font size="37.0" />
+                                                                                       </font>
+                                                                                    </Text>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="668.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#changeScreenInviteMembers3" prefHeight="60.0" prefWidth="262.0" text="Invite Members" />
+                                                                                    <Button layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onAction="#changeScreenGroupGoal3" prefHeight="60.0" prefWidth="262.0" text="Group goals" />
+                                                                                    <Button layoutX="60.0" layoutY="170.0" mnemonicParsing="false" onAction="#leaveGroup3" prefHeight="60.0" prefWidth="262.0" text="Leave Group" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                           </items>
+                                                                        </SplitPane>
+                                                                     </children>
+                                                                  </TilePane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content></TitledPane>
+                                                   </panes>
+                                                </Accordion>
+                                             </children>
+                                          </TilePane>
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
