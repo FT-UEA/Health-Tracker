@@ -155,9 +155,10 @@ public class Group implements Serializable {
     }
 
 
-    public void createGoal(){
+    public void createGoalWeight(String goalName, double userWeight, double goalWeight, String dateIn) {
 
-        Goal goal = new Goal();
+        Goal goal = new Goal(goalName, userWeight, goalWeight, dateIn);
+        goal.setFrom(this.name);
         String redisString = "";
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -165,8 +166,7 @@ public class Group implements Serializable {
             so.writeObject(goal);
             so.flush();
             redisString = new String(Base64.getEncoder().encode(bo.toByteArray()));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -187,7 +187,61 @@ public class Group implements Serializable {
                 });
         try {
             Address[] emails = new Address[members.size()];
-            for(int i = 0; i < members.size(); i++){
+            for (int i = 0; i < members.size(); i++) {
+                System.out.println(members.size());
+                System.out.println(members.get(i).getEmail());
+                emails[i] = new InternetAddress(members.get(i).getEmail());
+            }
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.addRecipients(Message.RecipientType.TO, emails);
+            message.setSubject("Group goal: " + goalName + " has been created! ");
+            message.setText("A goal has been created for all the group members to complete! Copy the text" +
+                    " below to add it to your local goal. Good Luck! \n \n \n \n" + "\"" + redisString + "\"");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+            save();
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createGoalExercise(String goalName, double distance, String dateIn, String goalTime) {
+
+        Goal goal = new Goal(goalName, distance, dateIn, goalTime);
+        String redisString = "";
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream so = new ObjectOutputStream(bo);
+            so.writeObject(goal);
+            so.flush();
+            redisString = new String(Base64.getEncoder().encode(bo.toByteArray()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String username = "noreplyapphealth45@gmail.com";
+        String password = "Health!23";
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+
+        Session session = Session.getInstance(properties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Address[] emails = new Address[members.size()];
+            for (int i = 0; i < members.size(); i++) {
                 System.out.println(members.size());
                 System.out.println(members.get(i).getEmail());
                 emails[i] = new InternetAddress(members.get(i).getEmail());
@@ -208,9 +262,6 @@ public class Group implements Serializable {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
     public void sendCompletionEmail(String goal_name, String email){
